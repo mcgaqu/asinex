@@ -1,0 +1,275 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asinex</title>
+    <link id="head0" rel="icon" href="../static/img/favicon.jpg/" />
+    {% comment %} <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> {% endcomment %}
+    <link id="head1" rel="stylesheet" href="../static/css/w3.css">
+    <link id="head2" rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-cyan.css">
+    <link id="head3" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link id="head4" rel="stylesheet" href="../static/css/index0.css">
+    <script id="head5" src="../static/js/index0.js"></script>
+</head>
+
+
+<body id="index0">
+{% comment %} <div id="index0" > {% endcomment %}
+<header id="header" class="w3-top">
+    <div id="appbar" class="w3-bar w3-white w3-card">
+        <img id="logo" src="../static/img/logo1.jpg" 
+            class="w3-padding w3-left" alt="" 
+            style="width:240px" >
+        <div id="titulo" class="w3-panel w3-left w3-small">
+            <div><b id="titulo1"></b></div>
+            <div><b id="titulo2"></b></div>
+        </div>
+        <div id="languages" class="w3-left w3-padding">
+            {% comment %} banderas {% endcomment %}
+        </div>
+        <div id="navbar" class="w3-right w3-hide-small">
+            <a id="navbar0">Home</a>
+            <a id="navbar1">Nosotros</a>
+            <a id="navbar2">Servicios</a>
+            <a id="navbar3">Costa Tropical</a>
+            <a id="navbar4">Equipo</a>
+            <a id="navbar5">Contacto</a>
+            {% comment %} <a id="navbar6"></a>
+            <a id="navbar7"></a>
+            <a id="navbar8"></a>
+            <a id="navbar9"></a> {% endcomment %}
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->  
+        <a href="javascript:void(0)" 
+            class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="sidebar"    
+        class="w3-sidebar w3-bar-block w3-theme-d4 w3-card w3-animate-left w3-hide-medium w3-hide-large" 
+        style="display:none" >
+        <a id="sidebar0">Home</a>
+        <a id="sidebar1">Nosotros</a>
+        <a id="sidebar2">Servicios</a>
+        <a id="sidebar3">Costa Tropical</a>
+        <a id="sidebar4">equipo</a>
+        <a id="sidebar5">Contacto</a>
+        {% comment %} <a id="sidebar6"></a>
+        <a id="sidebar7"></a>
+        <a id="sidebar8"></a>
+        <a id="sidebar9"></a> {% endcomment %}
+        <a id="sidebarx" href="javascript:void(0)" onclick="w3_close()" 
+            class="w3-bar-item w3-button">
+            <i class="fa fa-close"></i> CERRAR
+        </a>
+    </div>
+    <script>
+        var mySidebar = document.getElementById("sidebar");
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            } else {
+            mySidebar.style.display = 'block';
+            }
+        }
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+    </script>
+</header>
+
+<div id="main">
+    <!-- Home Section -->
+    <div id="main0" class="w3-theme-l5">
+        <div id="slideshow" class="w3-content w3-display-container">
+            <img  id="main01" class="mySlides"  style="width:100%">
+            <img  id="main02" class="mySlides"  style="width:100%">
+            <img  id="main03" class="mySlides"  style="width:100%">
+            <img  id="main04" class="mySlides"  style="width:100%">
+            <img  id="main05" class="mySlides"  style="width:100%">
+            <img  id="main06" class="mySlides"  style="width:100%">
+            <img  id="main07" class="mySlides"  style="width:100%">
+            <img  id="main08" class="mySlides"  style="width:100%">
+            <img  id="main09" class="mySlides"  style="width:100%">
+
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    
+            {% comment %} <i class="fa fa-arrow-ĺeft w3-xxxlarge w3-display-left" 
+                onclick="plusDivs(-1)"></i>
+            <i class="fa fa-arrow-right w3-xxxlarge w3-display-right" 
+                onclick="plusDivs(1)"></i> {% endcomment %}
+        </div>
+            
+        <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+            
+            function plusDivs(n) {
+            showDivs(slideIndex += n);
+            }
+            
+            function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length}
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            x[slideIndex-1].style.display = "block";  
+            }
+        </script>
+            
+    </div>
+
+    {% comment %} <div id="main1">Nosotros</div> {% endcomment %}
+    <div id="main1" class="w3-container w3-theme-l5" style="padding:64px 16px" >
+        <div id="main10" class="w3-center"></div>
+
+        <div id="main15" class="w3-row-padding w3-center" style="margin-top:64px">
+            <div id="main151" class="w3-quarter"></div>
+            <div id="main152" class="w3-quarter"></div>
+            <div id="main153" class="w3-quarter"></div>
+            <div id="main154" class="w3-quarter"></div>
+        </div>
+    </div>
+
+    <div id="main2" class="w3-container w3-theme-l5" style="padding:64px 16px" >
+        <div id="main20" class="w3-center"></div>
+
+        <div>
+            <div id="main25" class="w3-row-padding w3-center" style="margin-top:64px">
+                <div id="main251" class="w3-third"></div>
+                <div id="main252" class="w3-third"></div>
+                <div id="main253" class="w3-third"></div>
+            </div>
+            <div id="main25" class="w3-row-padding w3-center" style="margin-top:64px">
+                <div id="main254" class="w3-third"></div>
+                <div id="main255" class="w3-third"></div>
+                <div id="main256" class="w3-third"></div>
+            </div>
+            {% comment %} <div id="main25" class="w3-row-padding w3-center" style="margin-top:64px">
+                <div id="main257" class="w3-third"></div>
+                <div id="main258" class="w3-third"></div>
+                <div id="main259" class="w3-third"></div>
+            </div> {% endcomment %}
+            <div id="main25x" class="W3-modal"></div>
+        </div>
+    </div>
+
+    <div id="main3"></div>
+
+    <div id="main4" class="w3-container w3-theme-l4" style="padding:64px 16px" >
+        <div id="main40" class="w3-center"></div>
+        <div>
+            <div id="main45" class="w3-row-padding w3-center" style="margin-top:64px">
+                <div id="main451" class="w3-quarter"></div>
+                <div id="main452" class="w3-quarter"></div>
+                <div id="main453" class="w3-quarter"></div>
+                <div id="main454" class="w3-quarter"></div>
+            </div>
+            <div id="main45" class="w3-row-padding w3-center" style="margin-top:64px">
+                <div id="main455" class="w3-quarter"></div>
+                <div id="main456" class="w3-quarter"></div>
+                <div id="main457" class="w3-quarter"></div>
+                <div id="main458" class="w3-quarter"></div>
+            </div>
+            <div id="main45x">Galeria de imágenes, hoteles,..</div>
+        </div>
+    </div>
+
+
+    <div id="main5"></div>
+    <div id="main6"></div>
+
+    <!-- Team Section -->
+    <div id="main7" class="w3-container w3-theme-l5" style="padding:64px 16px" >
+        <div id="main70" class="w3-center"></div>
+        <div>
+            <div id="main75" class="w3-row-padding w3-center w3-grayscale" style="margin-top:64px">
+                <div id="main751" class="w3-third"></div>
+                <div id="main752" class="w3-third"></div>
+                <div id="main753" class="w3-third"></div>
+            </div>
+            <div id="main75" class="w3-row-padding w3-center w3-grayscale" style="margin-top:64px">
+                <div id="main754" class="w3-third"></div>
+                <div id="main755" class="w3-third"></div>
+                <div id="main756" class="w3-third"></div>
+            </div>
+            {% comment %} <div id="main75" class="w3-row-padding w3-center w3-grayscale" style="margin-top:64px">
+                <div id="main757" class="w3-third"></div>
+                <div id="main758" class="w3-third"></div>
+                <div id="main759" class="w3-third"></div>
+            </div>
+            <div id="main75x"></div> {% endcomment %}
+        </div>
+    </div>
+
+
+    <div id="main8"></div>
+    <!-- Contact Section -->
+        <div id="contact" class="w3-container w3-theme-l4" style="padding:64px 16px">
+            <div id="main80" class="w3-center"></div>
+            <div style="margin-top:48px">
+                <img src="../static/img/logo.png" class="w3-padding" alt="" style="width:50%" >
+                <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>
+                    Almuñécar, Granada, Spain</p>
+                <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i>
+                    +0034 958 631 855</p>
+                <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i>
+                    E-mail: asinex@asinex.es</p>
+                <br>
+                <!-- Image of location/map -->
+                {% comment %} <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.602699235939!2d-3.68964044843353!3d36.732101979130164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71889a760f1df9%3A0xc5742898a42c787a!2sAsinex%20S.L.!5e0!3m2!1ses!2ses!4v1642406559254!5m2!1ses!2ses" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> {% endcomment %}
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.601302546624!2d-3.691918797912952!3d36.732135515343934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71889963e8918b%3A0x7fd23d077010f3c0!2sAv.%20Juan%20Carlos%20I%2C%2024%2C%2018690%20Almu%C3%B1%C3%A9car%2C%20Granada!5e0!3m2!1ses!2ses!4v1677840485458!5m2!1ses!2ses" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+ 
+            </div>
+        </div>
+    </div>
+
+    <div id="main9"></div>
+</div>
+
+<!-- Footer Section -->
+<footer id="footer" class="w3-center w3-theme-d5 w3-padding-64">
+    <a id="footer1" href="#main0" class="w3-button w3-light-grey">
+        <i class="fa fa-angle-up w3-xxlarge"></i>
+    </a>
+    {% comment %} <div id="footer2" class="w3-left w3-padding">
+        <a id="footer21" href=""></a>
+        <a id="footer22" href=""></a>
+        <a id="footer23" href=""></a>
+    </div> {% endcomment %}
+    
+    {% comment %} <div id="footer3" class="w3-xlarge w3-section">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div> {% endcomment %}
+
+    {% comment %} <p id="footer5">
+        <span>Powered by </span>
+        <!-- <a href="https://www.w3schools.com/w3css/default.asp"  -->
+        <a href="https://www.linkedin.com/in/maricarmen-garc%C3%ADa-quesada-b4098360/"
+        title="W3.CSS" target="_blank" class="w3-hover-text-green">
+        Sicem, S.L.
+        </a>
+    </p> {% endcomment %}
+</footer>
+{% comment %} </div> {% endcomment %}
+
+{% comment %} <script id="head5" src="../static/js/index0.js"></script> {% endcomment %}
+
+</body>
+
+</html>

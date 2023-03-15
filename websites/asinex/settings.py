@@ -38,7 +38,6 @@ else:
     BASE_DIR = SITE_DIR.parent
     WSITE_NAME = SITE_NAME
 
-
 # NUM_ADMIN_SITE = os.environ.get('NUM_ADMIN_SITE', "1")
 #-------------------------------------
 # BASE_NAME = os.path.basename(BASE_DIR) # b2bmachine
@@ -48,7 +47,8 @@ else:
 # =============================
 # Leer el fichero .env adecuado ??? Falta parametrizar???
 # =======================================
-environ.Env.read_env(os.path.join(SITE_DIR, '.envs', '.env'))
+# environ.Env.read_env(os.path.join(SITE_DIR, '.envs', '.env'))
+environ.Env.read_env(os.path.join(SITE_DIR, '.env'))
 
 #=============================
 # 02  SECRET_KEY = 'django-insecure-8^__-1nmf%$^0^f271-(oio0_)n^t+-x*9%=hfytqy&#1m2hj='

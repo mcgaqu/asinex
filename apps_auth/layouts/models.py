@@ -8,8 +8,8 @@ from ckeditor.fields import RichTextField
 # from ckeditor_uploader.fields import RichTextUploadingField
 from apps_admin.main1.models.modelbase import ModelBase
 from apps_admin.main1.models.modeltree import ModelTree1
-from apps_admin.utils.base import get_website
-from apps_admin.websites.models import Website
+from apps_admin.utils.base import get_wsite
+from apps_admin.wsites.models import Wsite
 
 def get_icon(url):
     icon = ""
@@ -184,7 +184,7 @@ class ExtraLayout(Extradocfile):
 #-----------------------------------
 
 class Component(ModelTree1, ExtraLayout):
-    website = models.ForeignKey(Website, on_delete=models.CASCADE, 
+    wsite = models.ForeignKey(Wsite, on_delete=models.CASCADE, 
                                     null=True, blank=True)
 
 
@@ -211,7 +211,7 @@ class Component(ModelTree1, ExtraLayout):
     class Meta(ModelTree1.Meta):
         verbose_name= _("Fichero")
         verbose_name_plural= _("Ficheros / Imágenes")
-        unique_together= (('website','alias',),)
+        unique_together= (('wsite','alias',),)
         ordering = ['pos']
 
     def __str__(self):
@@ -220,8 +220,8 @@ class Component(ModelTree1, ExtraLayout):
     def save(self, *args, **kwargs):
         # import pdb; pdb.set_trace()
         dev = super().save(*args, **kwargs)
-        if not self.website:
-            self.website = get_website()
+        if not self.wsite:
+            self.wsite = get_wsite()
         if not self.last_alias:
             self.last_alias = "ID%s" % self.id
         
@@ -234,7 +234,7 @@ class Component(ModelTree1, ExtraLayout):
 
 
 class Layout(ModelTree1, ExtraLayout):
-    website = models.ForeignKey(Website, on_delete=models.CASCADE, 
+    wsite = models.ForeignKey(Wsite, on_delete=models.CASCADE, 
                                     null=True, blank=True)
     # front = models.CharField(max_length=250, null=True, blank=True)
 
@@ -261,8 +261,8 @@ class Layout(ModelTree1, ExtraLayout):
     class Meta(ModelTree1.Meta):
         verbose_name = _('Página web')
         verbose_name_plural = _('Paginas web')
-        unique_together= (('website', 'root_alias', 'alias'),)
-        ordering = ('website','pos',)
+        unique_together= (('wsite', 'root_alias', 'alias'),)
+        ordering = ('wsite','pos',)
 
     def __str__(self):
         return "%s" % (self.alias)
@@ -273,11 +273,11 @@ class Layout(ModelTree1, ExtraLayout):
     ME_num_i18n.short_description = _("Nº I18n")
 
     def save(self, *args, **kwargs):
-        if not self.website:
+        if not self.wsite:
             if self.parent:
-                self.website = self.parent.website
+                self.wsite = self.parent.wsite
             else:
-                self.website = get_website(settings.SITE_NAME)
+                self.wsite = get_wsite(settings.SITE_NAME)
         self.internal = not (not self.mark)
         self.replace = not (not self.mark_i18n)
         # import pdb; pdb.set_trace()
@@ -293,7 +293,7 @@ class Layout(ModelTree1, ExtraLayout):
         data = get_DATA()
 
         root_obj = self
-        wsite = root_obj.website
+        wsite = root_obj.wsite
         root_alias = root_obj.root_alias
         languages = root_obj.params.split(',')
         #-----------
@@ -331,16 +331,16 @@ class Layout(ModelTree1, ExtraLayout):
             # obtener el padre
             #----------------------
             try:
-                lp = Layout.objects.get(website=wsite, root_alias=root_alias, pos=pos_parent)
+                lp = Layout.objects.get(wsite=wsite, root_alias=root_alias, pos=pos_parent)
             except Layout.DoesNotExist:
                 print(data_row)
                 import pdb; pdb.set_trace()
             try:
-                lx = Layout.objects.get(website=wsite, parent=lp, sort=sort, 
+                lx = Layout.objects.get(wsite=wsite, parent=lp, sort=sort, 
                             last_alias=last_alias)
                 
             except Layout.DoesNotExist:
-                lx = Layout(website=wsite, parent=lp, sort=sort, last_alias=last_alias)
+                lx = Layout(wsite=wsite, parent=lp, sort=sort, last_alias=last_alias)
                 
             lx.active = active
             lx.locked = locked

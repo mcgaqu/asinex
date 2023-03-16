@@ -3,7 +3,9 @@
 window.onload = iniciar();
 function iniciar() {
     // TODO! obtener del env
-    localStorage.domain = "http://127.0.0.1:8001/asinex";
+    const serverUrl= `${window.location.href}asinex`
+    console.log(serverUrl);
+    localStorage.serverUrl = serverUrl;
     localStorage.rootAlias = "index0"
     localStorage.lan = 'es'
     localStorage.card3 = ''
@@ -18,7 +20,7 @@ function iniciar() {
 //===================================
 
 async function getModelData(model, filtro) {
-    const url = `${localStorage.domain}/apirest/${model}/?format=json${filtro}`;
+    const url = `${localStorage.serverUrl}/apirest/${model}/?format=json${filtro}`;
     console.log(url); 
     let respuesta = await fetch(url);
     let resultado = await respuesta.json();
@@ -50,6 +52,12 @@ async function manageLayout(model, filtro, idElementField) {
     };
     
     await data.forEach(function(obj) {
+   
+        if (obj == null) {
+            alert(`El objeto es nulo `);
+            return;
+        };
+        
         
         idElement = obj[idElementField] 
         element = document.getElementById(idElement);
@@ -141,8 +149,10 @@ function selectLan(e) {
     manageLayout("layouti18ns",
         `&active=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.language}`,
         'layout_last_alias');
+
+    //    `&locked=1&internal=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.lan}`,
     // si hay una pagina activa --> traducirla??? no es imprescindible
-    selectCard3(e);
+    // selectCard3(e);
 }
 //----------------------------------
 // seleccion de Page
@@ -155,9 +165,9 @@ async function selectCard3(e){
     };
     localStorage.card3 = e.target.id;
     //-------------------------
-    const origenId = e.target.id.slice(0, -1)
+    const origenId = e.target.id.slice(-2);
     const filtro =
-        `&active=1&internal=0&layout_root_alias=${localStorage.rootAlias}
+        `&active=1&layout_root_alias=${localStorage.rootAlias}
          &sort=${localStorage.language}&layout_last_alias=${origenId}`,
          data = await getModelData("layouti18ns",filtro)
          if (data==null) {

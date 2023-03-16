@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     # 'django_docutils',
     # Pillow
     #=========================
-    'apps_admin.websites.apps.WebsitesConfig',
+    'apps_admin.wsites.apps.WsitesConfig',
     # 'apps_auth.adjango.apps.AdjangoConfig',
     # 'apps_auth.dataloads.apps.DataloadsConfig',
     'apps_auth.layouts.apps.LayoutsConfig',
@@ -70,8 +70,8 @@ MODELADMINS1 = [
         ],
     ],    
     #------------------------------------
-    ['apps_admin.websites.apps.WebsitessConfig', [
-            ['Website', 'WebsiteAdmin1', 1],
+    ['apps_admin.wsites.apps.WsitesConfig', [
+            ['Wsite', 'WsiteAdmin1', 1],
             ['Dataload', 'DataloadAdmin1', 2],
         ],
     ],

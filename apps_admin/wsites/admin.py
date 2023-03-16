@@ -5,12 +5,12 @@ from django.contrib import admin
 from apps_admin.main1.options import ModelAdmin1, ModelLin1
 # from mod_base.configs.models import Config1, Config2
 
-from .models import Website, Dataload
+from .models import Wsite, Dataload
 from .actions import get_app_actions
 
 
-class WebsiteAdmin1(ModelAdmin1):
-    model = Website
+class WsiteAdmin1(ModelAdmin1):
+    model = Wsite
 
     list_display = ['sort', 'grade', 'alias', 'name', 
         'active', 'internal', 'replace', 'locked']
@@ -24,7 +24,7 @@ class WebsiteAdmin1(ModelAdmin1):
     list_filter = ['internal', 'active', 'replace','locked' ]
     # search_fields = ['alias', 'name', 'grade','sort', 'pos', 'mark']
 
-    actions = get_app_actions('Website')
+    actions = get_app_actions('Wsite')
 
     fields = list_display   
 
@@ -54,7 +54,7 @@ class DataloadAdmin1(ModelAdmin1):
 
 
 if settings.NUM_ADMIN_SITE == "0":
-    admin.site.register(Website) # , WebsiteAdmin1)
+    admin.site.register(Wsite) # , WebsiteAdmin1)
     admin.site.register(Dataload) #, DataloadAdmin1)
 
 

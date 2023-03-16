@@ -11,13 +11,13 @@ def print_msg(msg):
         print(msg)
     return
 
-def get_website(alias=settings.SITE_NAME):
+def get_wsite(alias=settings.SITE_NAME):
     # if not settings.BIZ_ID:
     #     return None
 
-    from apps_admin.websites.models import Website
+    from apps_admin.wsites.models import Wsite
     try:
-        wsite = Website.objects.get(alias=alias)
+        wsite = Wsite.objects.get(alias=alias)
     except: #  Cms.DoesNotExist: o no existe la tabla
         wsite = None
     return wsite

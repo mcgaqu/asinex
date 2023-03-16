@@ -49,7 +49,7 @@ export NUM_ADMIN_SITE="1"
 #python manage.py migrate --database=infotemp
 #python manage.py migrate --database=webpublica
 
-
+# key-git   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
 
 #----------------------
 # CRONTAB

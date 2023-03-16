@@ -6,12 +6,12 @@ from django.utils.translation import  gettext_lazy as _
 from apps_admin.main1.models.modelbase import ModelBase
 
 
-class Website(ModelBase):
+class Wsite(ModelBase):
     repository = models.CharField(max_length=250, null=True, blank=True)
 
     class Meta(ModelBase.Meta):
-        verbose_name="Website"
-        verbose_name_plural="Websites"
+        verbose_name="Wsite"
+        verbose_name_plural="Wsites"
         unique_together=(('alias', 'repository'))
 
     def __str__(self):
@@ -29,11 +29,11 @@ class Website(ModelBase):
             alias = data_row[1]
             grade = data_row[0]
             try:
-                obj = Dataload.objects.get(website=self, alias=alias, grade=grade)
+                obj = Dataload.objects.get(wsite=self, alias=alias, grade=grade)
                 if obj.locked or not obj.replace:
                     continue
             except Dataload.DoesNotExist:
-                obj = Dataload(website=self, name=data_row[2],alias=alias, grade=grade)
+                obj = Dataload(wsite=self, name=data_row[2],alias=alias, grade=grade)
                 for campo in data_row[3].keys():
                     setattr(obj, campo, data_row[3][campo])
             obj.sort = "%02d" % count
@@ -44,13 +44,13 @@ class Website(ModelBase):
 
 
 class Dataload(ModelBase):
-    website = models.ForeignKey(Website,  on_delete=models.CASCADE,
+    wsite = models.ForeignKey(Wsite,  on_delete=models.CASCADE,
                                 null=True, blank=True)
 
     class Meta(ModelBase.Meta):
         verbose_name= _("Dataload")
         verbose_name_plural= _("Dataloads")
-        unique_together= (('website','alias','sort'),)
+        unique_together= (('wsite','alias','sort'),)
         ordering = ['sort']
 
     def __str__(self):

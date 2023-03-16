@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 # from django.contrib.auth.models import Group
 from apps_admin.main1.options import ModelAdmin1, ModelLin1
-from apps_admin.utils.base import get_website
+from apps_admin.utils.base import get_wsite
 # from mod_base.configs.models import Config1, Config2
 from .models import Component, Layout, LayoutI18n
 from .actions import get_app_actions
@@ -21,7 +21,7 @@ class ComponentAdmin1(ModelAdmin1):
     model = Component
     
     #------------------------------------------------       
-    list_display = ['website',
+    list_display = ['wsite',
         'alias', 'grade', 'name',# 'last_alias',
         'docfile','MH_docfile_size',
         'MH_docfile_display_s', 'MH_docfile_url',
@@ -47,7 +47,7 @@ class ComponentAdmin1(ModelAdmin1):
     list_editable = []
 
     #---------------------------------------
-    list_filter = ['website', 'root_alias',
+    list_filter = ['wsite', 'root_alias',
         'grade','active', 'internal','locked', 'replace']
 
     def get_list_filter(self, request):
@@ -77,7 +77,7 @@ class ComponentAdmin1(ModelAdmin1):
         if request.user.is_superuser:
             return super().get_queryset(request)
         qs = super().get_queryset(request)
-        qs = qs.filter(website=get_website()
+        qs = qs.filter(wsite=get_wsite()
                         # ,root_alias=settings.HTML_INDEX
                         )
         return qs
@@ -90,7 +90,7 @@ class ComponentAdmin1(ModelAdmin1):
                 'imagefile','MH_imagefile_size', 'MH_imagefile_url',
                 'MH_imagefile_display_s',]        
         if request.user.is_superuser:
-            fields = ['website', 'root_alias', 'last_alias' ] + fields + ['MH_docfile_path',]
+            fields = ['wsite', 'root_alias', 'last_alias' ] + fields + ['MH_docfile_path',]
         return (None, {'fields': fields })
     
     def x_get_fieldsets2(self, request, obj):
@@ -120,7 +120,7 @@ class LayoutI18nAdmin1(ModelAdmin1):
         if request.user.is_superuser:
             return super().get_queryset(request)
         qs = super().get_queryset(request)
-        qs = qs.filter(layout__website=get_website(), layout_root_alias=settings.HTML_INDEX)
+        qs = qs.filter(layout__wsite=get_wsite(), layout_root_alias=settings.HTML_INDEX)
         return qs
 
 
@@ -145,7 +145,7 @@ class LayoutI18nAdmin1(ModelAdmin1):
     list_filter = ['grade', 'locked', ]
     def get_list_filter(self, request):
         if request.user.is_superuser:
-            return ['layout__website','layout_root_alias', 'mark'] + self.list_filter
+            return ['layout__wsite','layout_root_alias', 'mark'] + self.list_filter
         else:
             return self.list_filter
 
@@ -223,7 +223,7 @@ class LayoutAdmin1(ModelAdmin1):
     model = Layout
 
     field_labels = {
-        'website': [],'level': [], 'parent': [], 
+        'wsite': [],'level': [], 'parent': [], 
         'sort':[], 'pos': [],
         'root_alias': [], 'last_alias':[], 'alias':[], 
         # ------------------------------
@@ -250,7 +250,7 @@ class LayoutAdmin1(ModelAdmin1):
         if request.user.is_superuser:
             return super().get_queryset(request)
         qs = super().get_queryset(request)
-        qs = qs.filter(website=get_website(), 
+        qs = qs.filter(wsite=get_wsite(), 
             root_alias=settings.HTML_INDEX,
             locked=True,
             mark__in=['loadDocName', 'loadImageName'])
@@ -260,7 +260,7 @@ class LayoutAdmin1(ModelAdmin1):
     ordering = ('pos',)
     #------------------------------------------------       
     list_display = [
-        'website','root_alias',
+        'wsite','root_alias',
         'level', 'pos', 'sort',
         'MH_parent_name', # 'parent', 
         'last_alias', 
@@ -292,7 +292,7 @@ class LayoutAdmin1(ModelAdmin1):
 
     #---------------------------------------
     list_editable = [
-        # 'website','parent', # 'sort', 'last_alias', 
+        # 'wsite','parent', # 'sort', 'last_alias', 
         'mark', 'name', 'params',
         'mark_i18n', 'params_i18n', 
         'active', 'locked']
@@ -308,7 +308,7 @@ class LayoutAdmin1(ModelAdmin1):
         # 'parent', 'grade',
         'mark', 'mark_i18n',
         'locked', 'replace', 
-        'website', 'root_alias', 'level',]
+        'wsite', 'root_alias', 'level',]
 
     def get_list_filter(self, request):
         if request.user.is_superuser:
@@ -339,7 +339,7 @@ class LayoutAdmin1(ModelAdmin1):
     fieldsets = [
 		(None, {
 			'fields': [	
-                ('website', 'level', 'parent',),
+                ('wsite', 'level', 'parent',),
                 ('sort', 'pos','grade', ), 
                 ('root_alias','last_alias','alias'),
 
@@ -367,7 +367,7 @@ class LayoutAdmin1(ModelAdmin1):
     def get_fieldsets1(self, request, obj=None):
         return ('Identidad', {
                     'fields': [	
-                        ('website','level', 'grade'),
+                        ('wsite','level', 'grade'),
                         ('parent', 'root_alias'),
                         ('sort', 'last_alias'),
                         ('pos', 'alias'),

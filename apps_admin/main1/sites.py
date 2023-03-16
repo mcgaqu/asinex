@@ -45,17 +45,17 @@ class AdminSite1(admin.AdminSite):
         # crear el website
         #--------------------------------
         try:
-            from apps_admin.websites.models import Website
+            from apps_admin.wsites.models import Wsite
             try:
-                wsite = Website.objects.get(alias=settings.SITE_NAME, grade="myServer")
-                print_msg(" 1) Existe Website %s %s: %s" % (wsite.id, wsite.grade, wsite.alias))
-            except Website.DoesNotExist:
-                wsite = Website(alias=settings.SITE_NAME, grade="myServer")
+                wsite = Wsite.objects.get(alias=settings.SITE_NAME, grade="myServer")
+                print_msg(" 1) Existe Wsite %s %s: %s" % (wsite.id, wsite.grade, wsite.alias))
+            except Wsite.DoesNotExist:
+                wsite = Wsite(alias=settings.SITE_NAME, grade="myServer")
                 wsite.save()
                 wsite.load_inidata()
-                print_msg(" 1) Se crea el Website %s %s: %s" % (wsite.id, wsite.grade, wsite.alias))
+                print_msg(" 1) Se crea el Wsite %s %s: %s" % (wsite.id, wsite.grade, wsite.alias))
         except:
-            print_msg(" 1) No puedo importar: from app_admin.webssites.models import Website")
+            print_msg(" 1) No puedo importar: from app_admin.webssites.models import Wsite")
         self.wsite = wsite
         #----------------------------
 

@@ -34,6 +34,9 @@ echo NUM_ADMIN_SITE
 echo "PASO 5: Realizar migrate en la nueva Base de datos"
 python manage.py $1 migrate
 
+echo "PASO 5: generar ficheros estáticos: collectstatic"
+python manage.py $1 collectstatic
+
 # $ ./manage.py migrate
 # $ ./manage.py migrate --database=[database no default]
 #-----------------------

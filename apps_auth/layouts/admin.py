@@ -132,9 +132,9 @@ class LayoutI18nAdmin1(ModelAdmin1):
          'MC_layout_name', 'MC_language','name',
                         'MH_content_edit','locked']
 
-    def x_get_list_display(self, request):
+    def get_list_display(self, request):
         if request.user.is_superuser:
-            return self.list_display + ['mark', 'params']
+            return self.list_display + ['internal', 'mark', 'params']
         else:
             return self.list_display
 
@@ -142,14 +142,23 @@ class LayoutI18nAdmin1(ModelAdmin1):
 
     list_editable = ['name', 'locked' ]
 
+
     list_filter = ['grade', 'locked', ]
     def get_list_filter(self, request):
         if request.user.is_superuser:
-            return ['layout__wsite','layout_root_alias', 'mark'] + self.list_filter
+            return ['layout__wsite','layout_root_alias', 'internal', 'active', 'mark'] + self.list_filter
         else:
             return self.list_filter
 
-    search_fields = ['grade', '^pos', '^alias', '^layout_last_alias' ,'layout__name', 'sort', 'name', 'content' ]
+    x_search_fields = [# 'grade', 
+                     '^pos', '^alias', 
+                     '^layout_last_alias' ,'layout__name', 'name', 'content' ]
+
+    #---------------------------------------       
+    search_fields = ['^pos', '^alias', '^layout_last_alias', 'name', 
+        # 'grade', 'mark', 'mark_i18n',
+         ]
+    search_help_text = "Busque por: pos, código, clave y nombre"
     ## 'alias', 'name', 'grade','sort', 'pos', 'mark'
     # fields = ['doctype','grade', 'sort', 'alias', 'name', 'mark', 'docfile', 'content',
     #      'active', 'locked', 'MH_content']
@@ -320,7 +329,7 @@ class LayoutAdmin1(ModelAdmin1):
     search_fields = ['^pos', '^alias', '^last_alias', 'name', 
         # 'grade', 'mark', 'mark_i18n',
          ]
-    search_help_text = "Busque por: pos, alias y name"
+    search_help_text = "Busque por: pos, código, clave y nombre"
 
     #--------------------------
     actions = get_app_actions('Layout')   

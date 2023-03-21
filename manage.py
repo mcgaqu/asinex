@@ -2,7 +2,10 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from pathlib import Path
 from websites import WEBSITES
+SITE_DIR = Path(__file__).resolve(strict=True).parent
+SITE_NAME = os.path.basename(SITE_DIR)
 
 def main(params):
     """Run administrative tasks."""
@@ -31,12 +34,12 @@ if __name__ == '__main__':
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'websites.%s.settings' % SITE_NAME)
         main([sys.argv[0]] + sys.argv[2:]) 
 
-    elif (len(sys.argv) > 1) and (sys.argv[1] == 'djengine'):
+    elif (len(sys.argv) > 1) and (sys.argv[1] == 'b2bengine'):
         # extraer "engine" de los parámetros
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djengine.settings')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'b2bengine.settings' % SITE_NAME)
         main([sys.argv[0]] + sys.argv[2:])
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djengine.settings')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', '%s.settings' % SITE_NAME)
         main(sys.argv)
 
 

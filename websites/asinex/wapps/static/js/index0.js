@@ -1,31 +1,35 @@
 // window.onload = iniciar();
 
 window.onload = iniciar();
-function iniciar() {
+async function iniciar() {
     // TODO! obtener del env
+    console.log("INICIAR");
+
     const serverUrl= `${window.location.href}asinex`
     console.log(serverUrl);
     localStorage.serverUrl = serverUrl;
-    localStorage.rootAlias = "index0"
-    localStorage.lan = 'es'
-    localStorage.card3 = ''
+    localStorage.rootAlias = "index0";
+    localStorage.lan = 'es';
+    localStorage.card3 = '';
     
-    manageLayout("layouts",
+    await manageLayout("layouts",
         `&locked=1&internal=1&root_alias=${localStorage.rootAlias}`,
         'last_alias');
-    manageLayout("layouti18ns",
-        `&locked=1&internal=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.lan}`,
+    await manageLayout("layouti18ns",
+        `&active=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.lan}`,
         'layout_last_alias');
 }
 //===================================
 
 async function getModelData(model, filtro) {
     const url = `${localStorage.serverUrl}/apirest/${model}/?format=json${filtro}`;
+    console.log('getModelData');
     console.log(url); 
     let respuesta = await fetch(url);
     let resultado = await respuesta.json();
     let data = resultado.results;
     console.log(resultado)
+
     return data
 }
 
@@ -44,7 +48,7 @@ async function manageLayout(model, filtro, idElementField) {
         model=${model} filtro=${filtro} idElementField=${idElementField}`);
 
     let data = await getModelData(model,filtro)
-    let data_dict = await listToDict(data);
+    let data_dict = listToDict(data);
 
     if (data==null) {
         alert('No hay datos');
@@ -66,7 +70,8 @@ async function manageLayout(model, filtro, idElementField) {
             alert(`El elemento ${idElement} no está en el DOM`);
             return;
         };
-    
+        // console.log(model)
+        console.log(model + ' alias = ' + obj.alias + ' --->  mark = ' + obj.mark)
         const mark = obj.mark.split('__')// funcion__parametro
         const action = mark[0];
 
@@ -81,8 +86,15 @@ async function manageLayout(model, filtro, idElementField) {
             case 'loadNavbar':
                 loadNavbar(element,obj)
                 break;
+            case 'transNavbar':
+                transNavbar(element,obj)
+                break;
+            //-----------------------------
             case 'loadSidebar':
                 loadSidebar(element,obj)
+                break;
+            case 'transSidebar':
+                transSidebar(element,obj)
                 break;
             //-------------------------------
             case 'loadCard1':
@@ -111,8 +123,7 @@ async function manageLayout(model, filtro, idElementField) {
                 // value = `/media/${obj.name}`
                 element.setAttribute('href', obj.name);
                 break;
- 
-            //-------------------------------  
+             //-------------------------------  
             case 'setAttr':
                 if (obj.active) {
                     const field = mark[1];
@@ -160,25 +171,29 @@ function selectLan(e) {
 
 async function selectCard3(e){
     console.log("Paso por selectCard3")
+    console.log(localStorage.card3)
     if (localStorage.card3 != ''){
         document.getElementById(localStorage.card3).innerHTML = '';
     };
-    localStorage.card3 = e.target.id;
+    const origenId = e.target.id.slice(0,-1); // quito x
+    // localStorage.card3 = origenId;
     //-------------------------
-    const origenId = e.target.id.slice(-2);
     const filtro =
-        `&active=1&layout_root_alias=${localStorage.rootAlias}
-         &sort=${localStorage.language}&layout_last_alias=${origenId}`,
-         data = await getModelData("layouti18ns",filtro)
-         if (data==null) {
-             alert('No hay datos');
-             return;
+        `&layout_root_alias=${localStorage.rootAlias}&layout_last_alias=${origenId}&sort=${localStorage.language}`
+    console.log(filtro)
+    data = await getModelData("layouti18ns",filtro)
+    if (data==null) {
+        alert('No hay datos');
+        return;
          };
-        const origenObj = data[0]
-        const destinoId = `${e.target.id.slice(0,-2)}x` // main25x
-        const destino = document.getElementById(destinoId);
-        loadCard3(destino, origenObj);
-        location.href = `#${destinoId}`;
+    const origenObj = data[0]
+    const destinoId = `${origenId.slice(0,-1)}x` // main25x
+    console.log('origenId ' + origenId);
+    console.log('destinoId ' + destinoId)
+    localStorage.card3 = destinoId;
+    const destino = document.getElementById(destinoId);
+    loadCard3(destino, origenObj);
+    location.href = `#${destinoId}`;
 
 }
 
@@ -186,36 +201,6 @@ async function selectCard3(e){
 //----------------------------------
 // lan-xx carga de idiomas
 //--------------------------------
-async function x_loadLan(element, obj) {
-    
-    if (obj.active == 0) {
-        // data = ''
-        // element.innerHTML = data
-        // ------------------------
-        element.setAttribute('style', 'display:none'); 
-        // element.setattrAttribute('style', 'visibility:hidden')
-    } else {
-        let lan
-        let name
-        lan = await element.id.split('-')[1]
-        name = await obj.name
-        element.setAttribute('src', `../static/img/flag-${lan}.jpg`)
-        element.setAttribute('class', `w3-padding-small w3-display-container w3-hover-opacity`)
-        element.setAttribute('alt', `${name}`)
-        element.setAttribute('style', 'width:40px')
-        // element.setAttribute('onclick', `selectLan()`)
-        // data = `<img src="../static/img/flag-${lan}.jpg"
-        //     class="w3-padding-small w3-display-container w3-hover-opacity" 
-        //     style="display:inline;width:180"
-        //     alt="${name}" onclick="selectLan()">`
-        // element.innerHTML = data
-        //-----------------------
-        // solo en caso de que no funcione el onclik anterior, añadir??
-        //------------------------ 
-        element.addEventListener('click', selectLan);
-    }
-}
-
 async function loadLanguages(element, obj) {
     
     if (obj.active == 0) {
@@ -268,13 +253,22 @@ async function loadNavbar(element, obj) {
         }
         // icono = ""
         data = `${icono} ${obj.name}`;
-
-
-        // data = ` `
         element.innerHTML = data;
     }
 }
 
+async function transNavbar(element, obj) {
+    let icono = await obj.note
+    if (icono == '') {
+        icono = "";
+    } else {
+        //let icono = `<i class="fa fa-${obj.note}"></i>`;
+        icono = `<i class="fa ${icono}"></i>`;
+    }
+    // icono = ""
+    data = `${icono} ${obj.name}`;
+    element.innerHTML = data;
+}
 
 ///----------------------------------
 // sidebar: carga y traduccion de navbar y sidebar
@@ -284,15 +278,14 @@ async function loadSidebar(element, obj) {
     element.addEventListener('click', w3_close);
 }
 
+async function transSidebar(element, obj) {
+    await transNavbar(element, obj);
+    element.addEventListener('click', w3_close);
+}
+
 //----------------------------------
 // carga y traduccion de main2
 //--------------------------------/
-function x_getAttrs(element, obj, paramsField){
-    params = obj.paramsField.split(',')
-
-    params.map()
-    // codigo html y parametros
-}
 
 function loadCard1(element, obj){
     console.log('Estoy en loadCard1')
@@ -305,18 +298,13 @@ function loadCard1(element, obj){
         return;
     };
     const content = obj.content ? obj.content: ""
-    // const foto = element.getElementById("main10")
-    // const id1 = `${obj.last_alias}1`;
-    // const id2 = `${obj.last_alias}2`;
-    // let campo1 = element.getElementById(id1);
-    // let campo2 = element.getElementById(id2);
+
     data = `<h2 class="w3-center">${obj.name}</h2>
             <p class="w3-center w3-large">
                 ${content}
             </p>`
 
     element.innerHTML = data;
-    // campo2.innerHTML = obj.content;
     return;
 }
 
@@ -382,7 +370,7 @@ function loadCard2(element, obj) {
                 <p>${text4}</p>
             </div>`
                
-    // console.log(data)
+    console.log(text4)
     element.innerHTML = data; 
     if (text4 != ''){
         buttonCard3 =  document.getElementById(leermasId); 
@@ -457,8 +445,43 @@ function loadCard2Team(element, obj) {
         buttonCard3.addEventListener('click', selectCard3);
     };
 }
+
 function loadCard3(element, obj){
-    loadCard1(element, obj);
+    // loadCard1(element, obj); main251
+    console.log('Estoy en loadCard3')
+    console.log(obj);
+    // if (obj.active == 0) {
+    //     element.innerHTML = ''
+    //     return;
+    // };
+    const content = obj.content ? obj.content: ""
+    data1 = `
+        <div class="w3-card w3-left">
+            ${imagen}
+            <div class="w3-container">
+            <h6 >${nombre}</h6>
+            <p >${text1}</p>
+            <p class="w3-opacity">${text2}</p>
+            <p>${text3}</p>
+            <p>${text4}</p>
+        </div>
+    </div>`
+
+    data = `<div class="w3-pannel w3-theme-d3 w3-padding-128">
+                <div class="w3-card w3-theme-l3 w3-padding-64">
+                    <h2 class="w3-center">${obj.name}</h2>
+                    <div class="w3-center w3-large">
+                        ${content}
+                    </div>
+                </div>
+            </div>`
+
+
+
+    element.innerHTML = data;
+    // campo2.innerHTML = obj.content;
+    return;
+
 }
 
 function x_loadCard3(element, obj) {

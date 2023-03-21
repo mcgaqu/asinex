@@ -49,12 +49,18 @@ def get_LAYOUT_index0():
     ['_10_10_30_50', 'lan-dk', 1, 0,'loadLan', '', 'Danés'],
     ['_10_10_30_60', 'lan-xx', 0, 0,'loadLan', '', 'xx'],
     ['_10_10_40', 'navbar', 1, 1,'', '', 'Barra de Menú'],
-    ['_10_10_40_00', 'navbar0', 1, 1,'loadNavbar', 'innerHTML__name', 'Home',      'href:#main0','fa-home',],
-    ['_10_10_40_10', 'navbar1', 1, 1,'loadNavbar', 'innerHTML__name', 'Nosotros',  'href:#main1','fa-cubes'],
-    ['_10_10_40_20', 'navbar2', 1, 1,'loadNavbar', 'innerHTML__name', 'Servicios', 'href:#main2','fa-th'],
-    ['_10_10_40_30', 'navbar3', 1, 1,'loadNavbar', 'innerHTML__name', 'Costa Tropical', 'href:#main3','fa-map-signs'],
-    ['_10_10_40_40', 'navbar4', 1, 1,'loadNavbar', 'innerHTML__name', 'Equipo',   'href:#main4','fa-users'],
-    ['_10_10_40_50', 'navbar5', 1, 1,'loadNavbar', 'innerHTML__name', 'Contacto',  'href:#main5','fa-envelope'],
+    ['_10_10_40_00', 'navbar0', 1, 1,'loadNavbar', 'transNavbar', 'Home',      'href:#main0','fa-home', '',
+                        'name,note'],
+    ['_10_10_40_10', 'navbar1', 1, 1,'loadNavbar', 'transNavbar', 'Nosotros',  'href:#main1','fa-cubes', '',
+                        'name,note'],
+    ['_10_10_40_20', 'navbar2', 1, 1,'loadNavbar', 'transNavbar', 'Servicios', 'href:#main2','fa-th', '',
+                        'name,note'],    
+    ['_10_10_40_30', 'navbar3', 1, 1,'loadNavbar', 'transNavbar', 'Costa Tropical', 'href:#main3','fa-map-signs', '',
+                        'name,note'],    
+    ['_10_10_40_40', 'navbar4', 1, 1,'loadNavbar', 'transNavbar', 'Equipo',   'href:#main4','fa-users', '',
+                        'name,note'],    
+    ['_10_10_40_50', 'navbar5', 1, 1,'loadNavbar', 'transNavbar', 'Contacto',  'href:#main5','fa-envelope', '',
+                        'name,note'],     
     # ['_10_10_40_60', 'navbar6', 1, 0,'loadNavbar', 'innerHTML__name', 'navbar6',   'href:#main6','fa-th'],
     # ['_10_10_40_70', 'navbar7', 1, 0,'loadNavbar', 'innerHTML__name', 'navbar7',   'href:#main7','fa-th'],
     # ['_10_10_40_80', 'navbar8', 1, 0,'loadNavbar', 'innerHTML__name', 'navbar8',   'href:#main8','fa-th'],
@@ -62,17 +68,23 @@ def get_LAYOUT_index0():
     #-------------------------------------------------
     ['_10_20', 'sidebar', 1, 1,'', '', 'Menú lateral'],
 
-    ['_10_20_00', 'sidebar0', 1, 1,'loadSidebar', 'innerHTML__name', 'Home',      'href:#main0','fa-home'],
-    ['_10_20_10', 'sidebar1', 1, 1,'loadSidebar', 'innerHTML__name', 'Nosotros',  'href:#main1','fa-cubes'],
-    ['_10_20_20', 'sidebar2', 1, 1,'loadSidebar', 'innerHTML__name', 'Servicios', 'href:#main2','fa-th'],
-    ['_10_20_30', 'sidebar3', 1, 1,'loadSidebar', 'innerHTML__name', 'Costa Tropical', 'href:#main3','fa-map-signs'],
-    ['_10_20_40', 'sidebar4', 1, 1,'loadSidebar', 'innerHTML__name', 'Equipo',  'href:#main4','fa-users'],
-    ['_10_20_50', 'sidebar5', 1, 1,'loadSidebar', 'innerHTML__name', 'Contacto',  'href:#main5','fa-envelope'],
+    ['_10_20_00', 'sidebar0', 1, 1,'loadSidebar', 'transSidebar', 'Home',      'href:#main0','fa-home', '',
+                        'name,note'],    
+    ['_10_20_10', 'sidebar1', 1, 1,'loadSidebar', 'transSidebar', 'Nosotros',  'href:#main1','fa-cubes', '',
+                        'name,note'],
+    ['_10_20_20', 'sidebar2', 1, 1,'loadSidebar', 'transSidebar', 'Servicios', 'href:#main2','fa-th', '',
+                        'name,note'],
+    ['_10_20_30', 'sidebar3', 1, 1,'loadSidebar', 'transSidebar', 'Costa Tropical', 'href:#main3','fa-map-signs', '',
+                        'name,note'],
+    ['_10_20_40', 'sidebar4', 1, 1,'loadSidebar', 'transSidebar', 'Equipo',  'href:#main4','fa-users', '',
+                        'name,note'],
+    ['_10_20_50', 'sidebar5', 1, 1,'loadSidebar', 'transSidebar', 'Contacto',  'href:#main5','fa-envelope', '',
+                        'name,note'],
     # ['_10_20_60', 'sidebar6', 1, 0,'loadSidebar', 'innerHTML__name', 'sidebar6',  'href:#main6','fa-th'],
     # ['_10_20_70', 'sidebar7', 1, 1,'loadSidebar', 'innerHTML__name', 'sidebar7',  'href:#main7','fa-th'],
     # ['_10_20_80', 'sidebar8', 1, 1,'loadSidebar', 'innerHTML__name', 'sidebar8',  'href:#main8','fa-th'],
     # ['_10_20_90', 'sidebar9', 0, 0,'loadSidebar', 'innerHTML__name', 'sidebar9',  'href:#main9','fa-th'],
-    ['_10_20_X0', 'sidebarx', 1, 1,'', 'innerHTML__name', 'Cerrar', ''],
+    ['_10_20_X0', 'sidebarx', 1, 1,'innerHTML__name', 'innerHTML__name', 'Cerrar', ''],
     #===================================
     ['_20', 'main', 1, 0,'', '', ''],
     #--------------------------------
@@ -152,7 +164,7 @@ def get_LAYOUT_index0():
     #                     get_params('main45n')],
     # ['_20_40_50_80', 'main458', 0, 0,'loadCard2', 'loadCard2', '', '', 'fa-map-signs', '',
     #                     get_params('main45n')],
-    ['_20_40_50_XX', 'main45x', 0, 1,'', 'loadCard3', 'Costa Tropical desplegado'],
+    ['_20_40_50_XX', 'main45x', 0, 0, '', 'loadCard3', 'Costa Tropical desplegado'],
     #=================================================
     ['_20_50', 'main5', 0, 0,'', '', 'Referencias'],
 
@@ -218,4 +230,5 @@ def get_LAYOUT_index0():
     # ['_30_05', 'footer5', 1, 0,'', '', 'footer5'],
 
     ]
+
 

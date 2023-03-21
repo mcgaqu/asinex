@@ -32,9 +32,9 @@ def ac_create_i18n(modeladmin, request, queryset):
         # if not obj.locked and obj.replace:
         if obj.replace:
             try:
-                root_obj = Layout.objects.get(website=obj.website, 
+                root_obj = Layout.objects.get(wsite=obj.wsite, 
                     root_alias=obj.root_alias, level=0)
-                languages = root_obj.name.split(',')
+                languages = root_obj.params.split(',')
                 obj.create_i18n(languages)
                 count +=1
             except Layout.DoesNotExist:

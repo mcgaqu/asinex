@@ -388,16 +388,17 @@ class Layout(ModelTree1, ExtraLayout):
             try:
                 # reg = LayoutI18n.objects.get(alias=aliasId)
                 reg = LayoutI18n.objects.get(layout=self, sort=lan)
-                # if self.locked or reg.locked:
-                #     continue
+                if reg.locked:
+                    continue
             except LayoutI18n.DoesNotExist:
                 reg = LayoutI18n(layout=self, sort=lan)
             reg.grade = lan
             #----------------------------------
+            reg.active = self.active
             reg.mark = self.mark_i18n
             reg.params = self.params_i18n
             #-----------------------
-            reg.name = "Traducir a %s ----> %s" % (lan.upper(), self.name)
+            reg.name = "[%s -->] %s" % (lan.upper(), self.name)
             reg.tags = self.tags
             reg.note = self.note
             #------------------------

@@ -198,7 +198,7 @@ class Component(ModelTree1, ExtraLayout):
     note1 = models.TextField(null=True, blank=True)
     note2 = models.TextField(null=True, blank=True)
 
-    docfile = models.FileField('Fichero', max_length=250, null=True, blank=True)
+    docfile = models.FileField('Fichero (pdf, xls, doc, svg..)', max_length=250, null=True, blank=True)
 
     imagewidth = models.IntegerField(null=True, blank=True)
     imageheight = models.IntegerField(null=True, blank=True)
@@ -271,6 +271,15 @@ class Layout(ModelTree1, ExtraLayout):
     def ME_num_i18n(self):
         return self.layouti18n_set.count()
     ME_num_i18n.short_description = _("Nº I18n")
+
+    def MB_i18n(self):
+        return self.replace
+    MB_i18n.short_description = 'Translate'
+    MB_i18n.boolean = True
+
+    def MC_pos_alias(self):
+        return "%s____ %s" % (self.pos, self.last_alias)
+    MC_pos_alias.short_description = "Pos - Clave"
 
     def save(self, *args, **kwargs):
         if not self.wsite:

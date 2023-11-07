@@ -64,11 +64,16 @@ MIDDLEWARE = [
 MODELADMINS1 = [
 
 
+    ['django.contrib.admin', [
+            ['LogEntry', 'LogEntryAdmin', 1],
+        ],
+    ], 
+    #------------------------------------
     ['django.contrib.auth', [
             ['User', 'UserAdmin', 1],
             ['Group', 'GroupAdmin', 1],
         ],
-    ],    
+    ],   
     #------------------------------------
     ['apps_admin.wsites.apps.WsitesConfig', [
             ['Wsite', 'WsiteAdmin1', 1],

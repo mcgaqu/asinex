@@ -245,27 +245,39 @@ async function loadNavbar(element, obj) {
         element.setAttribute('href',`#main${href}`); 
         element.setAttribute('class', 'w3-bar-item w3-button'); 
         let icono = await obj.note
+
         if (icono == '') {
             icono = "";
         } else {
-            //let icono = `<i class="fa fa-${obj.note}"></i>`;
-            icono = `<i class="fa ${icono}"></i>`;
+            if (icono.slice(0,3) == 'fa-') {
+                icono = `<i class="fa ${icono}"></i>`
+            } else {
+                icono = `<img src="${icono}" alt="${obj.name}">`
+            }
+
         }
+
         // icono = ""
         data = `${icono} ${obj.name}`;
         element.innerHTML = data;
     }
 }
 
+
+
 async function transNavbar(element, obj) {
     let icono = await obj.note
     if (icono == '') {
         icono = "";
     } else {
-        //let icono = `<i class="fa fa-${obj.note}"></i>`;
-        icono = `<i class="fa ${icono}"></i>`;
+        if (icono.slice(0,3) == 'fa-') {
+            icono = `<i class="fa ${icono}"></i>`
+        } else {
+            icono = `<img src="${icono}" alt="${obj.name}">`
+        }
+
     }
-    // icono = ""
+    
     data = `${icono} ${obj.name}`;
     element.innerHTML = data;
 }
@@ -455,7 +467,7 @@ function loadCard3(element, obj){
     //     return;
     // };
     const content = obj.content ? obj.content: ""
-    data1 = `
+    x_data = `
         <div class="w3-card w3-left">
             ${imagen}
             <div class="w3-container">

@@ -5,7 +5,7 @@ async function iniciar() {
     // TODO! obtener del env
     console.log("INICIAR");
 
-    const serverUrl= `${window.location.href}asinex`
+    const serverUrl= `${window.location.origin}/asinex`
     console.log(serverUrl);
     localStorage.serverUrl = serverUrl;
     localStorage.rootAlias = "index0";

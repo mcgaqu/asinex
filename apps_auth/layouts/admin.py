@@ -134,7 +134,7 @@ class LayoutI18nAdmin1(ModelAdmin1):
          # 'grade', 
          'MC_layout_name', 'MC_language','name',
                         'MH_content_edit','locked']
-    list_display = list_display1 + ['internal', 'mark', 'params']
+    list_display = list_display1 + ['mark', 'params']
 
     def get_list_display(self, request):
         if request.user.is_superuser:
@@ -144,13 +144,13 @@ class LayoutI18nAdmin1(ModelAdmin1):
 
     list_display_links = ['pos', 'alias', 'MH_content_edit',]
 
-    list_editable = ['name', 'locked' , 'mark', 'params']
+    list_editable = ['name', 'locked' ]
 
 
-    list_filter = ['grade', 'locked', ]
+    list_filter = ['grade', 'locked', 'mark' ]
     def get_list_filter(self, request):
         if request.user.is_superuser:
-            return ['layout__wsite','layout_root_alias', 'internal', 'active', 'mark'] + self.list_filter
+            return ['layout__wsite','layout_root_alias', 'internal', 'active'] + self.list_filter
         else:
             return self.list_filter
 

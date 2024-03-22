@@ -246,8 +246,8 @@ class Layout(ModelTree1, ExtraLayout):
 
     text1 = models.CharField(max_length=250, null=True, blank=True)
     text2 = models.CharField(max_length=250, null=True, blank=True)
-    text3 = models.CharField(max_length=250, null=True, blank=True)
-    text4 = models.CharField(max_length=250, null=True, blank=True)
+    text3 = models.CharField('email / web', max_length=250, null=True, blank=True)
+    text4 = models.CharField('botón Contenido', max_length=250, null=True, blank=True)
     text5 = models.CharField(max_length=250, null=True, blank=True)
     note1 = models.TextField(null=True, blank=True)
     note2 = models.TextField(null=True, blank=True)
@@ -266,6 +266,7 @@ class Layout(ModelTree1, ExtraLayout):
 
     def __str__(self):
         return "%s" % (self.alias)
+
 
 
     def ME_num_i18n(self):
@@ -304,7 +305,7 @@ class Layout(ModelTree1, ExtraLayout):
         root_obj = self
         wsite = root_obj.wsite
         root_alias = root_obj.root_alias
-        languages = root_obj.params.split(',')
+ 
         #-----------
         # import pdb; pdb.set_trace()
         for data_row in data:
@@ -383,6 +384,21 @@ class Layout(ModelTree1, ExtraLayout):
 
             lx.save()
             #-----------------------
+            #------------------------------
+            # languages = root_obj.params.split(',')
+            
+            languages = self.__class__.objects.get(
+                wsite=self.wsite, root_alias=self.root_alias,
+                last_alias='languages', 
+                )
+
+            if languages:
+                languages = languages[0].name
+            if languages:
+                languages = languages.split(',')
+            else:
+                languages = None
+
             if mark_i18n and languages:
                 lx.create_i18n(languages)
 
@@ -464,8 +480,8 @@ class LayoutI18n(ModelBase, ExtraLayout):
 
     text1 = models.CharField(max_length=250, null=True, blank=True)
     text2 = models.CharField(max_length=250, null=True, blank=True)
-    text3 = models.CharField(max_length=250, null=True, blank=True)
-    text4 = models.CharField(max_length=250, null=True, blank=True)
+    text3 = models.CharField('email / web', max_length=250, null=True, blank=True)
+    text4 = models.CharField('botón Contenido', max_length=250, null=True, blank=True)
     text5 = models.CharField(max_length=250, null=True, blank=True)
     note1 = models.TextField(null=True, blank=True)
     note2 = models.TextField(null=True, blank=True)

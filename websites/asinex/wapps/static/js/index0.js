@@ -417,11 +417,18 @@ function loadCard2Team(element, obj) {
     if (obj.text3 == null | obj.text3 == '' ){
         text3 = "";
     } else {
+        if (obj.text3.includes("@")) {
+            text3 = `<a class="w3-button w3-theme-l3 w3-block" 
+                href="mailto:${obj.text3}">
+                <i class="fa fa-envelope"></i>
+                ${obj.text3}
+                </a>`   
+        } else {
         text3 = `<a class="w3-button w3-theme-l3 w3-block" 
-                   href="mailto:${obj.text3}">
-                   <i class="fa fa-envelope"></i>
-                   ${obj.text3}
-                 </a>`
+                    href="http://${obj.text3}">
+                    ${obj.text3}
+                    </a>`
+        }
     }
 
     if (obj.text4 == null| obj.text4 == '' ){

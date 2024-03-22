@@ -76,7 +76,8 @@ class ComponentAdmin1(ModelAdmin1):
             return super().get_queryset(request)
         qs = super().get_queryset(request)
         qs = qs.filter(wsite=get_wsite()
-                        # ,root_alias=settings.HTML_INDEX
+                        # ,root_alias=settings.HTML_INDEX,
+                        # level__gt=0
                         )
         return qs
 
@@ -280,7 +281,7 @@ class LayoutAdmin1(ModelAdmin1):
         qs = super().get_queryset(request)
         qs = qs.filter(wsite=get_wsite(), 
             root_alias=settings.HTML_INDEX,
-            # active=True,
+            replace=False,
             internal=True,
             locked=True,
             ## mark__in=['loadDocName', 'loadImageName']
@@ -360,6 +361,7 @@ class LayoutAdmin1(ModelAdmin1):
         if not request.user.is_superuser:
             if 'lock_selected' in actions:
                 del actions['lock_selected']
+            actions = None
         return actions 
     
 

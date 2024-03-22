@@ -48,8 +48,8 @@ urlpatterns += [
     # path("%sindex1/" % prefix, index1, name="index1"),
     path('', TemplateView.as_view(template_name='%s.html' % html_index)),
     # path('index0/', TemplateView.as_view(template_name='index0.html')),
-    # path('index1/', TemplateView.as_view(template_name='index1.html')),
-    # path('index2/', TemplateView.as_view(template_name='index2.html')),
+    path('index1/', TemplateView.as_view(template_name='index1.html')),
+    path('index2/', TemplateView.as_view(template_name='index2.html')),
 
     #-----------------------------------
     # path('%sadmin/doc/' % prefix, include('django.contrib.admindocs.urls')),

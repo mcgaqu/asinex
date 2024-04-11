@@ -4,21 +4,15 @@ from django.contrib import admin
 from apps_admin.main1.options import ModelAdmin1, ModelLin1
 from apps_admin.utils.base import get_wsite
 # from mod_base.configs.models import Config1, Config2
-from .models import Component, Layout, LayoutI18n
+from .models import DocAndImage, Page, PageI18n
 from .actions import get_app_actions
 
 #------------------------------
 # Component
 #------------------------
-class x_ComponentChildLin1(ModelLin1):
-    model = Component
-    fields = ['sort', 'last_alias', 'name', 'docfile', 'active',
-              'MH_docfile_url', 'MH_docfile_display'] # 'name', 'grade', 'sort']
-    readonly_fields = ['MH_docfile_url', 'MH_docfile_display']
 
-
-class ComponentAdmin1(ModelAdmin1):
-    model = Component
+class DocAndImageAdmin1(ModelAdmin1):
+    model = DocAndImage
     
     #------------------------------------------------       
     list_display = ['wsite',
@@ -61,7 +55,7 @@ class ComponentAdmin1(ModelAdmin1):
     search_help_text = "Busque por: código o nombre"
 
     #--------------------------
-    actions = get_app_actions('Component')   
+    actions = get_app_actions('DocAndImage')   
 
     def get_actions(self, request):
         actions = super()
@@ -111,11 +105,11 @@ class ComponentAdmin1(ModelAdmin1):
             ]
 
 #------------------------------
-# Layout
+# Page
 #------------------------
 
-class LayoutI18nAdmin1(ModelAdmin1):
-    model = LayoutI18n
+class PageI18nAdmin1(ModelAdmin1):
+    model = PageI18n
 
     #------------------------------------
     def get_queryset(self, request):
@@ -129,17 +123,17 @@ class LayoutI18nAdmin1(ModelAdmin1):
 
 
 
-    list_display1 = ['pos',# 'sort',
+    list_display = ['pos',# 'sort',
         'alias',
-        'layout_last_alias',
+        'page_last_alias', 'locked',
          # 'grade', 
-         'MC_layout_name', 'MC_language','name',
+         'MC_page_name', 'MC_language','name',
                         'MH_content_edit','locked']
-    list_display = list_display1 + ['mark', 'params']
+    # list_display = list_display1 + ['mark', 'params']
 
-    def get_list_display(self, request):
+    def x_get_list_display(self, request):
         if request.user.is_superuser:
-            return self.list_display
+            return self.list_display1
         else:
             return self.list_display1
 
@@ -151,31 +145,31 @@ class LayoutI18nAdmin1(ModelAdmin1):
     list_filter = ['grade', 'locked', 'mark' ]
     def get_list_filter(self, request):
         if request.user.is_superuser:
-            return ['layout__wsite','layout_root_alias', 'internal', 'active'] + self.list_filter
+            return ['page__wsite','page__root_alias', 'internal', 'active'] + self.list_filter
         else:
             return self.list_filter
 
     x_search_fields = [# 'grade', 
                      '^pos', '^alias', 
-                     '^layout_last_alias' ,'layout__name', 'name', 'content' ]
+                     '^page__last_alias' ,'page__name', 'name', 'content' ]
 
     #---------------------------------------       
-    search_fields = ['^pos', '^alias', '^layout_last_alias', 'name', 
+    search_fields = ['^pos', '^alias', '^page__last_alias', 'name', 
         # 'grade', 'mark', 'mark_i18n',
          ]
     search_help_text = "Busque por: pos, código, clave y nombre"
     ## 'alias', 'name', 'grade','sort', 'pos', 'mark'
     # fields = ['doctype','grade', 'sort', 'alias', 'name', 'mark', 'docfile', 'content',
     #      'active', 'locked', 'MH_content']
-    actions = get_app_actions('LayoutI18n')
+    actions = get_app_actions('PageI18n')
     
 
 
     def x_get_fieldsets1(self, request, obj=None):
         return 		('Identidad', {
 			'fields': [	
-                ('layout', 'grade', 'sort'),
-                ('layout_root_alias','layout_last_alias','alias'),
+                ('page', 'grade', 'sort'),
+                ('page_root_alias','page_last_alias','alias'),
                 ('active', 'internal', 'replace', 'locked'),
                 ('mark', 'params'),
 
@@ -203,8 +197,8 @@ class LayoutI18nAdmin1(ModelAdmin1):
     def get_fieldsets_identidad(self, request, obj=None):
         return ('Identidad', {
                     'fields': [	
-                        ('layout','grade', 'sort'),
-                        ('layout_root_alias', 'layout_last_alias','alias'),
+                        ('page','grade', 'sort'),
+                        ('page_root_alias', 'page_last_alias','alias'),
                         ('active', 'internal', 'replace', 'locked'),
                         ('mark', 'params'),
                         ],
@@ -212,7 +206,7 @@ class LayoutI18nAdmin1(ModelAdmin1):
                     }
                 )
 
-    def get_fieldsets_datos(self, request, obj):
+    def x_get_fieldsets_datos(self, request, obj):
         if obj and obj.params:
             # field_list = [('mark', 'params')] + obj.params.split(',')
             field_list = obj.params.split(',')
@@ -223,15 +217,18 @@ class LayoutI18nAdmin1(ModelAdmin1):
                 'text1','text2','text3','text4','note1','note2']
             field_list = []
         return ('Datos', {'fields': field_list})
- 
+
+    def get_fieldsets_content(self, request, obj):
+        field_list = ['content_type']
+        if obj.content_type in ['char', 'text', 'richtext', 'html']:
+            field_list.append('field_%s' % obj.content_type)
+        return ('Datos', {'fields': field_list})
+
     def get_fieldsets(self, request, obj=None):
         return [self.get_fieldsets_identidad(request, obj),
-                   self.get_fieldsets_datos(request, obj)]
+                   self.get_fieldsets_content(request, obj)]
 
 #---------------------------------------
-
-
-
 
 
     def get_readonly_fields(self, request, obj=None):
@@ -255,24 +252,26 @@ class LayoutI18nAdmin1(ModelAdmin1):
             return super().has_delete_permission(request, obj)
 
 
-class LayoutI18nLin1(ModelLin1):
-    model = LayoutI18n
-    fields = ['alias', 'mark', 'params', 'name', 'active'
+class PageI18nLin1(ModelLin1):
+    model = PageI18n
+    fields = ['alias', # 'mark', 'params', 
+              'name', 'active'
               # 'content', 'MH_content', 'active', 'internal',
     # 'note', 'content' 
     ]
     
-    readonly_fields = ['alias', 'mark', 'params', 'active']
+    readonly_fields = ['alias', # 'mark', 'params', 
+                       'active']
     classes = [] # ['collapse']
 
-class LayoutChildLin1(ModelLin1):
-    model = Layout
+class PageChildLin1(ModelLin1):
+    model = Page
     fields = [# 'alias', 
         'grade', 'sort', 'active', 'internal', 'mark', 'name' ]
     classes = []
 
-class LayoutAdmin1(ModelAdmin1):
-    model = Layout
+class PageAdmin1(ModelAdmin1):
+    model = Page
 
     #------------------------------------
     def get_queryset(self, request):
@@ -301,9 +300,9 @@ class LayoutAdmin1(ModelAdmin1):
                 
                 # 'sort', 'last_alias',
                 # 'ME_num_children',
-                'mark', 'params', # 'note', 
-                'tags',
-                'mark_i18n', 'params_i18n', 
+                # 'mark', 'params', # 'note', 
+                # 'tags',
+                # 'mark_i18n', 'params_i18n', 
                 'wsite','root_alias', 'level', 
                 'locked'
             ]
@@ -325,9 +324,9 @@ class LayoutAdmin1(ModelAdmin1):
         # 'sort', 'last_alias', 
         'active', 'internal',
         'name',
-        'mark', 'params', 'tags',
-        'mark_i18n', 'params_i18n', 
-        'locked'
+        # 'mark', 'params', 'tags',
+        # 'mark_i18n', 'params_i18n', 
+        # 'locked'
         ]
     x_list_editable = ['active', 'locked']
     
@@ -341,7 +340,7 @@ class LayoutAdmin1(ModelAdmin1):
     list_filter1 = ['replace']
     list_filter = [ 'active', 'internal', 'replace', 'locked',
         # 'parent', 'grade',
-        'mark', 'mark_i18n',
+        # 'mark', 'mark_i18n',
         
         'wsite', 'root_alias', 'level',]
 
@@ -377,8 +376,8 @@ class LayoutAdmin1(ModelAdmin1):
                         ('sort', 'last_alias'),
                         # ('pos', 'alias'),
                         ('active', 'internal', 'replace', 'locked'),
-                        ('mark', 'params'),
-                        ('mark_i18n', 'params_i18n'),
+                        # ('mark', 'params'),
+                        # ('mark_i18n', 'params_i18n'),
                        
                         # 'docfile',
                         ],
@@ -386,7 +385,7 @@ class LayoutAdmin1(ModelAdmin1):
                     }
                 )
 
-    def get_fieldsets_datos(self, request, obj):
+    def x_get_fieldsets_datos(self, request, obj):
         if obj and obj.params:
             # field_list = [('mark', 'params')] + obj.params.split(',')
             field_list = obj.params.split(',')
@@ -398,15 +397,23 @@ class LayoutAdmin1(ModelAdmin1):
             field_list = []
         return ('Datos', {'fields': field_list})
  
+    def get_fieldsets_content(self, request, obj):
+        field_list = ['content_type']
+        if obj.content_type in ['char', 'text', 'richtext', 'html']:
+            field_list.append('field_%s' % obj.content_type)
+        return ('Datos', {'fields': field_list})
+
+
+
     def get_fieldsets(self, request, obj=None):
         return [self.get_fieldsets_identidad(request, obj),
-                   self.get_fieldsets_datos(request, obj)]
+                   self.get_fieldsets_content(request, obj)]
             
     readonly_fields = [# 'pos', 'alias', 
-                       'MH_content']
+                       'MH_field_richtext']
 
     inlines = [# LayoutChildLin1, 
-               LayoutI18nLin1]
+               PageI18nLin1]
 
     def get_inlines(self, request, obj):
         if not request.user.is_superuser:
@@ -428,8 +435,8 @@ class LayoutAdmin1(ModelAdmin1):
             return super().has_delete_permission(request, obj)
 
 if settings.NUM_ADMIN_SITE == "0":
-    admin.site.register(Component) #, ComponentAdmin1)
-    admin.site.register(Layout) #,LayoutAdmin1)
-    admin.site.register(LayoutI18n) #, LayoutI18nAdmin1)
+    admin.site.register(DocAndImage) #, ComponentAdmin1)
+    admin.site.register(Page) #,LayoutAdmin1)
+    admin.site.register(PageI18n) #, LayoutI18nAdmin1)
 
 

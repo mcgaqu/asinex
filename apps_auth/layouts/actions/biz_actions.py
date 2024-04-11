@@ -21,7 +21,6 @@ ac_expand_layout.short_description = "Crear Layout con sus Componentes"
 
 
 
-
 def ac_create_i18n(modeladmin, request, queryset):
     """
         1. Ejecutar la función definida en cada registro 
@@ -34,7 +33,7 @@ def ac_create_i18n(modeladmin, request, queryset):
             try:
                 root_obj = Layout.objects.get(wsite=obj.wsite, 
                     root_alias=obj.root_alias, level=0)
-                languages = root_obj.params.split(',')
+                languages = root_obj.name.split(',')
                 obj.create_i18n(languages)
                 count +=1
             except Layout.DoesNotExist:

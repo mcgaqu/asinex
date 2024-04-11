@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # 'apps_auth.adjango.apps.AdjangoConfig',
     # 'apps_auth.dataloads.apps.DataloadsConfig',
     'apps_auth.layouts.apps.LayoutsConfig',
+    'apps_auth.pages.apps.PagesConfig',
     #-------------------------
     # 'djengine.wapps.'
     # 'websites.asinex.mod'
@@ -99,6 +100,12 @@ MODELADMINS1 = [
         ],
     ],
     #---------------------------------------
+    ['apps_auth.pages.apps.PagesConfig', [
+            ['DocAndImage', 'DocAndImageAdmin1', 2],
+            ['Page', 'PageAdmin1', 2],
+            ['PageI18n', 'PageI18nAdmin1', 2],
+        ],
+    ],
 
 
 ]

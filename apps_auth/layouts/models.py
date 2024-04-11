@@ -233,6 +233,7 @@ class Component(ModelTree1, ExtraLayout):
     ME_num_layout.short_description = _("Nº ly")
 
 
+
 class Layout(ModelTree1, ExtraLayout):
     wsite = models.ForeignKey(Wsite, on_delete=models.CASCADE, 
                                     null=True, blank=True)
@@ -279,7 +280,8 @@ class Layout(ModelTree1, ExtraLayout):
     MB_i18n.boolean = True
 
     def MC_pos_alias(self):
-        return "%s____ %s" % (self.pos, self.last_alias)
+        clave = "" if not self.last_alias else self.last_alias
+        return "%s____ %s" % (self.pos, clave)
     MC_pos_alias.short_description = "Pos - Clave"
 
     def save(self, *args, **kwargs):
@@ -387,9 +389,10 @@ class Layout(ModelTree1, ExtraLayout):
             #------------------------------
             # languages = root_obj.params.split(',')
             
-            languages = self.__class__.objects.get(
+            languages = self.__class__.objects.filter(
                 wsite=self.wsite, root_alias=self.root_alias,
-                last_alias='languages', 
+                level=0
+                # last_alias='languages', 
                 )
 
             if languages:

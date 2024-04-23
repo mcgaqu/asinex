@@ -32,10 +32,10 @@ INSTALLED_APPS = [
     # Pillow
     #=========================
     'apps_admin.wsites.apps.WsitesConfig',
-    # 'apps_auth.adjango.apps.AdjangoConfig',
+    'apps_auth.adjango.apps.AdjangoConfig',
     # 'apps_auth.dataloads.apps.DataloadsConfig',
     'apps_auth.layouts.apps.LayoutsConfig',
-    'apps_auth.pages.apps.PagesConfig',
+    # 'apps_auth.pages.apps.PagesConfig',
     #-------------------------
     # 'djengine.wapps.'
     # 'websites.asinex.mod'
@@ -65,16 +65,13 @@ MIDDLEWARE = [
 MODELADMINS1 = [
 
 
-    ['django.contrib.admin', [
-            ['LogEntry', 'LogEntryAdmin', 1],
-        ],
-    ], 
     #------------------------------------
-    ['django.contrib.auth', [
-            ['User', 'UserAdmin', 1],
-            ['Group', 'GroupAdmin', 1],
-        ],
-    ],   
+    # ['django.contrib.auth', [
+    #         ['User', 'UserAdmin', 1],
+    #         ['Group', 'GroupAdmin', 1],
+    #         ['LogEntry', 'LogEntryAdmin', 1],
+    #     ],
+    # ],   
     #------------------------------------
     ['apps_admin.wsites.apps.WsitesConfig', [
             ['Wsite', 'WsiteAdmin1', 1],
@@ -82,16 +79,16 @@ MODELADMINS1 = [
         ],
     ],
     #-------------------------------------------
-    # ['apps_auth.adjango.apps.AdjangoConfig', [
+    ['apps_auth.adjango.apps.AdjangoConfig', [
     #        # ['ContentType', 'ContentTypeAdmin1', 1],
     #        # ['Permission', 'PermissionAdmin1', 1],
-    #         ['User', 'UserAdmin', 1],
-    #         ['Group', 'GroupAdmin', 1],
-    #         # ['LogEntry', 'LogEntryAdmin1', 1],
+             ['User', 'UserAdmin1', 1],
+             ['Group', 'GroupAdmin1', 1],
+             ['LogEntry', 'LogEntryAdmin1', 1],
     #         # ['Session', 'SessionAdmin1', 1],
     #         # ['Site', 'SiteAdmin1', 1],
-    #     ],
-    # ],
+         ],
+     ],
     #-----------------------------------
     ['apps_auth.layouts.apps.LayoutsConfig', [
             ['Component', 'ComponentAdmin1', 2],
@@ -100,12 +97,12 @@ MODELADMINS1 = [
         ],
     ],
     #---------------------------------------
-    ['apps_auth.pages.apps.PagesConfig', [
-            ['DocAndImage', 'DocAndImageAdmin1', 2],
-            ['Page', 'PageAdmin1', 2],
-            ['PageI18n', 'PageI18nAdmin1', 2],
-        ],
-    ],
+    # ['apps_auth.pages.apps.PagesConfig', [
+    #         ['DocAndImage', 'DocAndImageAdmin1', 2],
+    #         ['Page', 'PageAdmin1', 2],
+    #         ['PageI18n', 'PageI18nAdmin1', 2],
+    #     ],
+    # ],
 
 
 ]

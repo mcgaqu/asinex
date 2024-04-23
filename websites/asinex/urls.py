@@ -49,7 +49,7 @@ urlpatterns += [
     path('', TemplateView.as_view(template_name='%s.html' % html_index)),
     # path('index0/', TemplateView.as_view(template_name='index0.html')),
     path('index01/', TemplateView.as_view(template_name='index01.html')),
-    path('index02/', TemplateView.as_view(template_name='index02.html')),
+    path('index2/', TemplateView.as_view(template_name='index2.html')),
 
     #-----------------------------------
     # path('%sadmin/doc/' % prefix, include('django.contrib.admindocs.urls')),

@@ -1,0 +1,737 @@
+<!-- {% load i18n static %} -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title id="head-1">Asinex</title>
+    <link id="head-2" rel="icon" href="../static/img/favicon.jpg/" />
+    <link id="head-3" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <!-- <link id="head3" rel="stylesheet" href="../static/css/w3.css"> -->
+    <link id="head-4" rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-cyan.css">
+    <link id="head-5" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link id="head-6" rel="stylesheet" href="../static/css/index0.css">
+    
+    <style id="head-7">
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: Verdana, Geneva, sans-serif;
+    </style>
+    <!-- <script id="head-9" src="../static/js/index0.js"></script> -->    
+</head>
+
+<body id="index0" class="w3-content" style="max-width:100%">
+<!-- <div id="index0" > -->
+
+<header id="header" class="w3-top w3-red">
+    <!-- -Fila 1-------------------------------------- -->
+    <div id="company" class="w3-bar w3-white w3-card">
+        <img id="logo" src="../static/img/logo1.jpg" 
+                class="w3-padding w3-left" alt="" 
+                style="width:300px;padding-bottom:0px" >
+
+        <!-- banderas es,en,fr,de,dk	-->
+        <div id="languages" class="w3-right w3-padding">
+            <img id="lan-es" src="../static/img/flag-es.jpg"
+                class="w3-circle w3-padding-small w3-display-container w3-hover-opacity" 
+                style="display:inline;width:50px" alt="es ">
+
+            <img id="lan-en" src="../static/img/flag-en.jpg"
+                class="w3-circle w3-padding-small w3-display-container w3-hover-opacity" 
+                style="display:inline;width:50px" alt="en ">
+
+            <img id="lan-fr" src="../static/img/flag-fr.jpg"
+                class="w3-circle w3-padding-small w3-display-container w3-hover-opacity" 
+                style="display:inline;width:50px" alt="fr ">
+            
+            <img id="lan-de" src="../static/img/flag-de.jpg"
+                class="w3-circle w3-padding-small w3-display-container w3-hover-opacity" 
+                style="display:inline;width:50px" alt="de ">
+
+            <img id="lan-dk" src="../static/img/flag-dk.jpg"
+                class="w3-circle w3-padding-small w3-display-container w3-hover-opacity" 
+                style="display:inline;width:50px" alt="dk ">
+        </div>
+    </div>
+    <!-- Fila 2 --------------------------------------- -->    
+    <div id="appbar" class="w3-bar w3-white w3-card" style="padding-top:1px">
+
+
+        <div id="titulo" class="w3-left w3-small w3-large">
+            <b id="titulo-1" style="padding-left:40px">
+                Asesoria Legal y Fiscal</b>
+        </div>
+    
+        <div id="navbar" class="w3-right w3-hide-small w3-large w3-padding-16">
+            <a id="navbar-1" href="#main-1" class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Inicio</a>
+            <a id="navbar-2" href="#main-2" class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Servicios</a>
+            <a id="navbar-3" href="#main-3" class="w3-bar-item w3-button
+                w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                w3-bottombar w3-border-white w3-hover-border-blue">
+                Sobre Nosotros</a>
+            <a id="navbar-4" href="#main-4" class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Costa Tropical</a>
+            <a id="navbar-5" href="#main-5" class="w3-bar-item w3-button
+                w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                w3-bottombar w3-border-white w3-hover-border-blue">
+                Preguntas Frecuentes</a>
+            <a id="navbar-8" href="#main-8" class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Contacto</a>
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->  
+        <a href="javascript:void(0)" 
+            class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <!-- Fila 3 --------------------------------------- -->    
+    <div id="sidebar"    
+        class="w3-sidebar w3-bar-block w3-pale-blue w3-card w3-animate-left w3-hide-medium w3-hide-large" 
+        style="display:none" >
+        <a id="sidebar-1" href="#main-1" class="w3-bar-item w3-button">Inicio</a>
+        <a id="sidebar-2" href="#main-2" class="w3-bar-item w3-button">Servicios</a>
+        <a id="sidebar-3" href="#main-3" class="w3-bar-item w3-button">Sobre Nosotros</a>
+        <a id="sidebar-4" href="#main-4" class="w3-bar-item w3-button">Costa Tropical</a>
+        <a id="sidebar-5" href="#main-5" class="w3-bar-item w3-button">Preguntas Frecuentes</a>
+        <a id="sidebar-8" href="#main-8" class="w3-bar-item w3-button">Contacto</a>
+        <!-- 
+            <a id="sidebar6"></a>
+            <a id="sidebar7"></a>
+            <a id="sidebar8"></a>
+            <a id="sidebar9"></a> 
+        -->
+        <a id="sidebarx" href="javascript:void(0)" onclick="w3_close()" 
+            class="w3-bar-item w3-button">
+            <i class="fa fa-close"></i> CERRAR
+        </a>
+    </div>
+        
+    <script>
+        var mySidebar = document.getElementById("sidebar");
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            } else {
+            mySidebar.style.display = 'block';
+            }
+        }
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+    </script>
+</header>
+
+      
+<div id="main">
+    <!-- INICIO -->
+    <section id="main-1" name="seccion1" class="w3-white" >
+        <h2 id="main-11" name="titulo1_seccion" class="w3-padding">INICIO</h2>
+        <img id="main-12" name="imagen_seccion" class="" src="../static/img/img1.jpeg" style="width:100%">
+        <h2 id="main-13" name="titulo2_seccion" class="w3-padding"></h2>
+
+        <article id="main-14" name="articulo_hipertexto" 
+            class="w3-panel w3-padding-large w3-large">
+            <div>
+                <h3 class="w3-center">INICIO</h3>
+                <p>Le ayudamos a simplificar todo lo relacionado con la burocracia española</p>
+                <p>Nuestro objetivo es que nuestros servicios sean prácticos para el cliente.
+                desde representarle ante Haciendahasta resolver sus dudas con respecto allow
+                a facturas de luz o de comunidad de propietarios.</p>
+                <p> Proporcionamos
+                un servicio global que le permita hacer lo que desee y a disfrutaar de su vida
+                en España.</p>
+            </div>
+        </article>
+
+        <!-- Iconos servicios -->
+        <article id="main-15" name="articulo_iconos" 
+                    class="w3-panel w3-row w3-center w3-pale-blue w3-large" style="width:100%">
+            
+            <div id="main-151" class="w3-third w3-padding-large">
+                <img id="main-1511" name="icono_img" src="../static/img/battle-net.svg" 
+                        class="w3-padding-large" style="width:33%"/>
+                </br>
+                <a id="main-1512" name="icono_link" href="#main-2" 
+                        class="w3-bar-item w3-button">Asesoria</a>
+            </div>
+
+            <div id="main-152" class="w3-third w3-padding-large">
+                <img id="main-1521" name="icono_img" src="../static/img/app-store.svg"
+                        class="w3-padding-large" style="width:33%" />
+                </br>
+                <a id="main-1522" name="icono_link" href="#main-2" 
+                        class="w3-bar-item w3-center w3-button">Gestoria</a>
+            </div>
+            
+            <div id="main-153" class="w3-third w3-padding-large">
+                <img id="main-1531" name="icono_img" src="../static/img/asymmetrik.svg" 
+                        class="w3-padding-large" style="width:33%" />
+                </br>
+                <a id="main-1532" name="icono_link" href="#main-2"
+                        class="w3-bar-item w3-button">Colaboracion</a>
+            </div>
+
+        </article>
+
+        <!-- REFERENCIAS DE CLIENTES -->
+        <article id="main-16" name="articulo_galeria" class="w3-container w3-white">
+            <h2 class="w3-text-blue">Referencias de nuestros clientes</h2>
+            <div id="main-166" class="w3-pannel w3-white w3-padding-large">
+    
+                <div id="main-1611" class="w3-panel w3-left w3-padding-large w3-leftbar w3-light-grey"
+                        style="width:45%">
+                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non massa vitae risus fermentum ullamcorper. 
+                        Phasellus risus urna, ornare in aliquam id, 
+                        porttitor sit amet sapien. Nulla facilisi. "
+                </div>
+                <div id="main-1612" class="w3-panel w3-right w3-padding-large w3-leftbar w3-light-grey"
+                        style="width:45%">
+                    
+                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non massa vitae risus fermentum ullamcorper. 
+                        Phasellus risus urna, ornare in aliquam id, 
+                        porttitor sit amet sapien. Nulla facilisi.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non massa vitae risus fermentum ullamcorper. 
+                        Phasellus risus urna, ornare in aliquam id, 
+                        porttitor sit amet sapien. Nulla facilisi. "
+                </div>
+            </div>
+
+            <div id="main-162" class="w3-pannel w3-white w3-padding-large">
+    
+                <div id="main-1621" class="w3-panel w3-left w3-padding-large w3-leftbar w3-light-grey"
+                        style="width:45%">
+                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non massa vitae risus fermentum ullamcorper. 
+                        Phasellus risus urna, ornare in aliquam id, 
+                        porttitor sit amet sapien. Nulla facilisi. "
+                </div>
+                <div id="main-1622" class="w3-panel w3-right w3-padding-large w3-cursive w3-leftbar w3-light-grey"
+                        style="width:45%">
+                    
+                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non massa vitae risus fermentum ullamcorper. 
+                        Phasellus risus urna, ornare in aliquam id, 
+                        porttitor sit amet sapien. Nulla facilisi."
+                </div>
+            </div>
+
+
+    
+            <div id="main-163" class="w3-pannel w3-white w3-padding-large">
+
+                <div id="main-1631" class="w3-panel w3-left w3-padding-large w3-leftbar w3-light-grey"
+                        style="width:45%">
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non massa vitae risus fermentum ullamcorper. 
+                        Phasellus risus urna, ornare in aliquam id, 
+                        porttitor sit amet sapien. Nulla facilisi. "
+                </div>
+                <div id="main-1632" class="w3-panel w3-right w3-padding-large w3-leftbar w3-light-grey"
+                        style="width:45%">
+                    
+                    " Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non massa vitae risus fermentum ullamcorper. 
+                        Phasellus risus urna, ornare in aliquam id, 
+                        porttitor sit amet sapien. Nulla facilisi. "
+                </div>
+            </div>
+    
+        </article>
+ 
+        <!-- Iconos servicios -->
+        <article id="main-17" name="articulo_iconos" 
+                    class="w3-panel w3-row w3-center w3-pale-blue w3-large" style="width:100%">
+            
+            <div id="main-171" class="w3-third w3-padding-large">
+                <img id="main-1711" name="icono_img"src="../static/img/colores.jpeg" 
+                        class="w3-circle w3-padding-large" style="width:40%"/>
+                <a id="main-1712" name="icono_link" href="http://camaleontropical.com" 
+                        class="w3-bar-item w3-button">Camaleón Tropical</a>
+            </div>
+
+            <div id="main-172" class="w3-third w3-padding-large">
+                <img id="main-1721" name="icono_img" src="../static/img/app-store.svg"
+                        class="w3-padding-large" style="width:40%" />
+                <a id="main-1722" name="icono_link" href="#main-2" 
+                        class="w3-bar-item w3-button">Liberty Seguros</a>
+            </div>
+            
+            <div id="main-173" class="w3-third w3-padding-large">
+                <img id="main-1731" name="icono_img" src="../static/img/asymmetrik.svg" 
+                        class="w3-padding-large" style="width:40%" />
+                <a id="main-1732" name="icono_link" href="#main-2" 
+                        class="w3-bar-item w3-button">SICEM</a>
+            </div>
+
+        </article>
+        <article id="main-18" name="articulo_iconos" 
+                    class="w3-panel w3-row w3-center w3-pale-blue w3-large" style="width:100%">
+            
+            <div id="main-181" class="w3-third w3-padding-large">
+                <img id="main-1811" name="icono_img" src="../static/img/battle-net.svg" 
+                        class="w3-padding-large" style="width:40%"/>
+                <a id="main-1812" name="icono_link" href="#main-2" 
+                        class="w3-bar-item w3-button">Camaleón tropical</a>
+            </div>
+
+            <div id="main-182" class="w3-third w3-padding-large">
+                <img id="main-1821" name="icono_img" src="../static/img/app-store.svg"
+                        class="w3-padding-large" style="width:40%" />
+                <a id="main-1822" name="icono_link" href="#main-2" 
+                        class="w3-bar-item w3-button">Liberty Seguros</a>
+            </div>
+            
+            <div id="main-183" class="w3-third w3-padding-large">
+                <img id="main-1831" name="icono_img" src="../static/img/asymmetrik.svg" 
+                        class="w3-padding-large" style="width:40%" />
+                <a id="main-1832" name="icono_link" href="#main-2" 
+                        class="w3-bar-item w3-button">Sicem</a>
+            </div>
+
+        </article>
+
+
+        <!-- Colaboramos con -->
+        <article id="main-19" name="articulo_otros">
+            <div class="w3-display-container w3-text-blue">
+                <img  name="src" src="../static/img/colores.jpeg" 
+                    style="width:100%;height:800px">
+                <div class="w3-display-topleft w3-container w3-xxlarge">
+                    <p name="texto1">COLABORAMOS CON</p>
+                </div>
+                <div class="w3-display-bottommiddle w3-container w3-xxlarge w3-padding-64">
+                    <a id="main-191" name="" href="http://www.camaleontropical.com">camaleón tropical</a>
+                </div>
+
+            </div>
+        </article>
+
+    </section>
+
+    <!-- NUESTROS SERVICIOS -->
+    <section id="main-2" name="seccion2" class="w3-blue-gray" >
+        <h2 id="main-21" name="seccion_titulo1" class="w3-padding">SERVICIOS</h2>
+        <img  id="main-22" name="seccion_imagen" src="../static/img/img2.jpeg" style="width:100%">
+        <h2 id="main-23" name="seccion_titulo2" class="w3-padding">SERVICIOS</h2>
+
+        <article id="main-24" name="articulo_hipertexto" 
+                    class="w3-panel w3-theme-l5 w3-padding-large w3-large">
+            <div>
+                <h3 class="w3-center">NUESTROS SERVICIOS</h3>
+                <p>Le ayudamos a simplificar todo lo relacionado con la burocracia española</p>
+                <p>Nuestro objetivo es que nuestros servicios sean prácticos para el cliente.
+                desde representarle ante Haciendahasta resolver sus dudas con respecto allow
+                a facturas de luz o de comunidad de propietarios.</p>
+                <p> Proporcionamos
+                un servicio global que le permita hacer lo que desee y a disfrutaar de su vida
+                en España.</p>
+            </div>
+        </article>
+
+ 
+ 
+ 
+        <article>
+            
+            <div id="main-26" class="w3-white w3-padding-24">
+                <h3 class="w3-center w3-text-blue ">NUESTROS SERVICIOS</h3>
+                <div class="w3-pannel w3-padding" style="width:60%">
+                    <ul class"w3-ul w3-card-4 w3-padding w3-xlarge" >
+                        <li class="w3-blue-grey w3-xxlarge">Asesoría legal</li>
+                        <li>Representación legal, tanto para personas físicas como para empresas</li>
+                        <li>Transmisión de la propiedad y sus consiguientes tramitaciones
+                            ante Notario Público y Registro de la Propiedad</li>
+                        <li>Compraventa y gestiones de vivienda en España</li>
+                        <li>Gestiones ante el ayuntamiento</li>
+                        <li>Testamentos y herencias</li>
+                        <li>Gestiones para la constitución e inscripción de sociedades</li>
+                    </ul>
+
+                    <ul class"w3-ul w3-card-4" style="width:60%">
+                        <li class="w3-blue-gray w3-xlarge">Fiscal y contabilidad</li>
+                        <li>Declaraciones y representaciones fiscales para residentes y no residentes</li>
+                        <li>Atender requerimientos y actuar ante la inspección por parte de la Administración local
+                            (Ayuntamiento), regional (Junta de Andalucía) y estatal (Hacienda).</li>
+                        <li>Documentos pertinentes para las oportunas altas, modificaciones y bajas de datos de 
+                            personas y empresas en la agencia tributaria</li>
+                        <li>Impuestos obligarios: IVA, Sociedades, etc..</li>        
+                        <li>Contabilidad tanto a personas físicas como a Sociedades Mercantiles</li>
+                        <li>Confección de Memorias y Cuentas Anuales de la Sociedad</li>    
+                    </ul>
+                    
+                    <ul class"w3-ul w3-card-4" style="width:60%">
+                        <li class="w3-blue-gray w3-xlarge">Seguros</li>
+                        <li>xxxxxx</li>
+                        <li>xxxxxx</li>
+                    </ul>
+
+                    <ul class"w3-ul w3-card-4" style="width:60%">
+                        <li class="w3-blue-gray w3-xlarge">Colaboramos con:</li>
+                        <li>
+                            <p class="w3-opacity">
+                                <a class="w3-button w3-theme-l3 w3-block" 
+                                    href="http://www.camaleontropical.com"><u>camaleón tropical</u>:
+                                        Gestoria de inmuebles vacacionales
+                                </a>
+                            </p>
+                       </li>
+                    </ul>
+                </div>
+            </div>
+
+
+    </section>
+
+    <!-- Team Section -->
+    <section id="main-3" name="seccion3" class="w3-blue-gray" >
+        <h2 id="main-31" name="seccion_titulo1" class="w3-padding">SOBRE NOSOTROS</h2>
+        <img  id="main-32" name="seccion_imagen" src="../static/img/img3_Equipo.jpg" style="width:100%">
+        <h2 id="main-33" name="Seccion_tilrulo2" class="w3-padding">SOBRE NOSOTROS</h2>
+        
+        <article id="main-34" name="articulo_hipertexto" 
+            class="w3-panel w3-theme-l5 w3-padding-large w3-large">
+            <div>
+                <h3 class="w3-center">SOBRE NOSOTROS</h3>
+                <p>Le ayudamos a simplificar todo lo relacionado con la burocracia española</p>
+                <p>Nuestro objetivo es que nuestros servicios sean prácticos para el cliente.
+                desde representarle ante Haciendahasta resolver sus dudas con respecto allow
+                a facturas de luz o de comunidad de propietarios.</p>
+                <p> Proporcionamos
+                un servicio global que le permita hacer lo que desee y a disfrutaar de su vida
+                en España.</p>
+            </div>
+        </article>
+
+        <article id="main-35" class="w3-panel w3-white">
+            <!--Fila1-->
+            <div id="main-341" class="w3-row-padding w3-center">
+                <div class="w3-col m4 l4">
+                    <div id="main-3411" class="w3-container">
+                        <img src="../static/img/Portrait-Samuel.jpg" class ="w3-circle" 
+                        alt="Andrea"  style="width:80%">
+                        <p class="w3-red">Tarjeta para Andrea.</p>
+
+                        <div class="w3-container">
+                            <h6 >Andrea Royan</h6>
+                            <p >Directora, Asesora Fiscal</p>
+                            <p class="w3-opacity">
+                                <a class="w3-button w3-theme-l3 w3-block" 
+                                    href="mailto:andrea@asinex.es">
+                                    andrea@asinex.es
+                                </a>
+                            </p>
+                            <p class="w3-center">
+                            "Me gusta el blues y el rock, principalmente de los años 60 7 70.
+                            Tambien me gusta el cine de Billy Wilder"
+                            </p>                                
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col m4 l4">
+                    <div id="main-3412" class="w3-card">
+                        <img src="../static/img/Portrait-Fran.jpg" class ="w3-circle" 
+                            alt="Fran"  style="width:80%"/>
+                        <p class="w3-red">Tarjeta para Fran.</p>
+
+                        <div class="w3-container">
+                            <h6 >Francisco Gonzalez Vigo</h6>
+                            <p >Contabilidad</p>
+                            <p class="w3-opacity">
+                                <a class="w3-button w3-theme-l3 w3-block" 
+                                    href="mailto:fran@asinex.es">
+                                    fran@asinex.es
+                                </a>
+                            </p>
+                            <p class="w3-center">
+                            "Me gusta el blues y el rock, principalmente de los años 60 7 70.
+                            Tambien me gusta el cine de Billy Wilder"
+                            </p>                                
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col m4 l4">
+                    <div id="main-3413" class="w3-card">
+                        <img src="../static/img/Portrait-Pilar.jpg" class ="w3-circle"
+                         alt="Pilar"  style="width:80%" />
+                        <p class="w3-red">Tarjeta para Pilar.</p>
+
+                        <div class="w3-container">
+                            <h6 >Pilar Jimenez Girela</h6>
+                            <p >Abogado</p>
+                            <p class="w3-opacity">
+                                <a class="w3-button w3-theme-l3 w3-block" 
+                                    href="mailto:pilar@asinex.es">
+                                    pilar@asinex.es
+                                </a>
+                            </p>
+                            <p class="w3-center">
+                            "Me gusta el blues y el rock, principalmente de los años 60 7 70.
+                            Tambien me gusta el cine de Billy Wilder"
+                            </p>                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fila 2-->
+            <div id="main-342" class="w3-row-padding w3-center w3-grayscale">
+                <div class="w3-col m6 l6">
+                    <div id="main-3421" class="w3-card">
+                        <img src="../static/img/equipo1-andrea.jpeg" class ="w3-circle"
+                            alt="Samuel"  style="width:50%">
+                        <p class="w3-red">Tarjeta para Samuel.</p>
+
+                        <div class="w3-container">
+                            <h6 >Samuel Ruiz del Castillo</h6>
+                            <p >Fiscal</p>
+                            <p class="w3-opacity">
+                                <a class="w3-button w3-theme-l3 w3-block" 
+                                    href="mailto:andrea@asinex.es">
+                                    samuel@asinex.es
+                                </a>
+                            </p>
+                            <p class="w3-center">
+                            "Me gusta el blues y el rock, principalmente de los años 60 7 70.
+                            Tambien me gusta el cine de Billy Wilder"
+                            </p>                                
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col m6 l6">
+                        <div id="main-3422" class="w3-card">
+                            <img src="../static/img/equipo6-issa.jpeg" class ="w3-circle" 
+                                alt="Issa"  style="width:50%">
+                            <p class="w3-red">Tarjeta para Andrea.</p>
+    
+                            <div class="w3-container">
+                                <h6 >Issa Graven</h6>
+                                <p>Administración</p>
+                                <p class="w3-opacity">
+                                    <a class="w3-button w3-theme-l3 w3-block" 
+                                        href="mailto:issa@asinex.es">
+                                        issa@asinex.es
+                                    </a>
+                                </p>
+                                <p class="w3-center">
+                                "Me gusta el blues y el rock, principalmente de los años 60 7 70.
+                                Tambien me gusta el cine de Billy Wilder"
+                                </p>                                
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+           </div>
+        </article>
+
+    </section>
+
+
+    <section id="main-4" name="seccion4"class="w3-blue-gray" >
+        <h2 id="main-41" name="seccion_titulo1" class="w3-padding">COSTA TROPICAL</h2>
+        <img  id="main-42" name="seccion_imagen" src="../static/img/img4.jpeg" style="width:100%">
+        <h2 id="main-43" name="seccion_titulo2" class="w3-padding">COSTA TROPICAL</h2>
+
+        <article id="main-44" name="articulo_hipertexto" 
+                    class="w3-panel w3-theme-l5 w3-padding-large w3-large">
+            <div>
+                <h3 class="w3-center">COSTA TROPICAL</h3>
+                <p>Cada vez más popular entre los residentes extranjeros</p>
+                <p>Almuñécar es una atractiva ciudad costera con un interesante
+                     paseo marítimo que está dividido en numerosos tramos
+                    con pequeñas calas y varias playas largas.</p>
+                <p> Todas con excelentes instalaciones que las hacen perfectas para familias</p>                
+            </div>
+        </article>
+
+       <!-- Iconos servicios -->
+       <article id="main-15" name="articulo_iconos" 
+       class="w3-panel w3-row w3-auto w3-pale-blue w3-large" style="width:100%">
+
+<div id="main-151" class="w3-third w3-padding-large">
+   <img id="main-1511" name="icono_img" src="../static/img/battle-net.svg" 
+           class="w3-padding-large" style="width:80%"/>
+   <a id="main-1512" name="icono_link" href="#main-2" 
+           class="w3-bar-item w3-button">Ayuntamiento</a>
+</div>
+
+<div id="main-152" class="w3-third w3-padding-large">
+   <img id="main-1521" name="icono_img" src="../static/img/app-store.svg"
+           class="w3-padding-large" style="width:80%" />
+   <a id="main-1522" name="icono_link" href="#main-2" 
+           class="w3-bar-item w3-button">Visit Almuñecar</a>
+</div>
+
+<div id="main-153" class="w3-third w3-padding-large">
+   <img id="main-1531" name="icono_img" src="../static/img/asymmetrik.svg" 
+           class="w3-padding-large" style="width:80%" />
+   <a id="main-1532" name="icono_link" href="#main-2" 
+           class="w3-bar-item w3-button">Costa Tropical</a>
+</div>
+
+</article>
+
+
+
+
+        <article id="main-46" name="articulo_cards">
+            <h2> GALERIA DE TARJETAS</h2>
+            <div class="w3-container">
+                <p>Galeria de tarjetas<p>
+                <p>Tarjeta1: Imagen - Hipertexto</p>
+                <p>Tarteta2: Hipertexto - Imagen</p>
+                <p>Tarjeta3: Imagen - Hipertexto</p>
+                <p>Tarteta4: Hipertexto - Imagen</p>
+                <p>Tarjeta5: Imagen - Hipertexto</p>
+                <p>Tarteta6: Hipertexto - Imagen</p>
+
+
+
+            </div> 
+        </article>
+        
+    </section>
+
+
+    <section id="main-5" name="seccion5" class="w3-blue-gray" >
+        <h2 id="main-51" name="seccion_titulo1" class="w3-padding">PREGUNTAS FRECUENTES</h2>
+        <img  id="main-52" name="seccion_imagen" src="../static/img/img5.jpeg" style="width:100%">
+        <h2 id="main-53" name="seccion_titulo2" class="w3-padding">PREGUNTAS FRECUENTES</h2>
+
+        <article id="main-54" name="articulo_hipertexto" 
+                    class="w3-panel w3-theme-l5 w3-padding-large w3-large">
+            <div>
+                <h3 class="w3-center">PREGUNTAS frecuentes</h3>
+                <p>Hay dudas que se repiten en muchos autónomos y empresas</p>
+                <p>Por ello les ofrecemos estas preguntas mas frecuentes.</p>
+                <p> que de forma inmediate pueden servirle de utilidad</p>                
+            </div>
+        </article>
+
+        <article id="main-54" name="articulo_hipertexto" 
+                class="w3-panel w3-theme-l5 w3-padding-large w3-large">>
+            
+            <h3 class="w3-center">PREGUNTAS FRECUENTES</h3>
+        
+            <div class="w3-panel w3-xlarge w3-pale-blue" style="padding-left:60px">
+                <h6>¿Cuándo debe una pequeña empresa contratar a un abogado de impuestos?</h6>
+                <h6>¿ De qué otra manera puede ayudarmee un abogado de impuestos?</h6>
+                <h6>¿ Qué forma jurídica es la más beneficiosa para mi empresa?</h6>
+                <h6>¿Cuando debo de darme alta como autónomo?</h6>
+                <h6>¿Cuantos son los honorarios de un abogado?</h6>
+                <h6>¿Cuantos son los honorarios de un asesor Fiscal/Contable?</h6>
+                <h6>¿Qué impuestos tengo que pagar en mi negocio?</h6>
+
+                <div class="w3-panel w3-dropdown-hover">
+                    <button class="w3-button w3-blue-gray">¿Qué impuestos tengo que pagar en mi negocio?</button>
+                    <div class="w3-dropdown-content w3-bar-block w3-border">
+                        <a href="#" class="w3-bar-item w3-button">Liquidacion IVA</a>
+                        <a href="#" class="w3-bar-item w3-button">Impuesto sociedades</a>
+                        <a href="#" class="w3-bar-item w3-button">Y otros</a>
+                    </div>
+                </div>
+                <br/>
+                <div class="w3-panel w3-dropdown-hover">
+                    <button class="w3-button w3-blue-gray">¿Qué impuestos tengo que pagar en mi negocio?</button>
+                    <div class="w3-dropdown-content w3-bar-block w3-border">
+                        <div class="w3-panel w3-padding-large"> Los impuestoa pagar dependen del tipo de negocio que usted tenga.
+                            Póngasé en contacto con nosotros y le responderemos sin cargo alguno para determinar
+                            aquellos que le  corresponden. Gracias por su interés
+                        </div>
+                    
+                    </div>
+                </div>
+
+
+            </article>
+        
+    </section>
+
+
+    <section id="main-8" name="seccion8" class="w3-blue-gray" >
+        <h2 id="main-81" name="seccion_titulo1" class="w3-padding">CONTACTO</h2>
+        <img  id="main-82" name="seccion_imagen" src="../static/img/fachada3.jpeg" style="width:100%">
+        <h2 id="main-83" name="seccion_titulo2" class="w3-padding">CONTACTO</h2>
+
+        <article id="main-84" name="articulo_hipertexto" 
+                    class="w3-panel w3-theme-l5 w3-padding-large w3-large">
+            <div class="w3-center w3-xlarge w3-pale-blue">
+                <h2 class="w3-text-blue">CONTACTANOS</h2>
+                <p>Av.Juan Carlos 24, I, Bajo </p>
+                <p>18690, Almuñecar (Granada), Spain</p>            
+                <p>(+34) 958 631 855</p>
+                <p><a href="mailto:asinex@asinex.es">asinex@asinex.es
+                </a>
+            </div>
+        </article>
+        
+
+        <article>
+            <div id="main-84x" class="w3-xlarge w3-pale-blue w3-text-align-left"
+                    style="padding-left:60px">
+                <h2 class="w3-text-blue">CONTACTANOS</h2>
+                <p>Av.Juan Carlos 24, I, Bajo </p>
+                <p>18690, Almuñecar (Granada), Spain</p>            
+                <p>(+34) 958 631 855</p>
+                <p><a href="mailto:asinex@asinex.es">asinex@asinex.es
+                </a>
+            </div>
+        </article>
+
+        <article id="main-84" name="articulo_googlemap" >
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.601302546624!2d-3.691918797912952!3d36.732135515343934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71889963e8918b%3A0x7fd23d077010f3c0!2sAv.%20Juan%20Carlos%20I%2C%2024%2C%2018690%20Almu%C3%B1%C3%A9car%2C%20Granada!5e0!3m2!1ses!2ses!4v1677840485458!5m2!1ses!2ses" 
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <article>
+    </section>
+
+</div>
+
+
+<!-- style="background-color:rgb(240 250 254)" -->
+<footer id="xfooter" class="w3-panel w3-blue-gray w3-center" >
+
+    <div id="xfooter-1" class="w3-panel w3-blue-gray">
+        <a id="xfooter-11" class="w3-hover-text-green w3-center"
+        href="https://www.linkedin.com/in/maricarmen-garc%C3%ADa-quesada-b4098360/"
+        title="W3.CSS" target="_blank" >
+            <i class="fa fa-linkedin w3-hover-opacity w3-xxlarge "></i>
+        </a>
+        <div id="xfooter-12" class="w3-center w3-large">
+            <div>Av.Juan Carlos 24, I , Bajo - 18690, Almuñecar (Granada), Spain</div>
+            
+            <div>(+34) 958 631 855 / asinex@asinex.es</div>
+        </div>
+    </div>
+
+    <div id="xfooter-2" class="w3-panel w3-blue-gray">
+
+        <a id="xfooter-21" href="https://www.linkedin.com/in/maricarmen-garc%C3%ADa-quesada-b4098360/"
+        title="W3.CSS" target="_blank" class="w3-hover-text-green w3-large w3-left">
+        sicem
+        </a>
+        
+        <a id="xfooter-22" href="#main0" class="w3-button w3-light-grey w3-right">
+            <i class="fa fa-angle-up w3-large"></i>
+        </a>
+    </div>
+
+
+</footer>
+
+<!-- <div id="index0" > -->
+</body>
+</html>
+

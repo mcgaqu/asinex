@@ -47,6 +47,7 @@ def ac_create_i18n(modeladmin, request, queryset):
 ac_create_i18n.short_description = "Generar Traducciones"
 
 
+
 def ac_expand_component_layout(modeladmin, request, queryset):
     """
         1. Ejecutar la función definida en cada registro 

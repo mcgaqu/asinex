@@ -233,18 +233,25 @@ class Component(ModelTree1, ExtraLayout):
     ME_num_layout.short_description = _("Nº ly")
 
 
-
 class Layout(ModelTree1, ExtraLayout):
     wsite = models.ForeignKey(Wsite, on_delete=models.CASCADE, 
                                     null=True, blank=True)
-    # front = models.CharField(max_length=250, null=True, blank=True)
 
-    mark_i18n = models.CharField(max_length=250, null=True, blank=True)
+    # root_alias --> nombre del fichero index.html
+    # last_alias --> id= de cada elem en index.html
+    # name --> label de cada elem del html
+    # grade --> name de cada elem index.html
+
+    # mark --> action de layout
     params = models.CharField(max_length=250, null=True, blank=True)
+    mark_i18n = models.CharField(max_length=250, null=True, blank=True)
     params_i18n = models.CharField(max_length=250, null=True, blank=True)
 
-    content = RichTextField('contenido', null=True, blank=True)
+    # tags --< ATributos
+    # link --> src/href para labels img/a
+    link = models.CharField(max_length=250, null=True, blank=True)   
 
+    content = RichTextField('contenido', null=True, blank=True)
     text1 = models.CharField(max_length=250, null=True, blank=True)
     text2 = models.CharField(max_length=250, null=True, blank=True)
     text3 = models.CharField('email / web', max_length=250, null=True, blank=True)
@@ -254,8 +261,7 @@ class Layout(ModelTree1, ExtraLayout):
     note2 = models.TextField(null=True, blank=True)
 
     # imgfile = models.FileField(max_length=250, null=True, blank=True)
-    docfile = models.FileField(max_length=250, null=True, blank=True)
-    link = models.CharField(max_length=250, null=True, blank=True)  
+    docfile = models.FileField(max_length=250, null=True, blank=True) 
     comp = models.ForeignKey(Component,  on_delete=models.CASCADE,
                                 null=True, blank=True)   
  
@@ -290,7 +296,10 @@ class Layout(ModelTree1, ExtraLayout):
                 self.wsite = self.parent.wsite
             else:
                 self.wsite = get_wsite(settings.SITE_NAME)
-        self.internal = not (not self.mark)
+        #------------------------?????z
+        # self.internal = not (not self.mark)
+        self.internal = not(self.mark)
+        #------------------
         self.replace = not (not self.mark_i18n)
         # import pdb; pdb.set_trace()
         return super().save(*args, **kwargs)
@@ -478,9 +487,7 @@ class LayoutI18n(ModelBase, ExtraLayout):
     params_i18n = models.CharField(max_length=250, null=True, blank=True)
 
     content = RichTextField('contenido', null=True, blank=True)
-    docfile = models.FileField(max_length=250, null=True, blank=True)
-    link = models.CharField(max_length=250, null=True, blank=True)  
-
+ 
     text1 = models.CharField(max_length=250, null=True, blank=True)
     text2 = models.CharField(max_length=250, null=True, blank=True)
     text3 = models.CharField('email / web', max_length=250, null=True, blank=True)
@@ -488,6 +495,10 @@ class LayoutI18n(ModelBase, ExtraLayout):
     text5 = models.CharField(max_length=250, null=True, blank=True)
     note1 = models.TextField(null=True, blank=True)
     note2 = models.TextField(null=True, blank=True)
+
+    docfile = models.FileField(max_length=250, null=True, blank=True)
+    link = models.CharField(max_length=250, null=True, blank=True)  
+
 
     class Meta(ModelBase.Meta):
         verbose_name = _('Traducción')

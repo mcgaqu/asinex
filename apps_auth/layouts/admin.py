@@ -291,9 +291,10 @@ class LayoutAdmin1(ModelAdmin1):
     ordering = ('pos',)
     #------------------------------------------------       
 
-    list_display1 = [# 'pos', 'last_alias',
-                    'MC_pos_alias', 
+    list_display1 = ['root_alias', 'sort', # 'pos', 'last_alias',
+                    'MC_pos_alias', 'grade',
                     'name', 'replace', 'active', 'internal', 
+                    'link',
                     # 'MB_i18n', # 'replace', 
                     # 'locked',
                      ]
@@ -301,10 +302,10 @@ class LayoutAdmin1(ModelAdmin1):
                 
                 # 'sort', 'last_alias',
                 # 'ME_num_children',
-                'mark', 'params', # 'note', 
-                'tags',
-                'mark_i18n', 'params_i18n', 
-                'wsite','root_alias', 'level', 
+                'mark', # 'params', # 'note', 
+                # 'tags',
+                'mark_i18n',# 'params_i18n', 
+                'wsite', 'level', 
                 'locked'
             ]
 
@@ -325,8 +326,8 @@ class LayoutAdmin1(ModelAdmin1):
         # 'sort', 'last_alias', 
         'active', 'internal',
         'name',
-        'mark', 'params', 'tags',
-        'mark_i18n', 'params_i18n', 
+        'mark', # 'params', # 'tags',
+        'mark_i18n', # 'params_i18n', 
         'locked'
         ]
     x_list_editable = ['active', 'locked']
@@ -367,7 +368,6 @@ class LayoutAdmin1(ModelAdmin1):
             actions = None
         return actions 
     
-
     #==========================
     def get_fieldsets_identidad(self, request, obj=None):
         return ('Identidad', {
@@ -375,7 +375,7 @@ class LayoutAdmin1(ModelAdmin1):
                         ('wsite','level', 'grade'),
                         ('parent', 'root_alias'),
                         ('sort', 'last_alias'),
-                        # ('pos', 'alias'),
+                        ('pos', 'alias'),
                         ('active', 'internal', 'replace', 'locked'),
                         ('mark', 'params'),
                         ('mark_i18n', 'params_i18n'),

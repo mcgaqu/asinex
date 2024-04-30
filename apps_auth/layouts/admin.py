@@ -291,8 +291,8 @@ class LayoutAdmin1(ModelAdmin1):
     ordering = ('pos',)
     #------------------------------------------------       
 
-    list_display1 = ['root_alias', 'sort', # 'pos', 'last_alias',
-                    'MC_pos_alias', 'grade',
+    list_display1 = ['num_int', 'root_alias', 'sort', 'parent', # 'pos', 'last_alias',
+                    'MC_pos_alias', 'grade', 'text5',
                     'name', 'replace', 'active', 'internal', 
                     'link',
                     # 'MB_i18n', # 'replace', 
@@ -302,7 +302,7 @@ class LayoutAdmin1(ModelAdmin1):
                 
                 # 'sort', 'last_alias',
                 # 'ME_num_children',
-                'mark', # 'params', # 'note', 
+                'mark', 'params', # 'note', 
                 # 'tags',
                 'mark_i18n',# 'params_i18n', 
                 'wsite', 'level', 
@@ -340,7 +340,7 @@ class LayoutAdmin1(ModelAdmin1):
  
     #---------------------------------------
     list_filter1 = ['replace']
-    list_filter = [ 'active', 'internal', 'replace', 'locked',
+    list_filter = [ 'grade', 'active', 'internal', 'replace', 'locked',
         # 'parent', 'grade',
         'mark', 'mark_i18n',
         

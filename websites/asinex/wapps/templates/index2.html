@@ -6,36 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title id="head-1" name="innerHTML:text1">Asinex</title>
-    <link id="head-2" rel="icon" href="../static/img/favicon.jpg/" />
+    <title id="head-1" name="TITLE" mark=":text1" marki18n="innerHTML:text1" >Asinex</title>
+    <link id="head-2" name"FAVICON" mark=":text2" rel="icon" href="../static/img/favicon.jpg/" />
     <!--<link idx="head-3" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-    <link idx="head3" rel="stylesheet" href="../static/css/w3.css">
-    <!--<link id="head-4" rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-cyan.css"> -->
-    <link id="head-5" rel="stylesheet" 
+    <link id="head-3" name="CSS" rel="stylesheet" href="../static/css/w3.css">
+    <!--<link idx="head-4" rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-cyan.css"> -->
+    <link id="head-5" name="CSS" rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link id="head-6" rel="stylesheet" href="../static/css/index2.css">
+    <link id="head-6" name="CSS" rel="stylesheet" href="../static/css/index2.css">
     
-    <style id="head-7">
+    <style>
         body, h1, h2, h3, h4, h5, h6 {
             font-family: Verdana, Geneva, sans-serif;
         }
-        .color-asinex {
+        .asinex-blue {
             background-color: #2194C2;
         }
-        .text-color-asinex {
+        .asinex-text-blue {
             color: #2194C2;
         }
 
+        .asinex-pale-blue {
+            background-color: rgb(241,250,253);
+        }
+        .asinex-text-pale-blue {
+            color: rgb(241,250,253);
+        }
+
+
     </style>
 
-    <!-- <script id="head-9" src="../static/js/index2.js"></script>  --> 
+    <!-- <script idx="head-9" src="../static/js/index2.js"></script>  --> 
 </head>
 
 
 <body id="index2" class="w3-content" style="max-width:100%">
-<!-- <div id="index0" > -->
+<!-- <div idx="index0" > -->
 
-<header id="header" class="w3-top w3-red">
+<header id="header" name="APPBAR" class="w3-top w3-red">
     <!-- -Fila 1-------------------------------------- -->
     <div id="company" class="w3-bar w3-white">
         <img id="logo" src="../static/img/logo1.jpg" 
@@ -110,7 +118,7 @@
     </div>
     <!-- Fila 3 --------------------------------------- -->    
     <div id="sidebar"    
-        class="w3-sidebar w3-bar-block w3-pale-blue w3-card w3-animate-left w3-hide-medium w3-hide-large" 
+        class="w3-sidebar w3-bar-block asinex-pale-blue w3-card w3-animate-left w3-hide-medium w3-hide-large" 
         style="display:none" >
         <a id="sidebar-1" href="#main-1" class="w3-bar-item w3-button">Inicio</a>
         <a id="sidebar-2" href="#main-2" class="w3-bar-item w3-button">Servicios</a>
@@ -148,27 +156,15 @@
       
 <div id="main">
     <!-- INICIO -->
-    <section id="main-1" name="seccion1" class="w3-white" style="padding-top:100px">
-        <h2 id="main-11" name="titulo1_seccion" class="w3-padding"></h2>
-        <img id="main-12" name="imagen_seccion" class="" src="../static/img/img1.jpeg" style="width:100%">
-        <h2 id="main-13" name="titulo2_seccion" class="w3-center w3-padding w3-text-indigo">
-            COLOR INDIGO
-        </h2>
-        <h2 id="main-13" name="titulo2_seccion" class="w3-center w3-padding w3-text-blue">
-            COLOR BLUE
-        </h2>
-        <h2 id="main-13" name="titulo2_seccion" class="w3-center w3-padding w3-text-teal">
-            COLOR TEAL
-        </h2>
-        <h2 id="main-13" name="titulo2_seccion" class="w3-center w3-padding text-color-asinex">
-            COLOR ASINEX
-        </h2>
+    <section id="main-1" name="INICIO" class="w3-white" style="padding-top:100px">
+        <h2 id="main-11" name="TITULO-S" class="w3-hide w3-padding">INICIO</h2>
+        <img id="main-12" name="IMAGEN-S" class="" src="../static/img/img1.jpeg" style="width:100%">
 
 
-        <article id="main-14" name="articulo_hipertexto" 
+        <article id="main-13" name="DESCRIPCION" 
             class="w3-panel w3-padding-large w3-large">
-            <div class="w3-center">
-                <h3 class="w3-center" ></h3>
+            <h3 id="main-131" name="TITULO-A" class="w3-center" ></h3>
+            <div id="main132" name="TEXTO-A" class="w3-center">
                 <p>ASINEX es una empresa dedicada al servicio al cliente 
                     extranjero con una primera o segunda residencia en Almuñecar.</p>
 
@@ -188,8 +184,8 @@
         </article>
 
         <!-- Iconos servicios -->
-        <article id="main-15" name="articulo_iconos" 
-                    class="w3-panel w3-row w3-center w3-pale-blue w3-large" style="width:100%">
+        <article id="main-15" name="ICONOS-A" 
+                    class="w3-panel w3-row w3-center asinex-pale-blue w3-large" style="width:100%">
             
             <div id="main-151" class="w3-third w3-padding-large">
                 <img id="main-1511" name="icono_img" src="../static/img/icon-Asesoria_Legal.svg" 
@@ -219,7 +215,7 @@
 
         <!-- REFERENCIAS DE CLIENTES -->
         <article id="main-16" name="articulo_galeria" class="w3-container w3-white">
-            <h2 class="text-color-asinex w3-center">Referencias de nuestros clientes</h2>
+            <h3 class="asinex-text-pale-blue w3-center">Referencias de nuestros clientes</h3>
             <div id="main-166" class="w3-row w3-pannel w3-white w3-padding-large">
     
                 <div id="main-1611" class="w3-col m5 w3-panel w3-left w3-padding-large w3-white">
@@ -259,7 +255,7 @@
                     <img id="main-16211" name="icono_img" src="../static/img/Simbolo-comilla1.png" 
                     class="w3-show" style="width:8%"/> 
 
-                    <p id="main-16212" class="w3-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <p id="main-16212" class="w3-center">
                         "Las mejores experiencias las he tenido con el apoyo 
                         de los empleados de ASINEX, que se caracterizan por un alto nivel
                          de profesionalidad en la tramitación administrativa. 
@@ -328,58 +324,62 @@
         </article>
  
         <!-- COLABORAMOS CON  -->
-        <!-- COLABORAMOS CON  -->
-        <article class="w3-pale-blue">
-            <h2 class="text-color-asinex w3-center">COLABORAMOS CON</h2>
+        <article class="asinex-pale-blue">
+            <h3 class="asinex-text-blue w3-center">Colaboramos con</h3>
             <div id="main-17" name="articulo_iconos" 
-                        class="w3-panel w3-row w3-center w3-pale-blue w3-large" style="width:100%">
+                        class="w3-panel w3-row w3-center asinex-pale-blue w3-large" style="width:100%">
                 
                 <div id="main-171" class="w3-third w3-padding-large">
-                    <img id="main-1711" name="icono_img"src="../static/img/Logo_Camaleon_Tropical.png" 
+                    <a id="main-1712" name="icono_link" href="http://camaleontropical.com"> 
+                         <img id="main-1711" name="icono_img" src="../static/img/Logo_Camaleon_Tropical.png" 
                             class="w3-padding-large" style="width:50%"/>
-                    <a id="main-1712" name="icono_link" href="http://camaleontropical.com" 
-                            class="w3-bar-item w3-button">Camaleón Tropical</a>
+                    </a>
                 </div>
 
                 <div id="main-172" class="w3-third w3-padding-large">
                     <img id="main-1721" name="icono_img" src="../static/img/Logo_Generali_Seguros.png"
                             class="w3-padding-large" style="width:50%" />
-                    <a id="main-1722" name="icono_link" href="#main-2" 
+                    <a id="main-1722" name="icono_link" href="https.//www.generali.es" 
                             class="w3-bar-item w3-button">Generalli Seguros</a>
                 </div>
                 
                 <div id="main-173" class="w3-third w3-padding-large">
                     <img id="main-1731" name="icono_img" src="../static/img/Logo_Arquitectos_Molina.jpg" 
                             class="w3-padding-large" style="width:60%" />
-                    <a id="main-1732" name="icono_link" href="#main-2" 
-                            class="w3-bar-item w3-button">Arquitectos Molina</a>
+                    <a id="main-1732" name="icono_link" 
+                            href="https://g.page/r/CQrDNMYMi4mwEAI/review" 
+                            class="w3-bar-item w3-button">Arquitectos Molina & Maqueda</a>
                 </div>
 
+     
             </div>
             <div id="main-18" name="articulo_iconos" 
-                        class="w3-panel w3-row w3-center w3-pale-blue w3-large" style="width:100%">
-                
+                        class="w3-panel w3-row w3-center asinex-pale-blue w3-large" style="width:100%">
+  
                 <div id="main-181" class="w3-third w3-padding-large">
-                    <img id="main-1811" name="icono_img" src="../static/img/Logo_Mengel__Partners.png" 
-                            class="w3-padding-large" style="width:40%"/>
-                    <a id="main-1812" name="icono_link" href="#main-2" 
-                            class="w3-bar-item w3-button">Mengel</a>
-                </div>
-
-                <div id="main-182" class="w3-third w3-padding-large">
-                    <img id="main-1821" name="icono_img" src="../static/img/Logo_Topografia_Jose_Solana.jpg"
+                    <img id="main-1811" name="icono_img" src="../static/img/Logo_Topografia_Jose_Solana.jpg"
                             class="w3-padding-large" style="width:40%" />
                     <a id="main-1822" name="icono_link" href="#main-2" 
-                            class="w3-bar-item w3-button">Jose Solana</a>
+                            class="w3-bar-item w3-button">Topografía Jose Solana Jiménez</a>
                 </div>
-                
+                        
+        
+                <div id="main-182" class="w3-third w3-padding-large">
+                    <img id="main-181" name="icono_img" src="../static/img/Logo_Mengel__Partners.png" 
+                            class="w3-padding-large" style="width:40%"/>
+                    <a id="main-1812" name="icono_link" href="https://mengel-partners.com/en" 
+                            class="w3-bar-item w3-button">Inmobiliaria Mengel & Partners</a>
+                </div>
+
                 <div id="main-183" class="w3-third w3-padding-large">
-                    <img id="main-1831" name="icono_img" src="../static/img/logo_sicem.jpg" 
+                    <img id="main-1831" name="icono_img" src="../static/img/Logo_InAlmunecar.jpg" 
                             class="w3-padding-large" style="width:40%" />
-                    <a id="main-1832" name="icono_link" href="#main-2" 
-                            class="w3-bar-item w3-button">Sicem</a>
+                    <a id="main-1832" name="icono_link" href="http://inalmunecar.com" 
+                            class="w3-bar-item w3-button">Inmobiliaria InAlmuñecar</a>
                 </div>
             </div>
+
+
 
         </article>
 
@@ -388,14 +388,15 @@
 
     <!-- NUESTROS SERVICIOS -->
     <section id="main-2" name="seccion2" class="w3-white" >
-        <h2 id="main-21" name="seccion_titulo1" class="w3-padding w3-blue-grey"></h2>
+        <h2 id="main-21" name="seccion_titulo1" class="w3-hide w3-padding w3-blue-grey"></h2>
         <img  id="main-22" name="seccion_imagen" src="../static/img/img2.jpeg" style="width:100%">
-        <h2 id="main-23" name="seccion_titulo2" class="w3-padding text-color-asinex w3-center">NUESTROS SERVICIOS</h2>
+        <h3 id="main-231" class="w3-center asinex-text-blue">NUESTROS SERVICIOS</h3>
 
-        <article id="main-24" name="articulo_hipertexto" 
-                    class="w3-panel w3-pale-blue w3-padding-large w3-large w3-hide">
-            <div>
-                <h3 class="w3-center"></h3>
+        <article id="main-23" name="articulo_hipertexto" 
+                    class="w3-hide w3-panel w3-center w3-large">
+            
+            <div id="main-232" class="w3-hide" >
+                
                 <p>Le ayudamos a simplificar todo lo relacionado con la burocracia española</p>
                 <p>Nuestro objetivo es que nuestros servicios sean prácticos para el cliente.
                 desde representarle ante Haciendahasta resolver sus dudas con respecto allow
@@ -410,10 +411,10 @@
         <article>
             
             <div id="main-26" class="w3-white w3-padding-24">
-                <h2 class="w3-center text-color-asinex "></h2>
+                <h2 class="w3-hide w3-center asinex-text-blue "></h2>
                 <!-- <div class="w3-pannel w3-padding-large"> -->
 
-                    <ul class="w3-ul w3-pale-blue">
+                    <ul class="w3-ul w3-white">
                         <li class="w3-xlarge" style="padding-left:3%">
                             <img id="main-1511" name="icono_img" src="../static/img/icon-Asesoria_Legal.svg" 
                             class="w3-padding" style="width:7%"/>
@@ -447,7 +448,7 @@
                         </li>
                     </ul>
 
-                    <ul class="w3-ul w3-white">
+                    <ul class="w3-ul asinex-pale-blue">
                         <li class="w3-xlarge" style="padding-left:3%">
                             <img id="main-1511" name="icono_img" src="../static/img/icon-Fiscal_y_Contabilidad.svg" 
                             class="w3-padding" style="width:7%"/>
@@ -483,7 +484,7 @@
     
                     </ul>
 
-                  <ul class="w3-ul w3-pale-blue">
+                  <ul class="w3-ul w3-white">
                         <li class="w3-xlarge" style="padding-left:3%">
                             <img id="main-1511" name="icono_img" src="../static/img/icon-Gestiones_administrativas.svg" 
                             class="w3-padding" style="width:6%"/>
@@ -518,7 +519,7 @@
                         </li>
                     </ul>
 
-                  <ul class="w3-ul w3-white">
+                  <ul class="w3-ul asinex-pale-blue">
                         <li class="w3-xlarge" style="padding-left:3%">
                             <img id="main-1511" name="icono_img" src="../static/img/icon-Colaboramos.svg" 
                             class="w3-padding-large" style="width:9%"/>
@@ -527,30 +528,36 @@
                             </b>
                         </li>
                         <li class="w3-large" style="padding-left:7%">
-                            Camaleon tropical: Gestoria de inmuebles vacacionales </li>
+                            <a href="http://www.camaleontropical.com">
+                            Camaleón Tropical.Gestoria de inmuebles vacacionales </a>
+                        </li>
                         <li class="w3-large" style="padding-left:7%">
-                            Arquitectos Molina</li>
+                            <a href="https://g.page/r/CQrDNMYMi4mwEAI/review"> 
+                            Arquitectos Molina & Maqueda</a>
+                        </li>
                         <li class="w3-large" style="padding-left:7%">
-                            Seguros Generalli</li>
+                            <a href="https.//www.generali.es">
+                            Seguros Generalli</a>
+                        </li>
                         <li class="w3-large" style="padding-left:7%">
-                            Mengel</li>
-
-                        <li class="w3-large" style="padding-left:7%">
-                                    Topografia Jose Solana</li>
-                        <li class="w3-large" style="padding-left:7%">
-                                    Sicem software web</li>
-                        <li class="w3-large" style="padding-left:7%">                                    
-                            <a class="w3-large text-color-asinex" 
-                                href="http://www.camaleontropical.com"><u>camaleón tropical</u>:
-                                            
-                            </a>Gestoria de inmuebles vacacionales
+                            <a href="https://mengel-partners.com/en">
+                                Inmobiliaria Mengel & Partners</a>
                         </li>
 
+                        <li class="w3-large" style="padding-left:7%">
+                            <a href="" >
+                            Topografia Jose Solana</a>
+                        </li>
+                        <li class="w3-large" style="padding-left:7%">
+                            <a href="http://inalmunecar.com">
+                            Inmobiliaria InAlmuñecar</a>
+                                
+                        </li>
                     </ul>
 
-                    <ul class="w3-hide w3-ul w3-pale-blue w3-border">
+                    <ul class="w3-ul w3-white">
                         <li class="w3-xlarge" style="padding-left:3%">
-                            <img id="main-1511" name="icono_img" src="../static/img/battle-net.svg" 
+                            <img id="main-1511" name="icono_img" src="../static/img/icon-Urbanizaciones.svg" 
                             class="w3-padding" style="width:7%"/>
                             <b class="w3-xlarge">
                                 Urbanizaciones
@@ -573,13 +580,12 @@
     <!-- Team Section -->
     <section id="main-3" name="seccion3" class="w3-white" >
         <h2 id="main-31" name="seccion_titulo1" class="w3-padding"></h2>
-        <img  id="main-32" name="seccion_imagen" src="../static/img/img3_Equipo.jpg" style="width:100%">
-        <h2 id="main-33" name="Seccion_tilulo2" class="w3-padding text-color-asinex w3-center">SOBRE NOSOTROS</h2>
+        <img  id="main-32" name="seccion_imagen" src="../static/img/Equipo_web.jpg" style="width:100%">
         
-        <article id="main-34" name="articulo_hipertexto" 
-            class="w3-panel w3-theme-l5 w3-padding-large w3-large">
+        <article id="main-33" name="articulo_hipertexto" 
+            class="w3-panel w3-center w3-padding-large w3-large">
+            <h3 class="w3-center asinex-text-pale-blue">SOBRE NOSOTROS</h3>
             <div>
-                <h3 class="w3-center"></h3>
                 <p>ASINEX fue fundada en 1984. Nuestra especialidad es el asesoramientoy
                     asistencia a extranjeros y ciudadanos de la UE con primera o segunda
                     residencia en Española
@@ -603,29 +609,29 @@
 
        <!-- Iconos servicios -->
        <article id="main-35" name="articulo_iconos" 
-       class="w3-panel w3-row w3-center w3-pale-blue w3-large" style="width:100%">
+                class="w3-panel w3-row w3-center asinex-pale-blue w3-large" style="width:100%">
 
             <div id="main-351" class="w3-third w3-padding-large">
-            <img id="main-3511" name="icono_img" src="../static/img/icon-Confianza.svg" 
-                    class="w3-padding-large" style="width:33%"/>
-            </br>
-            <a id="main-3512" name="icono_link" href="#main-2" 
+                <img id="main-3511" name="icono_img" src="../static/img/icon-Confianza.svg" 
+                    class="w3-padding-large" style="width:39%"/>
+                </br>
+                <a id="main-3512" name="icono_link" href="#main-2" 
                     class="w3-bar-item w3-button">Confianza</a>
             </div>
 
             <div id="main-352" class="w3-third w3-padding-large">
-            <img id="main-3521" name="icono_img" src="../static/img/icon-Pasion.svg"
+                <img id="main-3521" name="icono_img" src="../static/img/icon-Pasion.svg"
                     class="w3-padding-large" style="width:33%" />
-            </br>
-            <a id="main-3522" name="icono_link" href="#main-2" 
+                </br>
+                <a id="main-3522" name="icono_link" href="#main-2" 
                     class="w3-bar-item w3-center w3-button">Pasion</a>
             </div>
 
             <div id="main-353" class="w3-third w3-padding-large">
-            <img id="main-3531" name="icono_img" src="../static/img/icon-Valores.svg" 
+                <img id="main-3531" name="icono_img" src="../static/img/icon-Valores.svg" 
                     class="w3-padding-large" style="width:33%" />
-            </br>
-            <a id="main-3532" name="icono_link" href="#main-2"
+                </br>
+                <a id="main-3532" name="icono_link" href="#main-2"
                     class="w3-bar-item w3-button">Valores</a>
             </div>
 
@@ -644,11 +650,11 @@
                         <p class="w3-red w3-hide">Tarjeta para Andrea.</p>
 
                         <div class="w3-container">
-                            <h3>Andrea Royen</h3>
-                            <h4>Gerente, Asesora Fiscal</h4>
+                            <h4>Andrea Royen</h4>
+                            <h6>Gerente, Asesora Fiscal</h6>
                             <h5>Tel. (34) 999 999 999</h5>
                             
-                            <a class="w3-button w3-opacity text-color-asinex w3-block" 
+                            <a class="w3-button w3-opacity asinex-text-blue w3-block" 
                                     href="mailto:andrea@asinex.es">
                                     <b><u>andrea@asinex.es</u></b>
                             </a>
@@ -671,9 +677,9 @@
                         <div class="w3-container">
                             <h3>Francisco Gonzalez Vigo</h3>
                             <h4>Contabilidad</h4>
-                            <p>Tel. (34) 999 999 999</p>
+                            <h5>Tel. (34) 999 999 999</h5>
                             <p class="w3-opacity">
-                                <a class="w3-button text-color-asinex  w3-block" 
+                                <a class="w3-button asinex-text-blue  w3-block" 
                                     href="mailto:fran@asinex.es">
                                     <b><u>fran@asinex.es</u></b>
                                 </a>
@@ -710,7 +716,7 @@
                             <h4>Abogado</h4>
                             <h5>Tel. (34) 999 999 999</h5>
                             <p class="w3-opacity">
-                                <a class="w3-button text-color-asinex  w3-block" 
+                                <a class="w3-button asinex-text-blue  w3-block" 
                                     href="mailto:pilar@asinex.es">
                                     <b><u>pilar@asinex.es</u></b>
                                 </a>
@@ -729,19 +735,19 @@
                 </div>
             </div>
             <!-- Fila 2-->
-            <div id="main-342" class="w3-row-padding w3-center w3-grayscale">
+            <div id="main-342" class="w3-row-padding w3-center">
                 <div class="w3-col m6 l6">
                     <div id="main-3621" class="w3-container">
                         <img src="../static/img/Equipo-Samuel.jpg" class ="w3-circle"
-                            alt="Samuel"  style="width:50%">
+                            alt="Samuel"  style="width:60%">
                         <p class="w3-red w3-hide">Tarjeta para Samuel.</p>
 
                         <div class="w3-container">
                             <h3>Samuel Ruiz del Castillo</h3>
-                            <h4>Fiscal</h4>
+                            <h4>Abogado</h4>
                             <h5>Tel. (34) 999 999 999</h5>
                             <p class="w3-opacity">
-                                <a class="w3-button text-color-asinex  w3-block" 
+                                <a class="w3-button asinex-text-blue  w3-block" 
                                     href="mailto:andrea@asinex.es">
                                     <b><u>samuel@asinex.es</u></b>
                                 </a>
@@ -761,7 +767,7 @@
                 <div class="w3-col m6 l6">
                         <div id="main-3622" class="w3-container">
                             <img src="../static/img/Equipo-Issa.jpg" class ="w3-circle" 
-                                alt="Issa"  style="width:50%">
+                                alt="Issa"  style="width:60%">
                             <p class="w3-red w3-hide">Tarjeta para Issa.</p>
     
                             <div class="w3-container">
@@ -769,7 +775,7 @@
                                 <h4>Administración</h4>
                                 <h5>Tel. (34) 999 999 999</h5>
                                 <p class="w3-opacity">
-                                    <a class="w3-button text-color-asinex w3-block" 
+                                    <a class="w3-button asinex-text-blue w3-block" 
                                         href="mailto:issa@asinex.es">
                                         <b><u>issa@asinex.es</u></b>
                                     </a>
@@ -798,7 +804,8 @@
     <section id="main-4" name="seccion4"class="w3-white" >
         <h2 id="main-41" name="seccion_titulo1" class="w3-padding"></h2>
         <img  id="main-42" name="seccion_imagen" src="../static/img/img4.jpeg" style="width:100%">
-        <h2 id="main-43" name="seccion_titulo2" class="w3-padding w3-center text-color-asinex">COSTA TROPICAL</h2>
+        <h3 id="main-43" name="seccion_titulo2" class="w3-padding w3-center asinex-text-blue">
+            COSTA TROPICAL</h3>
 
         <article id="main-44" name="articulo_hipertexto" 
                     class="w3-panel w3-padding-large w3-large">
@@ -809,31 +816,31 @@
                      paseo marítimo que está dividido en numerosos tramos
                     con pequeñas calas y varias playas largas.</p>
                 <p> Todas con excelentes instalaciones que las hacen perfectas para familias</p>
-                <h3 class="w3-center text-color-asinex">ENLACES UTILES</h>               
+                <h3 class="w3-center asinex-text-pale-blue">Enlaces útiles</h3>               
             </div>
         </article>
 
        <!-- Iconos links -->
        <article id="main-15" name="articulo_iconos" 
-       class="w3-panel w3-row w3-pale-blue w3-large" style="width:100%">
+       class="w3-panel w3-row asinex-pale-blue w3-large" style="width:100%">
 
             <div id="main-151" class="w3-third w3-padding-large">
             <img id="main-1511" name="icono_img" src="../static/img/Almu-gente.jpg" 
-                    class="w3-circle w3-padding-large" style="width:80%"/>
+                    class="w3-padding-large" style="width:90%"/>
             <a id="main-1512" name="icono_link" href="https://www.almunecar.es/" 
                     class="w3-bar-item w3-button">Ayuntamiento</a>
             </div>
 
             <div id="main-152" class="w3-third w3-padding-large">
             <img id="main-1521" name="icono_img" src="../static/img/Almunecar.jpeg"
-                    class="w3-circle w3-padding-large" style="width:80%" />
+                    class="w3-padding-large" style="width:80%" />
             <a id="main-1522" name="icono_link" href="https://www.visitalmunecar.es/" 
                     class="w3-bar-item w3-button">Visit Almuñecar</a>
             </div>
 
             <div id="main-153" class="w3-third w3-padding-large">
             <img id="main-1531" name="icono_img" src="../static/img/Almu-gaviota.jpeg" 
-                    class="w3-circle w3-padding-large" style="width:80%" />
+                    class="w3-padding-large" style="width:80%" />
             <a id="main-1532" name="icono_link" href="https://www.andalucia.org/es/playas/costa-tropical" 
                     class="w3-bar-item w3-button">Costa Tropical</a>
             </div>
@@ -844,7 +851,7 @@
 
 
         <article id="main-46" name="articulo_cards" class="w3-hide">
-            <h2> GALERIA DE TARJETAS</h2>
+            <h3> Galeria de Tarjetas</h3>
             <div class="w3-container">
                 <p>Galeria de tarjetas<p>
                 <p>Tarjeta1: Imagen - Hipertexto</p>
@@ -862,21 +869,40 @@
     <section id="main-5" name="seccion5" class="w3-white" >
         <h2 id="main-51" name="seccion_titulo1" class="w3-padding"></h2>
         <img  id="main-52" name="seccion_imagen" src="../static/img/img5.jpeg" style="width:100%">
-        <h2 id="main-53" name="seccion_titulo2" class="w3-center w3-padding text-color-asinex">PREGUNTAS FRECUENTES</h2>
-
-        <article id="main-54" name="articulo_hipertexto" 
-                    class="w3-hide w3-panel w3-pale-blue w3-padding-large w3-large">
-            <div>
-                <h3 class="w3-center">PREGUNTAS FRECUENTES</h3>
-                <p>Hay dudas que se repiten en muchos autónomos y empresas</p>
-                <p>Por ello les ofrecemos estas preguntas mas frecuentes.</p>
-                <p> que de forma inmediate pueden servirle de utilidad</p>                
-            </div>
-        </article>
+        <h3 id="main-53" name="seccion_titulo2" class="w3-center w3-padding asinex-text-blue">
+            PREGUNTAS FRECUENTES</h3>
 
         <article>
             <div class="w3-container">
-                
+
+                <ul class="w3-ul w3-white w3-hide">
+                    <li class="w3-large w3-white w3-hover-pale-blue" style="padding-left:5%" 
+                        onclick="myFunction('FAQ-13')">
+                        <b>¿Hay aparcamiento cerca de vuestra x.mvzñsdñdfjdñsfjñsfjsñdfjsdñfjdñsfjs
+                        sfsfd sdfsdf ñdlfñsfjoficina?</b>
+                        <div id="FAQ-13" class="w3-hide w3-container">
+                            <p>Some text..</p>
+                        </div>
+                    </li>
+                    <li class="w3-large w3-hover-pale-blue" style="padding-left:5%" 
+                        onclick="myFunction('FAQ-14')">
+                        ¿Hay aparcamiento cerca de vuestra x.mvzñsdñdfjdñsfjñsfjsñdfjsdñfjdñsfjs
+                        sfsfd sdfsdf ñdlfñsfjoficina?
+                        <div id="FAQ-14" class="w3-hide w3-container">
+                            <p>Some text..</p>
+                        </div>
+                    </li>
+                    <li class="w3-large w3-hover-pale-blue" style="padding-left:5%" 
+                        onclick="myFunction('FAQ-15')">
+                        ¿Hay aparcamiento cerca de vuestra x.mvzñsdñdfjdñsfjñsfjsñdfjsdñfjdñsfjs
+                        sfsfd sdfsdf ñdlfñsfjoficina?
+                        <div id="FAQ-15" class="w3-hide w3-container">
+                            <p>Some text..</p>
+                        </div>
+                    </li>
+
+                </ul>
+
                 <button onclick="myFunction('FAQ-1')"
                  class="w3-button w3-block w3-white w3-hover-pale-blue w3-left-align w3-large">
                     <b>¿Hay aparcamiento cerca de vuestra oficina?</b></button>
@@ -937,7 +963,7 @@
                 </div>
 
                 <button onclick="myFunction('FAQ-9')"
-                    class="w3-button w3-block w3-white w3-hover-pale-blue w3-left-align w3-large">
+                    class="w3-button w3-white w3-hover-pale-blue w3-left-align w3-large">
                     <b>¿Quiero comprarme un coche/moto y me piden el Certificado de Empadronamiento,
                          me podéis hacer esta gestión sin que venga a España?</b></button>
                 <div id="FAQ-9" class="w3-hide w3-container">
@@ -951,11 +977,11 @@
                   if (x.className.indexOf("w3-show") == -1) {
                     x.className += " w3-show";
                     x.previousElementSibling.className = 
-                    x.previousElementSibling.className.replace("w3-white", "color-asinex w3-text-white");
+                    x.previousElementSibling.className.replace("w3-white", "asinex-blue w3-text-white");
                   } else { 
                     x.className = x.className.replace(" w3-show", "");
                     x.previousElementSibling.className = 
-                    x.previousElementSibling.className.replace("color-asinex w3-text-white", "w3-white");
+                    x.previousElementSibling.className.replace("asinex-blue w3-text-white", "w3-white");
                   }
                 }
             </script>
@@ -965,28 +991,29 @@
     </section>
 
 
-    <section id="main-8" name="seccion8" class="w3-white" >
-        <h2 id="main-81" name="seccion_titulo1" class="w3-padding"></h2>
-        <img  id="main-82" name="seccion_imagen" src="../static/img/fachada3.jpeg" style="width:100%">
-        <h2 id="main-83" name="seccion_titulo2" class="w3-padding"></h2>
+    <section id="main-8" name="CONTACTO" class="w3-white" >
+        <h2 id="main-81" name="TITULO" class="w3-padding"></h2>
+        <img  id="main-82" name="IMAGEN" src="../static/img/Ofi_web2.jpg" 
+        style="width:100%">
 
-        <article id="main-84" name="articulo_hipertexto" 
-                    class="w3-panel w3-pale-blue w3-padding-large w3-large">
+        <article id="main-83" name="articulo_hipertexto" 
+                    class="w3-panel w3-padding w3-large">
             <div class="w3-center w3-xlarge">
-                <h2 class="text-color-asinex">CONTACTANOS</h2>
-                <p>Av.Juan Carlos 24, I, Bajo </p>
-                <p>18690, Almuñecar (Granada), Spain</p>            
-                <p>(+34) 958 88 11 99</p>                
-                <p><a href="mailto:asinex@asinex.es">asinex@asinex.es</a></p>
+                <h3 id="main-831" class="asinex-text-blue">CONTACTANOS</h3>
+                <p id="main-832" >Av.Juan Carlos I, 24, Bajo </p>
+                <p id="main-833" >18690, Almuñecar (Granada), Spain</p>            
+                <p id="main-834" >(+34) 958 88 11 99</p>                
+                <a href="mailto:asinex@asinex.es" class="w3-hover-text-blue"
+                    style="display:block">
+                    asinex@asinex.es</a>
                 <p><img src="../static/img/icon-Horario.svg" class ="w3-circle"
-                    style="width:4%"> : Lunes - Viernes: 9.00 - 14.00<p>
-                
+                    style="width:3%">
+                     : Lunes - Viernes: 9.00 - 14.00
+                </p>
             </div>
         </article>
-        
 
-
-        <article id="main-84" name="articulo_googlemap" >
+        <article id="main-84" name="GOOGLEMAP" >
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.601302546624!2d-3.691918797912952!3d36.732135515343934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71889963e8918b%3A0x7fd23d077010f3c0!2sAv.%20Juan%20Carlos%20I%2C%2024%2C%2018690%20Almu%C3%B1%C3%A9car%2C%20Granada!5e0!3m2!1ses!2ses!4v1677840485458!5m2!1ses!2ses" 
             width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <article>
@@ -996,27 +1023,27 @@
 
 
 <!-- style="background-color:rgb(240 250 254)" -->
-<footer id="xfooter" class="w3-panel w3-blue-gray w3-center" >
+<footer id="xfooter" class="w3-panel asinex-blue w3-center" >
 
-    <div id="xfooter-1" class="w3-panel w3-blue-gray">
+    <div id="xfooter-1" class="w3-panel asinex-blue">
         <a id="xfooter-11" class="w3-hover-text-green w3-center"
         href="https://www.linkedin.com/in/maricarmen-garc%C3%ADa-quesada-b4098360/"
         title="W3.CSS" target="_blank" >
             <i class="fa fa-linkedin w3-hover-opacity w3-xxlarge "></i>
         </a>
         <div id="xfooter-12" class="w3-center w3-large">
-            <div>Av.Juan Carlos 24, I , Bajo - 18690, Almuñecar (Granada), Spain</div>
+            <div>Av.Juan Carlos I, 24, Bajo - 18690, Almuñecar (Granada), Spain</div>
             
             <div>(+34) 958 88 11 99 / asinex@asinex.es</div>
             <div>CIF: B-18037630 - Reg. Mercantil nº Gr-433592 (15/5/84)</div>
         </div>
     </div>
 
-    <div id="xfooter-2" class="w3-panel w3-blue-gray">
+    <div id="xfooter-2" class="w3-panel asinex-blue">
 
         <a id="xfooter-21" href="https://www.linkedin.com/in/maricarmen-garc%C3%ADa-quesada-b4098360/"
         title="W3.CSS" target="_blank" class="w3-hover-text-green w3-large w3-left">
-        sicem
+        Pagina desarrollada por Mc
         </a>
         
         <a id="xfooter-22" href="#main0" class="w3-button w3-light-grey w3-right">

@@ -53,6 +53,7 @@ def gen_page(root):
             line = x.strip()
             conta_lin +=1
             text5 = line
+            parent = root
             name = ''
             mark = ''
             params = ''
@@ -63,7 +64,6 @@ def gen_page(root):
             print_msg("%03d: %s" % (conta_lin,line))
             print_msg("-----------------------------------------------------")
             if not 'id=' in line:
-                parent = root
                 grade = 'noId'
                 last_alias = "lin%04d" % conta_lin
                 sort = "%04d" % conta_lin
@@ -78,18 +78,15 @@ def gen_page(root):
                 # grade = label
                 grade = list_line[0]
                 # last_alias = id=
-                last_alias = list_line[1][3:]
-                last_alias = last_alias[1:-1]
-                if last_alias[-1] == '"':
-                    last_alias = last_alias[:-1]
-                #------------------
+                last_alias = list_line[1].split('"')[1]              
+                #----------------- 
                 xx = last_alias.split('-')
                 if len(xx)==1:
                     # level = 1
-                    parent = root
+                    # parent = root
                     sort = "%04d" % conta_lin
                 elif len(xx) == 2:
-                    level = 1 + len(xx[1])
+                    # level = 1 + len(xx[1])
                     if len(xx[1]) == 1:
                         parent_last_alias = xx[0]
                     else:
@@ -104,24 +101,32 @@ def gen_page(root):
                         import pdb; pdb.set_trace()
                     
                 #----------------------------------
-                if 'name=' in line:
+                if not 'name=' in line:
+                    name = last_alias.upper()
+                else:
                  # asumimos que siempre existe el ;
                     name = list_line[2].split('"')[1]
-                    # name = list_line[2][6:]
-                    # if name[-1] == '"':
-                    #    name = name[:-1] 
-                    xx = name.split(';')
-                    #------------------
-                    xx_mark = xx[0] # satributos --> por defecto setAttrs(tags) 
-                    mark = xx_mark.split(':')[0]
-                    if len(xx_mark.split(':')) > 1:
-                        params = xx_mark.split(':')[1]
-                    #-----------------------
-                    if len(xx) > 1:
-                        xx_marki18n = xx[1] # contenido innerHtml 
-                        marki18n = xx_marki18n.split(':')[0]
-                        if len(xx_marki18n.split(':')) > 1:  # por defecto innerHTML (content)
-                            paramsi18n = xx_marki18n.split(':')[1]
+                #-----------------------------
+                # params posibles
+                #    - tags para setAttrs:
+                #    - text1 o content para innerHTML
+                #    - text2 para src/href
+                #    - 
+                #
+                # 
+                # 
+                #         
+                if 'mark=' in line:
+                    xx = list_line[3].split('"')[1]
+                    mark = xx.split(':')[0]
+                    if len(xx.split(':'))>1:
+                        params = xx.split(':')[1]
+                if 'marki18n=' in line:
+                    xx = list_line[4].split('"')[1]
+                    marki18n = xx.split(':')[0]
+                    if len(xx.split(':'))>1:
+                        paramsi18n = xx.split(':')[1]
+                #---------------------------
 
             try:
                 page = Page.objects.get(num_int=conta_lin,

@@ -1,0 +1,18 @@
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: Verdana, Geneva, sans-serif;
+}
+.asinex-blue {
+    background-color: #2194C2;
+}
+.asinex-text-blue {
+    color: #2194C2;
+}
+
+.asinex-pale-blue {
+    background-color: rgb(241,250,253);
+}
+.asinex-text-pale-blue {
+    color: rgb(241,250,253);
+}
+

@@ -21,30 +21,6 @@ ac_expand_layout.short_description = "Crear Layout con sus Componentes"
 
 
 
-def ac_create_i18n(modeladmin, request, queryset):
-    """
-        1. Ejecutar la función definida en cada registro 
-    """
-    count = 0
-    for obj in queryset:
-        # import pdb; pdb.set_trace()
-        # if not obj.locked and obj.replace:
-        if obj.replace:
-            try:
-                root_obj = Layout.objects.get(wsite=obj.wsite, 
-                    root_alias=obj.root_alias, level=0)
-                languages = root_obj.name.split(',')
-                obj.create_i18n(languages)
-                count +=1
-            except Layout.DoesNotExist:
-                continue
-        else:
-            continue
-            # message = _("el id:%s, %s no se carga porque está bloqueado") % (obj.id, obj.name)
-    message = "Traducciones generadas: %s" % count
-    modeladmin.message_user(request, message, level=messages.SUCCESS)
-    return
-ac_create_i18n.short_description = "Generar Traducciones"
 
 
 

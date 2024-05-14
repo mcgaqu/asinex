@@ -1,0 +1,138 @@
+<!-- {% load i18n static %} -->
+<!DOCTYPE html>
+<html lang="es">
+<head id="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title id="head-1" name="TITLE" mark=":text1" marki18n=":text1" >Asinex</title>
+    <link id="head-2" name="FAVICON" mark="href:text1" rel="icon" href="../static/img/favicon.jpg/" /> 
+    <link id="head-3" name="CSS3" mark="href:text1" rel="stylesheet" href="../static/css/w3.css"> 
+    <link id="head-4" name="CSS4" mark="href:text1" rel="stylesheet" href="../static/css/index3.css">
+    <script id="head-5" name="JS" mark="src:text1" src="../static/js/index3.js"></script> 
+</head>
+
+<body class="w3-content" style="max-width:100%">
+<header id="header" class="w3-top w3-red">
+    <!-- -Fila 1-------------------------------------- -->
+    <div id="header-1" name="COMPANY" class="w3-bar w3-white">
+        <img id="header-11" name="LOGO" mark="src:text1"
+                class="w3-padding w3-left" style="width:300px;padding-bottom:0" 
+                src="../static/img/logo1.jpg">
+
+        <!-- banderas es,en,fr,de,dk	-->
+        <div id="header-12" name="LANGUAGES" 
+            class="w3-right w3-padding-16" style="padding-right:16px">
+            <img id="header-121" name="LAN-ES" mark="src:text1" src="../static/img/Bandera-ESP.png"
+                class="w3-display-container w3-hover-opacity" 
+                style="display:inline;width:30px"
+                onclick="mySelectLan('es')">
+
+            <img id="header-122" name="LAN-EN" mark="src:text1" src="../static/img/Bandera-ENG.png"
+                class="w3-display-container w3-hover-opacity" 
+                style="display:inline;width:30px"
+                onclick="mySelectLan('en')">
+
+            <img id="header-123" name="LAN-FR" mark="src:text1" src="../static/img/Bandera-FRA.png"
+                class="w3-display-container w3-hover-opacity" 
+                style="display:inline;width:30px"
+                onclick="mySelectLan('fr')">
+            
+            <img id="header-124" name="LAN-DE" mark="src:text1" src="../static/img/Bandera-ALE.png"
+                class="w3-display-container w3-hover-opacity" 
+                style="display:inline;width:30px"
+                onclick="mySelectLan('de')">
+
+            <img id="header-125" name="LAN-DK" mark="src:text1" src="../static/img/Bandera-DIN.png"
+                class="w3-display-container w3-hover-opacity" 
+                style="display:inline;width:30px"
+                onclick="mySelectLan('dk')">
+        </div>
+    </div>
+    <!-- Fila 2 --------------------------------------- -->    
+    <div id="header-2" name="APPBAR" 
+        class="w3-bar w3-white w3-card" style="padding-top:1px">
+        <div class="w3-left w3-small w3-large">
+            <b id="header-21" name="TITULO" mark=":text1" marki18n=":text1" 
+                style="padding-left:40px">
+                Asesoria Legal y Fiscal</b>
+        </div>
+
+        
+        <div id="header-22" name="NAVBAR"  
+            class="w3-right w3-hide-small w3-large w3-padding-16">
+            <a id="header-221" name="INICIO" mark="href:text1" marki18n=":text1" href="#main-1" 
+                class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Inicio</a>
+            <a id="header-222" name="SERVICIOS" mark="href:text1" marki18n=":text1" href="#main-2" 
+                class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Servicios</a>
+            <a id="header-223" name="NOSOTROS" mark="href:text1" marki18n=":text1" href="#main-3" 
+                class="w3-bar-item w3-button
+                w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                w3-bottombar w3-border-white w3-hover-border-blue">
+                Sobre Nosotros</a>
+            <a id="header-224" name="COSTA TROPICAL" mark="href:text1" marki18n=":text1" href="#main-4" 
+                class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Costa Tropical</a>
+            <a id="header-225" name="FAQ" mark="href:text1" marki18n=":text1" href="#main-5" 
+                class="w3-bar-item w3-button
+                w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                w3-bottombar w3-border-white w3-hover-border-blue">
+                Preguntas Frecuentes</a>
+            <a id="header-226" name="CONTACTO" mark="href:text1" marki18n=":text1" href="#main-8" 
+                class="w3-bar-item w3-button
+                    w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
+                    w3-bottombar w3-border-white w3-hover-border-blue">
+                Contacto</a>
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->  
+
+        <a href="javascript:void(0)" onclick="w3_open()"
+            class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" >
+            <!-- <i class="fa fa-bars"></i> -->
+            <img src="../static/img/bars.svg" style="width:30px" />
+        </a>
+    </div>
+    <!-- Fila 3 --------------------------------------- -->    
+    <div id="header-3" name="SIDEBAR"    
+        class="w3-sidebar w3-bar-block asinex-pale-blue w3-card w3-animate-left w3-hide-medium w3-hide-large" 
+        style="display:none" >
+        <a id="header-31" name="INICIO" mark="href:text1" marki18n=":text1" href="#main-1" 
+            class="w3-bar-item w3-button">Inicio</a>
+        <a id="header-32" name="SERVICIOS" mark="href:text1" marki18n=":text1" href="#main-2" 
+            class="w3-bar-item w3-button">Servicios</a>
+        <a id="header-33" name="NOSOTROS" mark="href:text1" marki18n=":text1" href="#main-3" 
+            class="w3-bar-item w3-button">Sobre Nosotros</a>
+        <a id="header-34" name="COSTA TROPICAL" mark="href:text1" marki18n=":text1" href="#main-4" 
+            class="w3-bar-item w3-button">Costa Tropical</a>
+        <a id="header-35" name="FAQ" mark="href:text1" marki18n=":text1" href="#main-5" 
+            class="w3-bar-item w3-button">Preguntas Frecuentes</a>
+        <a id="header-36" name="CONTACTO" mark="href:text1" marki18n=":text1" href="#main-8" 
+            class="w3-bar-item w3-button">Contacto</a>
+        <a id="header-3c" name="CONTACTO" mark="href:text1" marki18n=":text1" href="javascript:void(0)" onclick="w3_close()" 
+            class="w3-bar-item w3-button">CERRAR
+        </a>
+    </div>
+        
+    <script>
+        var mySidebar = document.getElementById("header-3");
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            } else {
+            mySidebar.style.display = 'block';
+            }
+        }
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+    </script>
+</header>

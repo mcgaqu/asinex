@@ -242,7 +242,7 @@ class LayoutI18nAdmin1(ModelAdmin1):
 
 
     #-------------------------
-    def has_add_permission(self, request):
+    def has_add_permission(self, request, obj=None):
         if not request.user.is_superuser:
             return False
         else:
@@ -257,107 +257,96 @@ class LayoutI18nAdmin1(ModelAdmin1):
 
 class LayoutI18nLin1(ModelLin1):
     model = LayoutI18n
-    fields = ['alias', 'mark', 'params', 'name', 'active'
+    fields = ['alias', 'mark', 'params', 'MC_mark_user', 
+              'text1', 'content', 'active'
               # 'content', 'MH_content', 'active', 'internal',
     # 'note', 'content' 
     ]
     
-    readonly_fields = ['alias', 'mark', 'params', 'active']
+    readonly_fields = ['alias', 'mark', 'params', 'MC_mark_user', 'active']
     classes = [] # ['collapse']
 
 class LayoutChildLin1(ModelLin1):
     model = Layout
     fields = [# 'alias', 
-        'grade', 'sort', 'active', 'internal', 'mark', 'name' ]
+        # 'grade', 'sort', 
+        'MC_parents_name',
+        'name', 'mark',  'MC_mark_user',
+        'text1', 
+        'active', 'internal','locked']
+
+    readonly_fields = ['MC_parents_name', # 'alias', 
+        'grade', 'sort', 'active', 'internal', 'mark', 'name',
+          'MC_mark_user', ]
+
     classes = []
+
+
 
 class LayoutAdmin1(ModelAdmin1):
     model = Layout
-
     #------------------------------------
     def get_queryset(self, request):
         if request.user.is_superuser:
             return super().get_queryset(request)
-        qs = super().get_queryset(request)
-        qs = qs.filter(wsite=get_wsite(), 
-            root_alias=settings.HTML_INDEX,
-            replace=False,
-            internal=True,
-            locked=True,
-            ## mark__in=['loadDocName', 'loadImageName']
-           )
-        return qs
-
-    ordering = ('pos',)
+        else:
+            qs = super().get_queryset(request)
+            qs = qs.filter(wsite=get_wsite(), 
+                           level__gt=0,
+                root_alias='index3', # settings.HTML_INDEX,
+                active=True # = (not internal or replace)
+                # internal = not mark
+                # replace = not (not marki18n)                
+            )
+            return qs
+    ordering = ('num_int',) # ('pos',)
     #------------------------------------------------       
-
-    list_display1 = ['num_int', 'root_alias', 'sort', 'parent', # 'pos', 'last_alias',
-                    'MC_pos_alias', 'grade', 'text5',
-                    'name', 'replace', 'active', 'internal', 
-                    'link',
-                    # 'MB_i18n', # 'replace', 
-                    # 'locked',
-                     ]
-    list_display = list_display1 + [
-                
-                # 'sort', 'last_alias',
-                # 'ME_num_children',
-                'mark', 'params', # 'note', 
-                # 'tags',
-                'mark_i18n',# 'params_i18n', 
-                'wsite', 'level', 
-                'locked'
-            ]
-
+    list_display = ['wsite', 'root_alias', 'grade', 'sort', 'pos', 'alias',
+                    'num_int', 'last_alias', 'MC_parents_name', 'name',
+                    'mark', 'params', 
+                    'MC_mark_user', 
+                    'text1', 
+                    'mark_i18n', 'params_i18n',
+                    # 'MC_marki18n_user',  
+                    
+                     'MH_content_edit', # 'content',
+                    'internal', 'replace', 'active', 'locked']
     def get_list_display(self, request):
         if request.user.is_superuser:
+            # return self.list_display
             return self.list_display
         else:
-            return self.list_display1
+            return [# 'wsite', 'root_alias', 'grade', 'sort', 'pos', 'alias',
+                    'num_int', 'last_alias', 'MC_parents_name',
+                    'mark', # 'params', 
+                    'MC_mark_user',
+                    'text1',
+                    # 'mark_i18n', 'params_i18n',
+                    # 'MC_marki18n_user',   
+                    # 'text2', # 'content',
+                    'MH_content_edit',
+                    'internal', 'replace', 'active', 'locked']
     #---------------------------------------
-    list_display_links = [# 'pos', 'last_alias', 
-                          'MC_pos_alias',
-                          ]
-
+    list_display_links = ['num_int', 'last_alias', 'MC_parents_name',
+                          'MH_content_edit']
+    list_editable = ['locked', 'text1', ] #'content'
     #---------------------------------------
-    x_list_editable1 = []
-    list_editable = [
-        # 'wsite','parent', 
-        # 'sort', 'last_alias', 
-        'active', 'internal',
-        'name',
-        'mark', # 'params', # 'tags',
-        'mark_i18n', # 'params_i18n', 
-        'locked'
-        ]
-    x_list_editable = ['active', 'locked']
-    
-    def x_get_list_editable(self, request):
-        if request.user.is_superuser:
-            return self.list_editable
-        else:
-            return self.list_editable1
- 
-    #---------------------------------------
-    list_filter1 = ['replace']
     list_filter = [ 'grade', 'active', 'internal', 'replace', 'locked',
         # 'parent', 'grade',
-        'mark', 'mark_i18n',
-        
+        'mark', 'mark_i18n', 'name',
         'wsite', 'root_alias', 'level',]
 
     def get_list_filter(self, request):
         if request.user.is_superuser:
             return self.list_filter
         else:
-            return self.list_filter1
-            
+            return ['active', 'internal', 'replace', 'locked',
+                    'mark', 'mark_i18n', 'name']
     #---------------------------------------       
     search_fields = ['^pos', '^alias', '^last_alias', 'name', 
         # 'grade', 'mark', 'mark_i18n',
          ]
     search_help_text = "Busque por: pos, código, clave y nombre"
-
     #--------------------------
     actions = get_app_actions('Layout')   
     def get_actions(self, request):
@@ -386,36 +375,46 @@ class LayoutAdmin1(ModelAdmin1):
                     }
                 )
 
+
     def get_fieldsets_datos(self, request, obj):
         if obj and obj.params:
             # field_list = [('mark', 'params')] + obj.params.split(',')
-            field_list = obj.params.split(',')
+            field_list = ['MC_mark_user'] + obj.params.split(',')
         else:
             
             field_list =[# ('mark', 'params'),
                 'name', 'link', 'content', 'MH_content',
                 'text1','text2','text3','text4','note1','note2']
             field_list = []
+            
         return ('Datos', {'fields': field_list})
  
     def get_fieldsets(self, request, obj=None):
         return [self.get_fieldsets_identidad(request, obj),
                    self.get_fieldsets_datos(request, obj)]
             
-    readonly_fields = [# 'pos', 'alias', 
+    readonly_fields = ['MC_mark_user', # 'pos', 'alias', 
                        'MH_content']
 
-    inlines = [# LayoutChildLin1, 
-               LayoutI18nLin1]
+    inlines = [# LayoutChildLin1,
+                LayoutI18nLin1]
 
     def get_inlines(self, request, obj):
-        if not request.user.is_superuser:
+        if not obj:
             return []
-        elif not obj or not obj.replace:
-            return []
-        return self.inlines
+        inlines = []
+        # if obj.children.count():
+        #     inlines.append(LayoutChildLin1)
+        if obj.replace:
+            inlines.append(LayoutI18nLin1)
+        return inlines
+        # if not request.user.is_superuser:
+        #     return []
+        # elif not obj or not obj.replace:
+        #     return []
+        # return self.inlines
     #-------------------------
-    def has_add_permission(self, request):
+    def has_add_permission(self, request, obj=None):
         if not request.user.is_superuser:
             return False
         else:

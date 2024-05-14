@@ -45,7 +45,6 @@ class Extradocfile(object):
     MH_docfile_url.short_description = _("url del Fichero")
 
 
-
     def MH_docfile_path(self):
         if self.docfile:
             return self.docfile.path
@@ -150,7 +149,9 @@ class ExtraLayout(Extradocfile):
     def MH_content_edit(self):
         texto = ""
         accion = 'MODIFICAR' if self.content else "AÑADIR"
-        if self.params and (self.params != 'name'): # self.mark and '__content' in self.mark:
+        accion = "Editar textos multi-idioma"
+        change = (self.replace) #  or self.params=='content' or self.params_i18n=='content')
+        if change: # self.mark and '__content' in self.mark:
             texto = '<span>Pulse Intro para %s: </span>' % accion
         return format_html(texto)
     MH_content_edit.short_description = _('Edit Content')
@@ -178,7 +179,34 @@ class ExtraLayout(Extradocfile):
         else:
             return "" 
     MH_parent_name.short_description='Nivel Superior'
-        
+
+    def MC_mark_user(self):
+        if not self.mark:
+            return ""
+        if self.mark == 'href':
+            mark = 'la url de IMAGEN/FICHERO'
+        elif self.mark == 'src':
+            mark = 'la url de LINK'
+        elif self.mark == 'innerHTML':
+            mark = 'TEXTO'
+        else:
+            mark = self.mark
+        return 'Rellene el campo %s con %s' % (self.params, mark)
+    
+    def MC_marki18n_user(self):
+        if not self.mark_i18n:
+            return ""
+        if self.mark_i18n == 'href':
+            mark = 'la url de IMAGEN/FICHERO'
+        elif self.mark_i18n == 'src':
+            mark = 'la url de LINK'
+        elif self.mark_i18n == 'innerHTML':
+            mark = 'TEXTO'
+        else:
+            mark = self.mark_i18n
+        return 'Rellene el campo %s con %s' % (self.params_i18n, mark)
+
+
 #--------------------------
 # Component
 #-----------------------------------
@@ -224,7 +252,7 @@ class Component(ModelTree1, ExtraLayout):
             self.wsite = get_wsite()
         if not self.last_alias:
             self.last_alias = "ID%s" % self.id
-        
+       
         return super().save(*args, **kwargs)
 
  
@@ -269,11 +297,10 @@ class Layout(ModelTree1, ExtraLayout):
         verbose_name = _('Página web')
         verbose_name_plural = _('Paginas web')
         unique_together= (('wsite', 'root_alias', 'alias'),)
-        ordering = ('wsite','pos',)
+        ordering = ('num_int',) # ('wsite','pos',)
 
     def __str__(self):
-        return "%s" % (self.alias)
-
+        return "%s" % (self.MC_parents_name())
 
 
     def ME_num_i18n(self):
@@ -290,6 +317,16 @@ class Layout(ModelTree1, ExtraLayout):
         return "%s____ %s" % (self.pos, clave)
     MC_pos_alias.short_description = "Pos - Clave"
 
+    def MC_parents_name(self):
+        # return "%s__%s" % (self.grade, self.sort)
+        name = "" if not self.name else self.name
+        if not self.parent:
+            return name
+        else:
+            return "%s__%s" % (self.parent.MC_parents_name(), name)
+ 
+
+
     def save(self, *args, **kwargs):
         if not self.wsite:
             if self.parent:
@@ -298,16 +335,19 @@ class Layout(ModelTree1, ExtraLayout):
                 self.wsite = get_wsite(settings.SITE_NAME)
         #------------------------?????z
         # self.internal = not (not self.mark)
+        
         self.internal = not(self.mark)
         #------------------
         self.replace = not (not self.mark_i18n)
+        self.active = (not self.internal or self.replace)
+        # self.locked = (self.internal and not self.replace)
+ 
         # import pdb; pdb.set_trace()
         return super().save(*args, **kwargs)
 
-    def expand_layout(self):
+    def x_expand_layout(self):
         # if self.locked or not self.replace:
         #     return
-
         get_DATA = getattr(
             import_module('%s.datainit.layouts_data' % settings.WSITE_NAME),
             'get_LAYOUT_%s' % self.root_alias)
@@ -405,7 +445,7 @@ class Layout(ModelTree1, ExtraLayout):
                 )
 
             if languages:
-                languages = languages[0].name
+                languages = languages[0].grade
             if languages:
                 languages = languages.split(',')
             else:
@@ -442,8 +482,8 @@ class Layout(ModelTree1, ExtraLayout):
         
             content = self.content
             reg.content = "Traducir a %s %s" % (lan.upper(), content)
-            reg.docfile = self.docfile
-            reg.link = self.link
+            # reg.docfile = self.docfile
+            # reg.link = self.link
  
             #-----------------------------
             reg.text1 = self.text1
@@ -455,25 +495,6 @@ class Layout(ModelTree1, ExtraLayout):
             reg.note2 = self.note2
             reg.save()
         return
-
-    def expand_component_layout(self):
-        try:
-            # comp = Component.objects.get(biz=self.biz, alias=self.grade)
-            # self.comp = comp
-            # s = self.comp.componentprop_set.all()
-            comps = Component.objects.filter(site=self.site, alias__startswith=self.component.alias)
-            if comps:
-                for comp in comps:
-                    try:
-                        lay = Layout.objects.get(site=self.site, parent=self, alias=comp.alias)
-                    except Layout.DoesNotExist:
-                        lay = Layout(site=self.site, parent=self, alias=comp.alias)
-                        lay.grade = comp.name
-                        lay.save()
-
-        except Component.DoesNotExist:
-            pass
-        return    
 
 
 class LayoutI18n(ModelBase, ExtraLayout):

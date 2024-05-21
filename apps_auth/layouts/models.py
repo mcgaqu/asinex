@@ -183,9 +183,9 @@ class ExtraLayout(Extradocfile):
     def MC_mark_user(self):
         if not self.mark:
             return ""
-        if self.mark == 'href':
+        if self.mark == 'src':
             mark = 'la url de IMAGEN/FICHERO'
-        elif self.mark == 'src':
+        elif self.mark == 'href':
             mark = 'la url de LINK'
         elif self.mark == 'innerHTML':
             mark = 'TEXTO'
@@ -196,9 +196,9 @@ class ExtraLayout(Extradocfile):
     def MC_marki18n_user(self):
         if not self.mark_i18n:
             return ""
-        if self.mark_i18n == 'href':
+        if self.mark_i18n == 'src':
             mark = 'la url de IMAGEN/FICHERO'
-        elif self.mark_i18n == 'src':
+        elif self.mark_i18n == 'href':
             mark = 'la url de LINK'
         elif self.mark_i18n == 'innerHTML':
             mark = 'TEXTO'

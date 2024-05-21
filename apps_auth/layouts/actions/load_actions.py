@@ -18,7 +18,7 @@ def gen_index_html(root, html_file):
             text = file_part.read()
             file.write(text)
     #-----------------------------------  
-    list_part = [] # [1,2,3,4,5,6,7,8,9] 
+    list_part = [1,2,3,4,5,6,7,8,9] 
     if not list_part:
         return
     with open(html_file, 'a') as file:

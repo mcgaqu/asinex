@@ -124,10 +124,8 @@ class LayoutI18nAdmin1(ModelAdmin1):
         qs = super().get_queryset(request)
         qs = qs.filter(
             layout__wsite=get_wsite(), active=True,
-            layout_root_alias=settings.HTML_INDEX)
+            layout_root_alias='index3') # =settings.HTML_INDEX)
         return qs
-
-
 
     list_display1 = ['pos',# 'sort',
         'alias',
@@ -257,14 +255,28 @@ class LayoutI18nAdmin1(ModelAdmin1):
 
 class LayoutI18nLin1(ModelLin1):
     model = LayoutI18n
-    fields = ['alias', 'mark', 'params', 'MC_mark_user', 
-              'text1', 'content', 'active'
+    x_fields = ['alias', 'mark', 'params', 'MC_mark_user', 
+              # 'text1', 'content', 'active'
               # 'content', 'MH_content', 'active', 'internal',
     # 'note', 'content' 
     ]
     
     readonly_fields = ['alias', 'mark', 'params', 'MC_mark_user', 'active']
     classes = [] # ['collapse']
+
+    def get_fieldsets(self, request, obj):
+        if obj and obj.params:
+            # field_list = [('mark', 'params')] + obj.params.split(',')
+            field_list = ['alias', 'MC_mark_user'] + obj.params.split(',') + ['locked']
+        else:
+            
+            field_list =[# ('mark', 'params'),
+                'name', 'link', 'content', 'MH_content',
+                'text1','text2','text3','text4','note1','note2']
+            field_list = []
+            
+        return [(None, {'fields': field_list})]
+
 
 class LayoutChildLin1(ModelLin1):
     model = Layout

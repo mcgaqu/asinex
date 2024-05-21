@@ -18,10 +18,10 @@ class ModelBase(models.Model):
     grade = models.CharField(verbose_name=_('clase'), max_length=50, null=True, blank=True)
     sort = models.CharField(verbose_name=_('orden'), max_length=4, null=True, blank=True)
 
-    active = models.BooleanField(verbose_name=_('act'), default=True)
-    internal = models.BooleanField(verbose_name=_('int'), default=False)
-    locked = models.BooleanField(verbose_name=_('lock'), default=False)
-    replace = models.BooleanField(verbose_name=_('repl'), default=False)
+    active = models.BooleanField(verbose_name=_('ACTIVO'), default=True)
+    internal = models.BooleanField(verbose_name=_('INTERNO'), default=False)
+    locked = models.BooleanField(verbose_name=_('CONFIRMADO'), default=False)
+    replace = models.BooleanField(verbose_name=_('TRADUCIR'), default=False)
 
     datet = models.DateTimeField(verbose_name=_('fecha-hora'), default=timezone.now, null=True, blank=True)
     date = models.DateField(verbose_name=_('fecha'), default=timezone.now, null=True, blank=True)

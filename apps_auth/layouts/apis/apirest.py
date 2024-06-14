@@ -46,7 +46,7 @@ class ComponentViewSet(viewsets.ModelViewSet):
 class LayoutSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Layout
-        fields = ['url', 'id', 
+        x_fields = ['url', 'id', 
             # 'website', 
             'level','parent', 
             'sort', 'pos',
@@ -62,14 +62,23 @@ class LayoutSerializer(serializers.HyperlinkedModelSerializer):
             'text1', 'text2', 'text3', 'text4', 'text5',
             'note1', 'note2',
         ]
+        fields = [# 'url', 
+            'id', 
+            'root_alias', 'last_alias', 
+            # 'MC_parents_name', # ???
+            'internal','locked',
+            'mark', 'params',
+            # 'text1', 'content',
+            'tags'
+        ]
          
 
 class LayoutViewSet(viewsets.ModelViewSet):
 
-    queryset = Layout.objects.all().order_by('pos')
+    queryset = Layout.objects.all().order_by('num_int') # ('pos')
     serializer_class = LayoutSerializer
 
-    filterset_fields = [# 'url',
+    x_filterset_fields = [# 'url',
             'id', # 'website', 
             'root_alias', 'last_alias', 'alias', 
             'pos', 'sort', 'level',
@@ -83,11 +92,9 @@ class LayoutViewSet(viewsets.ModelViewSet):
             'text1', 'text2', 'text3', 'text4', 'text5',
             'note1', 'note2',
     ]
+    filterset_fields = ['root_alias', 'locked', 'internal']
 
-    search_fields = [
-        'name', 'note', 'content',
-        'link', # 'docfile'
-    ] 
+    # search_fields = ['name', 'note', 'content','link'] 
 
     # ordering_fields = ['pos', 'alias', 'mark', 'mark_i18n', 'name']
     # ordering = ['pos']
@@ -97,7 +104,7 @@ class LayoutViewSet(viewsets.ModelViewSet):
 class LayoutI18nSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = LayoutI18n
-        fields = [# 'url', 
+        x_fields = [# 'url', 
                 'id', 'layout',
                 'sort', 'pos',
                 'layout_root_alias', 'layout_last_alias', 'alias', 
@@ -112,6 +119,14 @@ class LayoutI18nSerializer(serializers.HyperlinkedModelSerializer):
                 'note1', 'note2',
                 ]
         
+        fields = [# 'url', 
+            'id', 'layout', 'sort',
+            'layout_root_alias', 'layout_last_alias', 'alias',
+            # 'MC_parents_name', # ???
+            'locked', 'active',
+            'mark', 'params',
+            'text1', 'content',
+        ]
  
 
 class LayoutI18nViewSet(viewsets.ModelViewSet):
@@ -121,7 +136,7 @@ class LayoutI18nViewSet(viewsets.ModelViewSet):
     queryset = LayoutI18n.objects.all().order_by('pos')
     serializer_class = LayoutI18nSerializer
 
-    filterset_fields = [# 'url', 
+    x_filterset_fields = [# 'url', 
                 'id', 'layout',
                 'layout_root_alias', 'layout_last_alias','alias', 
                 'pos', 'sort',
@@ -132,8 +147,9 @@ class LayoutI18nViewSet(viewsets.ModelViewSet):
             'link', # 'docfile' ,
             'text1', 'text2', 'text3', 'text4', 'text5',
             'note1', 'note2',                ]
+    filterset_fields = ['layout_root_alias', 'locked', 'active', 'sort']
     
-    search_fields = ['name', 'note', 'content'] # , 'typedoc__name'
+    # search_fields = ['name', 'note', 'content'] # , 'typedoc__name'
     # ordering_fields = ['grade', 'sort', 'alias', 'name']
     # ordering = ['pos'] # ['layout__pos', 'grade']
 

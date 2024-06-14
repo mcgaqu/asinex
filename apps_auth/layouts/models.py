@@ -180,18 +180,27 @@ class ExtraLayout(Extradocfile):
             return "" 
     MH_parent_name.short_description='Nivel Superior'
 
-    def MC_mark_user(self):
+    def MH_mark_user(self):
         if not self.mark:
-            return ""
+            mark = ''
         if self.mark == 'src':
             mark = 'la url de IMAGEN/FICHERO'
         elif self.mark == 'href':
             mark = 'la url de LINK'
         elif self.mark == 'innerHTML':
-            mark = 'TEXTO'
+            mark = 'el texto'
         else:
             mark = self.mark
-        return 'Rellene el campo %s con %s' % (self.params, mark)
+        # return 'Rellene el campo %s con %s' % (self.params, mark)
+    
+        texto = ""
+        # change = (not self.internal) #  or self.params=='content' or self.params_i18n=='content')
+        if mark: # self.mark and '__content' in self.mark:
+            texto = '<span>Rellene el campo %s con %s </span>' % (self.params, mark)
+            return format_html(texto)
+        else:
+            return ''
+    MH_mark_user.short_description='Edit Attrs'
     
     def MC_marki18n_user(self):
         if not self.mark_i18n:
@@ -326,7 +335,6 @@ class Layout(ModelTree1, ExtraLayout):
             return "%s__%s" % (self.parent.MC_parents_name(), name)
  
 
-
     def save(self, *args, **kwargs):
         if not self.wsite:
             if self.parent:
@@ -334,127 +342,12 @@ class Layout(ModelTree1, ExtraLayout):
             else:
                 self.wsite = get_wsite(settings.SITE_NAME)
         #------------------------?????z
-        # self.internal = not (not self.mark)
-        
-        self.internal = not(self.mark)
-        #------------------
+        self.internal = not(self.mark) #  or self.mark[0] == 'x'
         self.replace = not (not self.mark_i18n)
         self.active = (not self.internal or self.replace)
-        # self.locked = (self.internal and not self.replace)
- 
         # import pdb; pdb.set_trace()
         return super().save(*args, **kwargs)
 
-    def x_expand_layout(self):
-        # if self.locked or not self.replace:
-        #     return
-        get_DATA = getattr(
-            import_module('%s.datainit.layouts_data' % settings.WSITE_NAME),
-            'get_LAYOUT_%s' % self.root_alias)
-        data = get_DATA()
-
-        root_obj = self
-        wsite = root_obj.wsite
-        root_alias = root_obj.root_alias
- 
-        #-----------
-        # import pdb; pdb.set_trace()
-        for data_row in data:
-            pos_parent = data_row[0][:-3]
-            sort = data_row[0][-2:]
-            # grade = data_row[1]
-            last_alias = data_row[1]
-            active = data_row[2]
-            locked = data_row[3]
-            mark = data_row[4]
-            mark_i18n = data_row[5]
-
-            name = data_row[6] if len(data_row)>6 else ""
-            tags = data_row[7] if len(data_row)>7 else ""
-            note = data_row[8] if len(data_row)>8 else ""
-
-            content = data_row[9] if len(data_row)>9 else ""
-            params = data_row[10] if len(data_row)>10 else ""
-            params_i18n = data_row[11] if len(data_row)>11 else ""
-
-            link = data_row[12] if len(data_row)>12 else ""
-            docfile = data_row[13] if len(data_row)>13 else ""
-
-            text1 = data_row[14] if len(data_row)>14 else ""
-            text2 = data_row[15] if len(data_row)>15 else ""
-            text3 = data_row[16] if len(data_row)>16 else ""
-            text4 = data_row[17] if len(data_row)>17 else ""
-            text5 = data_row[18] if len(data_row)>18 else ""
-            note1 = data_row[19] if len(data_row)>19 else ""
-            note2 = data_row[20] if len(data_row)>20 else ""
-
-            #--------------------------------
-            # obtener el padre
-            #----------------------
-            try:
-                lp = Layout.objects.get(wsite=wsite, root_alias=root_alias, pos=pos_parent)
-            except Layout.DoesNotExist:
-                print(data_row)
-                import pdb; pdb.set_trace()
-            try:
-                lx = Layout.objects.get(wsite=wsite, parent=lp, sort=sort, 
-                            last_alias=last_alias)
-                
-            except Layout.DoesNotExist:
-                lx = Layout(wsite=wsite, parent=lp, sort=sort, last_alias=last_alias)
-                
-            lx.active = active
-            lx.locked = locked
-            lx.mark = mark
-            lx.mark_i18n = mark_i18n
-
-            lx.name = name
-            lx.tags = tags
-            lx.note = note
-            lx.contet = content
-
-            if not params and len(mark.split('__'))>1:
-                lx.params = mark.split('__')[1]
-            else:
-                lx.params = params
-
-            if not params_i18n and len(mark_i18n.split('__'))>1:
-                lx.params_i18n = mark_i18n.split('__')[1]
-            else:
-                lx.params_i18n = params_i18n
-
-            lx.link = link
-            lx.docfile = docfile
-            lx.text1 = text1
-            lx.text2 = text2
-            lx.text3 = text3
-            lx.text4 = text4
-            lx.text5 = text5
-            lx.note1 = note1
-            lx.note2 = note2
-
-            lx.save()
-            #-----------------------
-            #------------------------------
-            # languages = root_obj.params.split(',')
-            
-            languages = self.__class__.objects.filter(
-                wsite=self.wsite, root_alias=self.root_alias,
-                level=0
-                # last_alias='languages', 
-                )
-
-            if languages:
-                languages = languages[0].grade
-            if languages:
-                languages = languages.split(',')
-            else:
-                languages = None
-
-            if mark_i18n and languages:
-                lx.create_i18n(languages)
-
-        return
 
     def create_i18n(self, languages):
         # if not self.replace:
@@ -471,28 +364,22 @@ class Layout(ModelTree1, ExtraLayout):
                 reg = LayoutI18n(layout=self, sort=lan)
             reg.grade = lan
             #----------------------------------
-            reg.active = self.active
+            reg.name = self.name
+            # reg.active = self.active
             reg.mark = self.mark_i18n
             reg.params = self.params_i18n
+            # reg.content = "Traducir a %s %s" % (lan.upper(), self.content)
+            # reg.text1 = "Traducir a %s %s" % (lan.upper(), self.text1)
+            # reg.tags = self.tags # Attrs 
+            # reg.note = self.note # texto html ??                        
             #-----------------------
-            reg.name = "[%s -->] %s" % (lan.upper(), self.name)
-            reg.tags = self.tags
-            reg.note = self.note
-            #------------------------
-        
-            content = self.content
-            reg.content = "Traducir a %s %s" % (lan.upper(), content)
-            # reg.docfile = self.docfile
-            # reg.link = self.link
- 
-            #-----------------------------
-            reg.text1 = self.text1
-            reg.text2 = self.text2
-            reg.text3 = self.text3
-            reg.text4 = self.text4
-            reg.text5 = self.text5
-            reg.note1 = self.note1
-            reg.note2 = self.note2
+            if False: # todavía no lo estoy usando
+                reg.text2 = self.text2
+                reg.text3 = self.text3
+                reg.text4 = self.text4
+                reg.text5 = self.text5
+                reg.note1 = self.note1
+                reg.note2 = self.note2
             reg.save()
         return
 
@@ -529,11 +416,11 @@ class LayoutI18n(ModelBase, ExtraLayout):
 
     def MC_language(self):
         lans = {
-            'de': 'GERMAN',
-            'en': 'ENGLISH',
-            'es': 'SPANISH',
-            'fr': 'FRANCE',
-            'dk': 'DANSK'
+            'de': 'ALEMAN',
+            'en': 'INGLES',
+            'es': 'ESPAÑOL',
+            'fr': 'FRANCES',
+            'dk': 'DANES'
         }
         if self.sort in lans.keys():
             return lans[self.sort]

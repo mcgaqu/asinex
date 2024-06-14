@@ -6,55 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title id="head-1" name="TITLE" mark=":text1" marki18n=":text1" >Asinex</title>
-    <link id="head-2" name="FAVICON" mark="href:text1" rel="icon" href="../static/img/favicon.jpg/" /> 
-    <link id="head-3" name="CSS3" mark="href:text1" rel="stylesheet" href="../static/css/w3.css"> 
-    <link id="head-4" name="CSS4" mark="href:text1" rel="stylesheet" href="../static/css/index3.css">
-    <script id="head-5" name="JS" mark="src:text1" src="../static/js/index3.js"></script> 
+    <title id="head-1" name="URL-TITLE" mark=":tags">Asinex</title>
+    <link id="head-2" name="FAVICON" mark="href:tags" rel="icon" href="../static/img/favicon.jpg/" /> 
+    <link id="head-3" name="W3.CSS" mark="href:tags" rel="stylesheet" href="../static/css/w3.css"> 
+    <link id="head-4" name="AWS.CSS" rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link id="head-5" name="INDEX.CSS" mark="href:tags" rel="stylesheet" href="../static/css/index3.css">
+    <script id="head-6" name="INDEX.JS" mark="src:tags" src="../static/js/index3.js"></script> 
+
 </head>
 
 <body class="w3-content" style="max-width:100%">
 <header id="header" class="w3-top w3-red">
     <!-- -Fila 1-------------------------------------- -->
     <div id="header-1" name="COMPANY" class="w3-bar w3-white">
-        <img id="header-11" name="LOGO" mark="src:text1"
+        <img id="header-11" name="LOGO" mark="src:tags"
                 class="w3-padding w3-left" style="width:300px;padding-bottom:0" 
                 src="../static/img/logo1.jpg">
 
         <!-- banderas es,en,fr,de,dk	-->
         <div id="header-12" name="LANGUAGES" 
             class="w3-right w3-padding-16" style="padding-right:16px">
-            <img id="header-121" name="LAN-ES" mark="src:text1" src="../static/img/Bandera-ESP.png"
+            <img id="header-121" name="LAN-es" mark="" src="../static/img/Bandera-ESP.png"
                 class="w3-display-container w3-hover-opacity" 
                 style="display:inline;width:30px"
-                onclick="mySelectLan('es')">
+                onclick="selectLan('es')">
 
-            <img id="header-122" name="LAN-EN" mark="src:text1" src="../static/img/Bandera-ENG.png"
+            <img id="header-122" name="LAN-en" mark="" src="../static/img/Bandera-ENG.png"
                 class="w3-display-container w3-hover-opacity" 
                 style="display:inline;width:30px"
-                onclick="mySelectLan('en')">
+                onclick="selectLan('en')">
 
-            <img id="header-123" name="LAN-FR" mark="src:text1" src="../static/img/Bandera-FRA.png"
+            <img id="header-123" name="LAN-fr" mark="" src="../static/img/Bandera-FRA.png"
                 class="w3-display-container w3-hover-opacity" 
                 style="display:inline;width:30px"
-                onclick="mySelectLan('fr')">
+                onclick="selectLan('fr')">
             
-            <img id="header-124" name="LAN-DE" mark="src:text1" src="../static/img/Bandera-ALE.png"
+            <img id="header-124" name="LAN-de" mark="" src="../static/img/Bandera-ALE.png"
                 class="w3-display-container w3-hover-opacity" 
                 style="display:inline;width:30px"
-                onclick="mySelectLan('de')">
+                onclick="selectLan('de')">
 
-            <img id="header-125" name="LAN-DK" mark="src:text1" src="../static/img/Bandera-DIN.png"
+            <img id="header-125" name="LAN-dk" mark="" src="../static/img/Bandera-DIN.png"
                 class="w3-display-container w3-hover-opacity" 
                 style="display:inline;width:30px"
-                onclick="mySelectLan('dk')">
+                onclick="selectLan('dk')">
         </div>
     </div>
     <!-- Fila 2 --------------------------------------- -->    
     <div id="header-2" name="APPBAR" 
         class="w3-bar w3-white w3-card" style="padding-top:1px">
         <div class="w3-left w3-small w3-large">
-            <b id="header-21" name="TITULO" mark=":text1" marki18n=":text1" 
+            <b id="header-21" name="TITULO" mark="" marki18n=":text1" 
                 style="padding-left:40px">
                 Asesoria Legal y Fiscal</b>
         </div>
@@ -62,32 +66,32 @@
         
         <div id="header-22" name="NAVBAR"  
             class="w3-right w3-hide-small w3-large w3-padding-16">
-            <a id="header-221" name="INICIO" mark="href:text1" marki18n=":text1" href="#main-1" 
+            <a id="header-221" name="INICIO" mark="href:tags" marki18n=":text1" href="#main1" 
                 class="w3-bar-item w3-button
                     w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
                     w3-bottombar w3-border-white w3-hover-border-blue">
                 Inicio</a>
-            <a id="header-222" name="SERVICIOS" mark="href:text1" marki18n=":text1" href="#main-2" 
+            <a id="header-222" name="SERVICIOS" mark="href:tags" marki18n=":text1" href="#main2" 
                 class="w3-bar-item w3-button
                     w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
                     w3-bottombar w3-border-white w3-hover-border-blue">
                 Servicios</a>
-            <a id="header-223" name="NOSOTROS" mark="href:text1" marki18n=":text1" href="#main-3" 
+            <a id="header-223" name="NOSOTROS" mark="href:tags" marki18n=":text1" href="#main3" 
                 class="w3-bar-item w3-button
                 w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
                 w3-bottombar w3-border-white w3-hover-border-blue">
                 Sobre Nosotros</a>
-            <a id="header-224" name="COSTA TROPICAL" mark="href:text1" marki18n=":text1" href="#main-4" 
+            <a id="header-224" name="COSTA-TROPICAL" mark="href:tags" marki18n=":text1" href="#main4" 
                 class="w3-bar-item w3-button
                     w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
                     w3-bottombar w3-border-white w3-hover-border-blue">
                 Costa Tropical</a>
-            <a id="header-225" name="FAQ" mark="href:text1" marki18n=":text1" href="#main-5" 
+            <a id="header-225" name="FAQ" mark="href:tags" marki18n=":text1" href="#main5" 
                 class="w3-bar-item w3-button
                 w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
                 w3-bottombar w3-border-white w3-hover-border-blue">
                 Preguntas Frecuentes</a>
-            <a id="header-226" name="CONTACTO" mark="href:text1" marki18n=":text1" href="#main-8" 
+            <a id="header-226" name="CONTACTO" mark="href:tags" marki18n=":text1" href="#main8" 
                 class="w3-bar-item w3-button
                     w3-hover-none w3-text-black w3-hover-text-indigo w3-hover-text-underline
                     w3-bottombar w3-border-white w3-hover-border-blue">
@@ -105,19 +109,19 @@
     <div id="header-3" name="SIDEBAR"    
         class="w3-sidebar w3-bar-block asinex-pale-blue w3-card w3-animate-left w3-hide-medium w3-hide-large" 
         style="display:none" >
-        <a id="header-31" name="INICIO" mark="href:text1" marki18n=":text1" href="#main-1" 
+        <a id="header-31" name="INICIO" mark="href:tags" marki18n=":text1" href="#main1" 
             class="w3-bar-item w3-button">Inicio</a>
-        <a id="header-32" name="SERVICIOS" mark="href:text1" marki18n=":text1" href="#main-2" 
+        <a id="header-32" name="SERVICIOS" mark="href:tags" marki18n=":text1" href="#main2" 
             class="w3-bar-item w3-button">Servicios</a>
-        <a id="header-33" name="NOSOTROS" mark="href:text1" marki18n=":text1" href="#main-3" 
+        <a id="header-33" name="NOSOTROS" mark="href:tags" marki18n=":text1" href="#main3" 
             class="w3-bar-item w3-button">Sobre Nosotros</a>
-        <a id="header-34" name="COSTA TROPICAL" mark="href:text1" marki18n=":text1" href="#main-4" 
+        <a id="header-34" name="COSTA-TROPICAL" mark="href:tags" marki18n=":text1" href="#main4" 
             class="w3-bar-item w3-button">Costa Tropical</a>
-        <a id="header-35" name="FAQ" mark="href:text1" marki18n=":text1" href="#main-5" 
+        <a id="header-35" name="FAQ" mark="href:tags" marki18n=":text1" href="#main5" 
             class="w3-bar-item w3-button">Preguntas Frecuentes</a>
-        <a id="header-36" name="CONTACTO" mark="href:text1" marki18n=":text1" href="#main-8" 
+        <a id="header-36" name="CONTACTO" mark="href:tags" marki18n=":text1" href="#main8" 
             class="w3-bar-item w3-button">Contacto</a>
-        <a id="header-3c" name="CONTACTO" mark="href:text1" marki18n=":text1" href="javascript:void(0)" onclick="w3_close()" 
+        <a id="header-3c" name="CERRAR" mark="href:tags" marki18n=":text1" href="javascript:void(0)" onclick="w3_close()" 
             class="w3-bar-item w3-button">CERRAR
         </a>
     </div>

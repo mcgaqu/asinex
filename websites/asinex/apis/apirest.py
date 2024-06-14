@@ -27,7 +27,7 @@ router = routers.DefaultRouter()
 # router.register(r'doctypes', DocTypeViewSet)
 # router.register(r'doctypeprops', DocTypePropViewSet)
 #-------------------
-router.register(r'components', ComponentViewSet)
+# router.register(r'components', ComponentViewSet)
 router.register(r'layouts', LayoutViewSet)
 router.register(r'layouti18ns', LayoutI18nViewSet)
 #--------------------------------

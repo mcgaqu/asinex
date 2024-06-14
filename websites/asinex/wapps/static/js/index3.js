@@ -1,25 +1,31 @@
-// window.onload = iniciar();
+window.onload = iniciar();
 
-// window.onload = iniciar();
 async function iniciar() {
     // TODO! obtener del env
     console.log("INICIAR");
-
     const serverUrl= `${window.location.origin}/asinex`
     console.log(serverUrl);
     localStorage.serverUrl = serverUrl;
-    localStorage.rootAlias = "index0";
+    localStorage.rootAlias = "index3";
     localStorage.lan = 'es';
     // localStorage.card3 = '';
     
     await manageLayout("layouts",
-        `&locked=1&internal=1&root_alias=${localStorage.rootAlias}`,
+        `&locked=1&internal=0&root_alias=${localStorage.rootAlias}`,
         'last_alias');
     await manageLayout("layouti18ns",
-        `&active=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.lan}`,
+        `&locked=1&active=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.lan}`,
         'layout_last_alias');
 }
 //===================================
+
+function listToDict(data_list){
+    let data_dict = {};
+    data_list.forEach(function(row){
+        data_dict[row['pos']] = row
+    });
+    return data_dict
+}
 
 async function getModelData(model, filtro) {
     const url = `${localStorage.serverUrl}/apirest/${model}/?format=json${filtro}`;
@@ -29,18 +35,8 @@ async function getModelData(model, filtro) {
     let resultado = await respuesta.json();
     let data = resultado.results;
     console.log(resultado)
-
     return data
 }
-
-function listToDict(data_list){
-    let data_dict = {};
-    data_list.forEach(function(row){
-        data_dict[row['pos']] = row
-    });
-    return data_dict
-}
-    
 
 
 async function manageLayout(model, filtro, idElementField) {
@@ -62,7 +58,6 @@ async function manageLayout(model, filtro, idElementField) {
             return;
         };
         
-        
         idElement = obj[idElementField] 
         element = document.getElementById(idElement);
 
@@ -70,79 +65,88 @@ async function manageLayout(model, filtro, idElementField) {
             alert(`El elemento ${idElement} no está en el DOM`);
             return;
         };
-        // console.log(model)
-        console.log(model + ' alias = ' + obj.alias + ' --->  mark = ' + obj.mark)
-        const mark = obj.mark.split('__')// funcion__parametro
-        const action = mark[0];
-
+        
+        console.log(model + ' last_alias = ' + obj.last_alias + ' --->  mark = ' + obj.mark)
         // console.log(`--- ${idElementField}=${idElement} mark=${mark}` )
         // console.log(element)
 
+        const action = obj.mark
         switch (action) {
 
             case 'src':
-                // value = `/media/${obj.name}`
+                // model = Layout y field = tags
                 field = obj.params 
                 element.setAttribute('src', obj[field]);
                 break;
             //-------------------------------
             case 'href':
-                // value = `/media/${obj.name}`
+                // model = Layout y field = tags
                 field = obj.params 
                 element.setAttribute('href', obj[field]);
                 break;
-             //-------------------------------  
-             case 'innerHTML':
-                field = obj.params // mark[1];
+            //-------------------------------  
+            case 'innerHTML':
+                // model = Layout y field = note
+                // model = LayoutI18n y field = text1 o content
+                field = obj.params
                 element.innerHTML = obj[field];
-                }
                 break;
-            // ====================================
-            case 'loadLanguages':
+            //====================================
+            case 'x_loadLanguages':
                 loadLanguages(element,obj)
                 break;
-            case 'loadNavbar':
+            case 'x_loadLan': 
+                console.log('Voy a ejecutar LoadLan ');
+                console.log(element);               
+                element.addEventListener('click', selectLan);
+                console.log('He ejecutado LoadLan');  
+                console.log(element.id); 
+                console.log(element.name);
+                console.log(element.onclick);    
+                break;
+
+            case 'x_loadNavbar':
                 loadNavbar(element,obj)
                 break;
-            case 'transNavbar':
+            case 'x_transNavbar':
                 transNavbar(element,obj)
                 break;
             //-----------------------------
-            case 'loadSidebar':
+            case 'x_loadSidebar':
                 loadSidebar(element,obj)
                 break;
-            case 'transSidebar':
+            case 'x_transSidebar':
                 transSidebar(element,obj)
                 break;
             //-------------------------------
-            case 'loadCard1':
+            case 'x_loadCard1':
                 loadCard1(element,obj)
                 break;
             //-------------------------------
-            case 'loadCard2':
+            case 'x_loadCard2':
                 loadCard2(element,obj)
                 break;
             //-------------------------------
-            case 'loadCard2Team':
+            case 'x_loadCard2Team':
                 loadCard2Team(element,obj)
                 break;
 
             //-------------------------------
-            case 'loadCard3':
+            case 'x_loadCard3':
                 loadCard3(element,obj)
                 break;
             //-------------------------------
-            case 'loadImageName':
+            case 'x_loadImageName':
                 // value = `/media/${obj.name}`
                 element.setAttribute('src', obj.name);
                 break;
             //-------------------------------
-            case 'loadFileName':
+            case 'x_loadFileName':
                 // value = `/media/${obj.name}`
                 element.setAttribute('href', obj.name);
                 break;
              //-------------------------------  
-            case 'setAttr':
+            case 'x_setAttr':
                 if (obj.active) {
                     const field = mark[1];
                     const params = obj[field].split(',');
@@ -166,36 +170,22 @@ async function manageLayout(model, filtro, idElementField) {
     });
 };
 
-
 //----------------------------------
 // seleccion de idiomas
 //--------------------------------
-function mySelectLan(lan) {
+function selectLan(lan) {
     // -----------------------------------------
     console.log("Tengo que traducir a " + lan);
     localStorage.language = lan;
     // alert("Tengo que traducir a " + lan);
     manageLayout("layouti18ns",
-        `&active=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.language}`,
+        `&locked=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.language}`,
         'layout_last_alias');
 }
-    
+//======================================================
+//=================================================
 
 
-function selectLan(e) {
-    let lan = e.target.id.split('-')[1]
-
-    console.log("Tengo que traducir a " + lan);
-    localStorage.language = lan;
-    // alert("Tengo que traducir a " + lan);
-    manageLayout("layouti18ns",
-        `&active=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.language}`,
-        'layout_last_alias');
-
-    //    `&locked=1&internal=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.lan}`,
-    // si hay una pagina activa --> traducirla??? no es imprescindible
-    // selectCard3(e);
-}
 //----------------------------------
 // seleccion de Page
 //--------------------------------

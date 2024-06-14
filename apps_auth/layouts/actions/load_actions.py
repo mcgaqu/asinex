@@ -35,14 +35,20 @@ def gen_index_html(root, html_file):
                 continue
     return   
 
-
 def gen_page(root):
     Page = Layout
     # ----------
     html_file = os.path.join(
         settings.SITE_DIR, 'wapps', 'templates', 
-        root.root_alias, "%s.html" % root.root_alias)
-    gen_index_html(root, html_file)
+        # root.root_alias, 
+        "%s.html" % root.root_alias)
+    if True:
+        gen_index_html(root, html_file)
+        #---------------------------
+        for child in root.children.all():
+            child.delete()
+    #--------------------------------
+
     languages = root.grade.split(',')
     #-----------------------------
     with open(html_file, 'r') as file:
@@ -69,13 +75,13 @@ def gen_page(root):
             print_msg("%03d: %s" % (conta_lin,line))
             print_msg("-----------------------------------------------------")
             if not 'id=' in line:
+                continue
+                #---------------------
                 parent = None
                 grade = 'noId'
                 last_alias = "lin%04d" % conta_lin
                 sort = "%04d" % conta_lin
                 #-----------------
-                # active = False
-                # internal= True
             else:
                 # num_int = conta_lin
                 # import pdb; pdb.set_trace()
@@ -109,7 +115,7 @@ def gen_page(root):
                 # if conta_lin == 64:
                 #     import pdb; pdb.set_trace()
                 if not 'name=' in line:
-                    name = last_alias.upper()
+                    name = "" # last_alias.upper()
                 else:
                  # asumimos que siempre existe el :
                     name = list_line[2].strip().split('"')[1]
@@ -117,60 +123,63 @@ def gen_page(root):
                 if 'mark=' in line:
                     # mark = list_line[3].split('"')[1]
                     xx = list_line[3].split('"')[1]
-                    mark = xx.split(':')[0]
-                    if not mark:
-                        mark = "innerHTML"
-                    if len(xx.split(':'))>1:
-                        params = xx.split(':')[1]
+                    if xx:
+                        mark = xx.split(':')[0]
+                        if not mark:
+                            mark = "innerHTML"
+                        if len(xx.split(':'))>1:
+                            params = xx.split(':')[1]
                 if 'marki18n=' in line:
                     # marki18n = list_line[4].split('"')[1]
                     xx = list_line[4].split('"')[1]
-                    marki18n = xx.split(':')[0]
-                    if not marki18n:
-                        marki18n = "innerHTML"
-                    if len(xx.split(':'))>1:
-                        paramsi18n = xx.split(':')[1]
+                    if xx:
+                        marki18n = xx.split(':')[0]
+                        if not marki18n:
+                            marki18n = "innerHTML"
+                        if len(xx.split(':'))>1:
+                            paramsi18n = xx.split(':')[1]
             #---------------------------
             if grade == "noId":
                 continue
             #---------------------------------
             try:
-                page = Layout.objects.get(num_int=conta_lin,
+                page = Layout.objects.get(
                     wsite=root.wsite, root_alias=root.root_alias, 
-                    parent=parent, last_alias=last_alias)
+                    last_alias=last_alias)
             except Layout.DoesNotExist:
-                page = Layout(num_int=conta_lin,
+                page = Layout(
                     wsite=root.wsite, root_alias=root.root_alias, 
-                    parent=parent, last_alias=last_alias)
+                    last_alias=last_alias)
+            page.parent = parent    
             page.grade = grade
             page.num_int = conta_lin
             page.sort = sort
-            # page.active = active
             page.name = name
             page.mark = mark
             page.params = params
             page.mark_i18n = marki18n
             page.params_i18n = paramsi18n
             #--------------------
-            page.text5 = line
-            # page.internal = True
-            # page.active = False # ?????                    
+            page.text5 = line             
             page.save() # generar i18n si toca = si marki18n
             #-----------------------
+            # self.internal = not(self.mark)
+            # self.replace = not (not self.mark_i18n)
+            # self.active = (not self.internal or self.replace)
+
             if page.replace and languages:
                 page.create_i18n(languages)
-
     return
     #--------------------------------------
 
 def ac_gen_page(modeladmin, request, queryset):
     for obj in queryset:
-        if not obj.parent and not obj.locked:
+        if not obj.parent and obj.locked:
             gen_page(obj)
             message = "Función gen_page para %s realizada" % obj.root_alias
             modeladmin.message_user(request, message, level=messages.SUCCESS)
         else:
-            message = _("la página:%s, %s no se carga porque no es raiz o está bloqueado") % (obj.id, obj.name)
+            message = _("la página:%s, %s no se carga porque no es raiz o no está confirmada") % (obj.id, obj.name)
             modeladmin.message_user(request, message, level=messages.WARNING)
         return
 ac_gen_page.short_description = "Generar Página"

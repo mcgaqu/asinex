@@ -9,14 +9,6 @@ from apps_admin.utils.base import get_apirest_fields
 # Idea para personaliza apis : --> Pendiente de prueba y mejora.
 #--------------------------
 
-def x_get_api_fields(Model, ini_fields=[]):
-    from mod_bpmn.datamodel.models import BModelField
-    if settings.NUM_ADMIN_SITE == '2':
-        fields = BModelField.objects.filter(
-            bmodel__biz__name=settings.SITE_NAME, name=Model.__name__)
-        return [x.alias for x in fields]
-    return ini_fields
-
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

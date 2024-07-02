@@ -69,6 +69,7 @@ class LayoutSerializer(serializers.HyperlinkedModelSerializer):
             'internal','locked',
             'mark', 'params',
             # 'text1', 'content',
+            'text1', 'text2', 'note',
             'tags'
         ]
          

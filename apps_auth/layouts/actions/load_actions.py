@@ -45,6 +45,7 @@ def gen_page(root):
     if True:
         gen_index_html(root, html_file)
         #---------------------------
+    if False:
         for child in root.children.all():
             child.delete()
     #--------------------------------
@@ -166,6 +167,7 @@ def gen_page(root):
             # self.internal = not(self.mark)
             # self.replace = not (not self.mark_i18n)
             # self.active = (not self.internal or self.replace)
+
 
             if page.replace and languages:
                 page.create_i18n(languages)

@@ -66,7 +66,7 @@ async function manageLayout(model, filtro, idElementField) {
             return;
         };
         
-        console.log(model + ' last_alias = ' + obj.last_alias + ' --->  mark = ' + obj.mark)
+        console.log(model + ' name = ' + obj.name + ' last_alias = ' + obj.alias + ' --->  mark = ' + obj.mark)
         // console.log(`--- ${idElementField}=${idElement} mark=${mark}` )
         // console.log(element)
 
@@ -89,7 +89,22 @@ async function manageLayout(model, filtro, idElementField) {
                 // model = Layout y field = note
                 // model = LayoutI18n y field = text1 o content
                 field = obj.params
+                console.log('field = ' + field + ' -->  obj[field] = ' + obj[field])
+                
                 element.innerHTML = obj[field];
+                break;
+            // ---------------------------------
+            case 'ocultar':
+                if (element.className.indexOf("w3-hide") == -1) {
+                  element.className += " w3-hide";
+                };
+                break;
+
+             // ---------------------------------
+            case 'mostrar':
+                if (element.className.indexOf("w3-hide") == -1) {
+                  element.className.replace(" w3-hide", "");
+                };
                 break;
             //====================================
             case 'x_loadLanguages':

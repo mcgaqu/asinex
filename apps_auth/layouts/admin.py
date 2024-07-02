@@ -389,15 +389,15 @@ class LayoutAdmin1(ModelAdmin1):
 
 
     def get_fieldsets_datos(self, request, obj):
-        if obj and obj.params:
+        if obj and obj.params and (not request.user.is_superuser):
             # field_list = [('mark', 'params')] + obj.params.split(',')
             field_list = ['MH_mark_user'] + obj.params.split(',')
         else:
             
             field_list =[# ('mark', 'params'),
-                'name', 'link', 'content', 'MH_content',
+                'name', 'link', 'content', 'MH_content', 'tags', 'note',
                 'text1','text2','text3','text4','note1','note2']
-            field_list = []
+            # field_list = []
             
         return  ('DATOS: Imágenes, Ficheros y Links', {
                     'fields': field_list,

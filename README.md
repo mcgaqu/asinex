@@ -8,12 +8,13 @@ HOSTING
 
 PUESTA EN MARCHA
 
-1.- zgen.sh
+1.- $. zgen.sh asinex
 
 2.- xxxx
 
+
 3.- Crear página raiz
-    wsite
+    wsite: 
     raiz (root_alias): index3
     clave (last_alias): vacío
     clase (grade) : idiomas: ej. "en,es,fr,de,ds"

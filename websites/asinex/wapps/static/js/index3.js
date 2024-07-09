@@ -102,8 +102,8 @@ async function manageLayout(model, filtro, idElementField) {
 
              // ---------------------------------
             case 'mostrar':
-                if (element.className.indexOf("w3-hide") == -1) {
-                  element.className.replace(" w3-hide", "");
+                if (element.className.indexOf("w3-hide") > -1) {
+                  element.className.replace("w3-hide", "");
                 };
                 break;
             //====================================

@@ -4,13 +4,13 @@ REPOSITORIO
 
 
 HOSTING
-
+ workon para activar el virtualenv en pythonanywhere
 
 PUESTA EN MARCHA
 
 1.- $. zgen.sh asinex
 
-2.- xxxx
+2.-
 
 
 3.- Crear página raiz

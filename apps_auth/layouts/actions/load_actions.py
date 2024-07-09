@@ -8,7 +8,12 @@ from apps_admin.utils.base import get_wsite, print_msg
 from ..models import Layout, Component
 
 
-def gen_index_html(root, html_file):
+def gen_index_html(root):
+    html_file = os.path.join(
+        settings.SITE_DIR, 'wapps', 'templates', 
+        # root.root_alias, 
+        "%s.html" % root.root_alias)
+
     # import pdb; pdb.set_trace()
     with open(html_file, 'w') as file:
         html_file_part = os.path.join(
@@ -42,7 +47,7 @@ def gen_page(root):
         settings.SITE_DIR, 'wapps', 'templates', 
         # root.root_alias, 
         "%s.html" % root.root_alias)
-    if True:
+    if False:
         gen_index_html(root, html_file)
         #---------------------------
     if False:
@@ -174,6 +179,19 @@ def gen_page(root):
     return
     #--------------------------------------
 
+def ac_gen_index_html(modeladmin, request, queryset):
+    for obj in queryset:
+        if not obj.parent and obj.locked:
+            gen_index_html(obj)
+            message = "Función gen_index_html para %s realizada" % obj.root_alias
+            modeladmin.message_user(request, message, level=messages.SUCCESS)
+        else:
+            message = _("la página:%s, %s no se carga porque no es raiz o no está confirmada") % (obj.id, obj.name)
+            modeladmin.message_user(request, message, level=messages.WARNING)
+        return
+ac_gen_index_html.short_description = "Generar Index.html"
+
+
 def ac_gen_page(modeladmin, request, queryset):
     for obj in queryset:
         if not obj.parent and obj.locked:
@@ -185,6 +203,7 @@ def ac_gen_page(modeladmin, request, queryset):
             modeladmin.message_user(request, message, level=messages.WARNING)
         return
 ac_gen_page.short_description = "Generar Página"
+
 
 
 

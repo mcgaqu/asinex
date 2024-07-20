@@ -76,7 +76,7 @@ class LayoutSerializer(serializers.HyperlinkedModelSerializer):
 
 class LayoutViewSet(viewsets.ModelViewSet):
 
-    queryset = Layout.objects.all().order_by('num_int') # ('pos')
+    queryset = Layout.objects.all().order_by('last_alias') # ('pos')
     serializer_class = LayoutSerializer
 
     x_filterset_fields = [# 'url',
@@ -121,8 +121,8 @@ class LayoutI18nSerializer(serializers.HyperlinkedModelSerializer):
                 ]
         
         fields = [# 'url', 
-            'id', 'layout', 'sort',
-            'layout_root_alias', 'layout_last_alias', 'alias',
+            'id',  'sort', # 'layout',
+            'layout_root_alias', 'layout_last_alias', # 'alias',
             # 'MC_parents_name', # ???
             'locked', 'active',
             'mark', 'params',
@@ -134,7 +134,7 @@ class LayoutI18nViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
     """
-    queryset = LayoutI18n.objects.all().order_by('pos')
+    queryset = LayoutI18n.objects.all().order_by('layout_last_alias')
     serializer_class = LayoutI18nSerializer
 
     x_filterset_fields = [# 'url', 
@@ -148,9 +148,9 @@ class LayoutI18nViewSet(viewsets.ModelViewSet):
             'link', # 'docfile' ,
             'text1', 'text2', 'text3', 'text4', 'text5',
             'note1', 'note2',                ]
-    filterset_fields = ['layout_root_alias', 'locked', 'active', 'sort']
+    filterset_fields = ['layout_root_alias', 'layout_last_alias', 'locked', 'active', 'sort']
     
     # search_fields = ['name', 'note', 'content'] # , 'typedoc__name'
-    # ordering_fields = ['grade', 'sort', 'alias', 'name']
-    # ordering = ['pos'] # ['layout__pos', 'grade']
+    # ordering_fields = ['layout_last_alias', 'grade', 'sort', 'alias', 'name']
+    # ordering = ['layout_last_alias'] # ['layout__pos', 'grade']
 

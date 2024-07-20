@@ -66,7 +66,14 @@ async function manageLayout(model, filtro, idElementField) {
             return;
         };
         
-        console.log(model + ' name = ' + obj.name + ' last_alias = ' + obj.alias + ' --->  mark = ' + obj.mark)
+        if (model == 'layouts')  {
+            console.log(model + ' last_alias = ' + obj.last_alias + ' --->  mark = ' + obj.mark)
+        } else {
+            // console.log(model + ' name = ' + obj.name + ' last_alias = ' + obj.alias + ' --->  mark = ' + obj.mark)
+            console.log(idElement)
+
+        }
+        
         // console.log(`--- ${idElementField}=${idElement} mark=${mark}` )
         // console.log(element)
 
@@ -89,7 +96,7 @@ async function manageLayout(model, filtro, idElementField) {
                 // model = Layout y field = note
                 // model = LayoutI18n y field = text1 o content
                 field = obj.params
-                console.log('field = ' + field + ' -->  obj[field] = ' + obj[field])
+                // console.log('field = ' + field + ' -->  obj[field] = ' + obj[field])
                 
                 element.innerHTML = obj[field];
                 break;
@@ -188,14 +195,15 @@ async function manageLayout(model, filtro, idElementField) {
 //----------------------------------
 // seleccion de idiomas
 //--------------------------------
-function selectLan(lan) {
+async function selectLan(lan) {
     // -----------------------------------------
     console.log("Tengo que traducir a " + lan);
     localStorage.language = lan;
     // alert("Tengo que traducir a " + lan);
-    manageLayout("layouti18ns",
+    await manageLayout("layouti18ns",
         `&locked=1&layout_root_alias=${localStorage.rootAlias}&sort=${localStorage.language}`,
         'layout_last_alias');
+
 }
 //======================================================
 //=================================================

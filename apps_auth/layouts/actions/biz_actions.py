@@ -20,6 +20,17 @@ def ac_expand_layout(modeladmin, request, queryset):
 ac_expand_layout.short_description = "Crear Layout con sus Componentes"
 
 
+def x_ac_add_fila_equipo(modeladmin, request, queryset):
+    for obj in queryset:
+        if not obj.parent and not obj.locked:
+            obj.expand_layout()
+            message = "Función expand_layout para %s realizada" % obj.root_alias
+            modeladmin.message_user(request, message, level=messages.SUCCESS)
+        else:
+            message = _("el layout:%s, %s no se carga porque no es raiz o está bloqueado") % (obj.id, obj.name)
+            modeladmin.message_user(request, message, level=messages.warning)
+        return
+ac_x_add_fila_equipo.short_description = "Añadir fila Equipo a"
 
 
 

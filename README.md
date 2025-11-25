@@ -1,7 +1,8 @@
 # b2b-asinex
 
 REPOSITORIO
-
+ GitHub
+ (Nota: W3Scools: Tutorial de GitHub)
 
 HOSTING
  workon para activar el virtualenv en pythonanywhere
